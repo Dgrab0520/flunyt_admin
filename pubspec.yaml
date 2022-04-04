@@ -47,6 +47,7 @@ dependencies:
   data_table_2: ^2.0.3
   image_picker_web: ^2.1.0
   url_launcher: ^6.0.20
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

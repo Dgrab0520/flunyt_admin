@@ -1,24 +1,22 @@
-import 'package:flunyt_admin/admin/review_page.dart';
+import 'package:flunyt_admin/admin/partner_page.dart';
+import 'package:flunyt_admin/admin/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../admin/data/partner_data.dart';
-import '../admin/model/partner_model.dart';
-import '../admin/setting_page.dart';
+import 'data/partner_data.dart';
 import 'main_page.dart';
+import 'model/partner_model.dart';
 
-late Widget top;
-
-class PartnerPage extends StatefulWidget {
-  const PartnerPage({Key? key}) : super(key: key);
+class Review_Page extends StatefulWidget {
+  const Review_Page({Key? key}) : super(key: key);
 
   @override
-  _PartnerPageState createState() => _PartnerPageState();
+  _Review_PageState createState() => _Review_PageState();
 }
 
-class _PartnerPageState extends State<PartnerPage> {
+class _Review_PageState extends State<Review_Page> {
   List<Pro_Summary> summary = [];
   List<Pro_Detail> detail = [];
   List<Pro_Detail> detail2 = [];
@@ -672,26 +670,8 @@ class _PartnerPageState extends State<PartnerPage> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '업체 관리',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
                                   onTap: () {
-                                    Get.to(Review_Page());
+                                    Get.to(PartnerPage());
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(10.0),
@@ -700,11 +680,29 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
+                                        '업체 관리',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'NanumSquareB',
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Text(
                                         '리뷰 관리',
                                         style: TextStyle(
                                           fontSize: 16,
-                                          fontFamily: 'NanumSquareR',
-                                          color: Colors.white,
+                                          fontFamily: 'NanumSquareB',
                                         ),
                                       ),
                                     ),
@@ -747,7 +745,7 @@ class _PartnerPageState extends State<PartnerPage> {
                               bottom: MediaQuery.of(context).size.width / 70,
                             ),
                             child: Text(
-                              '업체 관리',
+                              '리뷰 관리',
                               style: TextStyle(
                                 fontFamily: 'NanumSquareEB',
                                 fontSize: 18,
@@ -825,7 +823,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 업체 수',
+                                              '전체 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -860,7 +858,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 진행 수',
+                                              '하루 평균 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -895,7 +893,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 완료 수',
+                                              '$strMonth월 평균 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -908,7 +906,6 @@ class _PartnerPageState extends State<PartnerPage> {
                                   ),
                                 ],
                               )),
-
                           //Summary Body
                           Container(
                             width: Get.width,
@@ -975,7 +972,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     child: Center(
                                       child: Text(
                                         _isLoading1
-                                            ? '${summary[0].all_partner} 명'
+                                            ? '${summary[0].all_partner} 건'
                                             : '',
                                         style: TextStyle(
                                           fontSize: 12,
@@ -1252,114 +1249,6 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        '담당자명',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '연락처',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '회사명',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
                                         '사업자번호',
                                         style: TextStyle(
                                           fontSize: 14,
@@ -1531,114 +1420,6 @@ class _PartnerPageState extends State<PartnerPage> {
                                                           child: Text(
                                                             searchResult[index]
                                                                 .pro_id,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                .pro_phone,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                .com_name,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                .com_no,
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1929,111 +1710,6 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '율유류',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '${detail[index].pro_phone}',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '${detail[index].com_name}',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
                                                             '${detail[index].com_no}',
                                                             style: TextStyle(
                                                               fontSize: 12,
@@ -2220,26 +1896,8 @@ class _PartnerPageState extends State<PartnerPage> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '업체 관리',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
                                   onTap: () {
-                                    Get.to(Review_Page());
+                                    Get.to(PartnerPage());
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(10.0),
@@ -2248,11 +1906,29 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
+                                        '업체 관리',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'NanumSquareB',
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    padding: EdgeInsets.all(10.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Text(
                                         '리뷰 관리',
                                         style: TextStyle(
                                           fontSize: 16,
-                                          fontFamily: 'NanumSquareR',
-                                          color: Colors.white,
+                                          fontFamily: 'NanumSquareB',
                                         ),
                                       ),
                                     ),

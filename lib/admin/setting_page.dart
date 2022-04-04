@@ -1,4 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:flunyt_admin/admin/review_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -194,6 +195,27 @@ class _SettingPageState extends State<SettingPage> {
                             child: const Center(
                               child: Text(
                                 '업체 관리',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'NanumSquareR',
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(Review_Page());
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF3B4E84),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '리뷰 관리',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'NanumSquareR',
