@@ -31,6 +31,8 @@ class _SettingPageState extends State<SettingPage> {
   List<MemberData> chartData = [];
 
   List<DataRow> rowList = []; //서비스 현황 리스트
+  List<DataRow> rowList3 = []; //서비스 현황 리스트
+  List<DataRow> rowList4 = []; //서비스 현황 리스트
 
   getGraph() {
     Setting_Data.getGraph().then((value) {
@@ -355,7 +357,7 @@ class _SettingPageState extends State<SettingPage> {
                                           ),
                                         )),
                                       ],
-                                      rows: rowList,
+                                      rows: rowList3,
                                     ),
                                   )),
                             ],
@@ -470,7 +472,7 @@ class _SettingPageState extends State<SettingPage> {
                                       ),
                                     )),
                                   ],
-                                  rows: rowList,
+                                  rows: rowList3,
                                 ),
                               )),
                         ],
@@ -951,7 +953,7 @@ class _SettingPageState extends State<SettingPage> {
                                 ),
                               )),
                             ],
-                            rows: rowList,
+                            rows: rowList3,
                           ),
                         )),
                   ],
