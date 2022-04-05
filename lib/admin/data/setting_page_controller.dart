@@ -12,6 +12,13 @@ import '../model/month_count_model.dart';
 import '../model/user_total_model.dart';
 
 class SettingPageController extends GetxController {
+  @override
+  void onInit() {
+    getArea();
+    getService();
+    super.onInit();
+  }
+
   final _areaList = <DataRow>[].obs; //지역 현황 리스트
   final _categoryList = <DataRow>[].obs; //카테고리 현황 리스트
 

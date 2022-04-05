@@ -5,24 +5,24 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../constants.dart';
-import '../model/user_model.dart';
+import '../model/client_model.dart';
 
-class MainPageController extends GetxController {
+class PartnerController extends GetxController {
   @override
   void onInit() {
-    getUser();
+    getPartner();
     super.onInit();
   }
 
-  final _users = <User>[].obs;
+  final _partners = <Client>[].obs;
 
-  List<User> get users => _users;
-  set users(val) => _users.value = val;
+  List<Client> get partners => _partners;
+  set partners(val) => _partners.value = val;
 
-  final _searchedUsers = <User>[].obs;
+  final _searchedPartners = <Client>[].obs;
 
-  List<User> get searchedUsers => _searchedUsers;
-  set searchedUsers(val) => _searchedUsers.value = val;
+  List<Client> get searchedPartners => _searchedPartners;
+  set searchedPartners(val) => _searchedPartners.value = val;
 
   final _isLoading = false.obs;
 
@@ -35,17 +35,17 @@ class MainPageController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
-  //Get User
-  getUser() async {
+  //Get Partner
+  getPartner() async {
     try {
       var map = <String, dynamic>{};
-      map['action'] = "GET_USER";
+      map['action'] = "GET_PARTNER";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_user.php"),
+          Uri.parse("$baseUrl/web_data/flunyt_admin_client.php"),
           body: map);
-      print('Get User Response : ${response.body}');
+      print('Get Partner Response : ${response.body}');
       if (200 == response.statusCode) {
-        users = parseResponse(response.body);
+        partners = parseResponse(response.body);
         isLoading = true;
       }
     } catch (e) {
@@ -54,8 +54,8 @@ class MainPageController extends GetxController {
   }
 
   //모든 거래 목록 불러오기
-  static List<User> parseResponse(String responseBody) {
+  static List<Client> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<User>((json) => User.fromJson(json)).toList();
+    return parsed.map<Client>((json) => Client.fromJson(json)).toList();
   }
 }

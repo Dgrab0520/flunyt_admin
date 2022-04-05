@@ -12,8 +12,6 @@ class SettingPage extends StatelessWidget {
   final settingPageController = Get.put(SettingPageController());
   @override
   Widget build(BuildContext context) {
-    settingPageController.getArea();
-    settingPageController.getService();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff506AB4),

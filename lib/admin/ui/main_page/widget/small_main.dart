@@ -256,11 +256,13 @@ class SmallMain extends StatelessWidget {
                       ),
                     ),
                     child: Center(
-                      child: Text(
-                        mainPageController.users.length.toString(),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'NanumSquareR',
+                      child: Obx(
+                        () => Text(
+                          mainPageController.users.length.toString(),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'NanumSquareR',
+                          ),
                         ),
                       ),
                     ),

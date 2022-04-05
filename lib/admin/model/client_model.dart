@@ -5,6 +5,7 @@ class Client {
   String clientCompany;
   String clientName;
   String clientPhone;
+  String clientNo;
   DateTime registerDate;
 
   Client({
@@ -14,6 +15,7 @@ class Client {
     required this.clientCompany,
     required this.clientName,
     required this.clientPhone,
+    required this.clientNo,
     required this.registerDate,
   });
 
@@ -28,6 +30,7 @@ class Client {
           json['client_com'] == null ? "" : json['client_com'] as String,
       clientName: json['name'] == null ? "" : json['name'] as String,
       clientPhone: json['phone'] == null ? "" : json['phone'] as String,
+      clientNo: json['client_no'] == null ? "" : json['client_no'] as String,
       registerDate: json['register_date'] == null
           ? DateTime.now()
           : DateTime.parse(json['register_date']),

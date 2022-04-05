@@ -13,7 +13,6 @@ class ReviewPage extends StatelessWidget {
   final reviewPageController = Get.put(ReviewPageController());
   @override
   Widget build(BuildContext context) {
-    reviewPageController.getReview();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff506AB4),

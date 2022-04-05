@@ -49,7 +49,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(const PartnerPage());
+              Get.offAll(PartnerPage());
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),

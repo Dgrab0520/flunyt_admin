@@ -8,6 +8,12 @@ import '../../constants.dart';
 import '../model/review_model.dart';
 
 class ReviewPageController extends GetxController {
+  @override
+  void onInit() {
+    getReview();
+    super.onInit();
+  }
+
   final _reviews = <Review>[].obs;
 
   List<Review> get reviews => _reviews;

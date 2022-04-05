@@ -12,8 +12,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    mainPageController.getUser();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff506AB4),

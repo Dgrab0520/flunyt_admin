@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../banner_dialog.dart';
 import '../../widget/category_header.dart';
+import 'all_inf_chart.dart';
+import 'chart_widget.dart';
+import 'top_category.dart';
+import 'top_saved.dart';
 
 class SmallScreen extends StatelessWidget {
   SmallScreen({Key? key}) : super(key: key);
@@ -32,32 +36,19 @@ class SmallScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
+              children: const [
+                Text(
                   '월별 이용현황',
                   style: TextStyle(
                     fontSize: 16,
                     fontFamily: 'NanumSquareEB',
                   ),
                 ),
-                const SizedBox(height: 30),
-                // SizedBox(
-                //   height: 410,
-                //   child: SfCartesianChart(
-                //       primaryXAxis: CategoryAxis(),
-                //       primaryYAxis: NumericAxis(),
-                //       series: <ChartSeries<Settings2, String>>[
-                //         // Renders column chart
-                //         ColumnSeries<Settings2, String>(
-                //           color: const Color(0xFF506AB4),
-                //           dataSource: setting2,
-                //           xValueMapper: (Settings2 setting2, _) =>
-                //               setting2.month + '월',
-                //           yValueMapper: (Settings2 setting2, _) =>
-                //               int.parse(setting2.count),
-                //         ),
-                //       ]),
-                // ),
+                SizedBox(height: 30),
+                SizedBox(
+                  height: 410,
+                  child: ChartWidget(),
+                ),
               ],
             ),
           ),
@@ -86,38 +77,40 @@ class SmallScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  SizedBox(
-                      height: 440,
-                      child: SingleChildScrollView(
-                        child: DataTable2(
-                          columnSpacing: 10,
-                          minWidth: 450,
-                          columns: const [
-                            DataColumn(
-                              label: Text(
-                                "지역",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.deepOrange,
-                                  fontFamily: 'NanumSquareB',
+                  Obx(
+                    () => SizedBox(
+                        height: 440,
+                        child: SingleChildScrollView(
+                          child: DataTable2(
+                            columnSpacing: 10,
+                            minWidth: 450,
+                            columns: const [
+                              DataColumn(
+                                label: Text(
+                                  "지역",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.deepOrange,
+                                    fontFamily: 'NanumSquareB',
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataColumn(
-                                label: Center(
-                              child: Text(
-                                "리뷰 횟수(건)",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.deepOrange,
-                                  fontFamily: 'NanumSquareB',
+                              DataColumn(
+                                  label: Center(
+                                child: Text(
+                                  "리뷰 횟수(건)",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.deepOrange,
+                                    fontFamily: 'NanumSquareB',
+                                  ),
                                 ),
-                              ),
-                            )),
-                          ],
-                          rows: settingPageController.areaList,
-                        ),
-                      )),
+                              )),
+                            ],
+                            rows: settingPageController.areaList,
+                          ),
+                        )),
+                  ),
                 ],
               )),
           SizedBox(
@@ -145,38 +138,40 @@ class SmallScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  SizedBox(
-                      height: 440,
-                      child: SingleChildScrollView(
-                        child: DataTable2(
-                          columnSpacing: 10,
-                          minWidth: 450,
-                          columns: const [
-                            DataColumn(
-                              label: Text(
-                                "카테고리",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.deepOrange,
-                                  fontFamily: 'NanumSquareB',
+                  Obx(
+                    () => SizedBox(
+                        height: 440,
+                        child: SingleChildScrollView(
+                          child: DataTable2(
+                            columnSpacing: 10,
+                            minWidth: 450,
+                            columns: const [
+                              DataColumn(
+                                label: Text(
+                                  "카테고리",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.deepOrange,
+                                    fontFamily: 'NanumSquareB',
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataColumn(
-                                label: Center(
-                              child: Text(
-                                "리뷰 횟수(건)",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.deepOrange,
-                                  fontFamily: 'NanumSquareB',
+                              DataColumn(
+                                  label: Center(
+                                child: Text(
+                                  "리뷰 횟수(건)",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.deepOrange,
+                                    fontFamily: 'NanumSquareB',
+                                  ),
                                 ),
-                              ),
-                            )),
-                          ],
-                          rows: settingPageController.categoryList,
-                        ),
-                      )),
+                              )),
+                            ],
+                            rows: settingPageController.categoryList,
+                          ),
+                        )),
+                  ),
                 ],
               )),
           SizedBox(
@@ -199,30 +194,9 @@ class SmallScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCircularChart(
-                      //     title: ChartTitle(
-                      //         text: '전체 인플루언서 현황',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings2, String>>[
-                      //       PieSeries<Settings2, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting2,
-                      //           xValueMapper: (Settings2 setting2, _) =>
-                      //               setting2.month,
-                      //           yValueMapper: (Settings2 setting2, _) =>
-                      //               int.parse(setting2.count),
-                      //           dataLabelMapper: (Settings2 setting2, _) =>
-                      //               setting2.month + '월',
-                      //           dataLabelSettings:
-                      //               const DataLabelSettings(isVisible: true)),
-                      //     ])
+                    children: const [
+                      SizedBox(height: 15),
+                      AllInfChart(),
                     ],
                   ),
                 ),
@@ -242,30 +216,9 @@ class SmallScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCircularChart(
-                      //     title: ChartTitle(
-                      //         text: '업체 현황',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings3, String>>[
-                      //       PieSeries<Settings3, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting3,
-                      //           xValueMapper: (Settings3 setting3, _) =>
-                      //               setting3.index == '' ? '일반 업체' : '제휴 업체',
-                      //           yValueMapper: (Settings3 setting3, _) =>
-                      //               int.parse(setting3.count),
-                      //           dataLabelMapper: (Settings3 setting3, _) =>
-                      //               setting3.index == '' ? '일반 업체' : '제휴 업체',
-                      //           dataLabelSettings:
-                      //               const DataLabelSettings(isVisible: true)),
-                      //     ])
+                    children: const [
+                      SizedBox(height: 15),
+                      TopSaved(),
                     ],
                   ),
                 ),
@@ -285,153 +238,13 @@ class SmallScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCartesianChart(
-                      //     title: ChartTitle(
-                      //         text: '카테고리 Top 5',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     primaryXAxis: CategoryAxis(),
-                      //     primaryYAxis: NumericAxis(),
-                      //     series: <ChartSeries<Settings5, String>>[
-                      //       // Renders column chart
-                      //       BarSeries<Settings5, String>(
-                      //         // color: Color(0xFF506AB4),
-                      //         dataSource: setting5,
-                      //         xValueMapper: (Settings5 setting5, _) =>
-                      //             setting5.service,
-                      //         yValueMapper: (Settings5 setting5, _) =>
-                      //             int.parse(setting5.count),
-                      //       ),
-                      //     ]),
-                      // SfCircularChart(
-                      //     title: ChartTitle(text: '파트너 분야', textStyle: TextStyle(
-                      //       fontSize: 14.0,
-                      //       fontFamily: 'NanumSquareEB',
-                      //     )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings2, String>>[
-                      //       PieSeries<Settings2, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting2,
-                      //           xValueMapper: (Settings2 setting2, _) => setting2.month,
-                      //           yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
-                      //           dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월 : ${setting2.count}',
-                      //           dataLabelSettings: DataLabelSettings(isVisible: true)),
-                      //     ]
-                      // )
+                    children: const [
+                      SizedBox(height: 15),
+                      TopCategory(),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 30,
-              ),
-            ],
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width / 70,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 30,
-              ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  width: 400,
-                  height: 350,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCartesianChart(
-                      //     title: ChartTitle(
-                      //         text: '카테고리 Top 5',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     primaryXAxis: CategoryAxis(),
-                      //     primaryYAxis: NumericAxis(),
-                      //     series: <ChartSeries<Settings5, String>>[
-                      //       // Renders column chart
-                      //       BarSeries<Settings5, String>(
-                      //         // color: Color(0xFF506AB4),
-                      //         dataSource: setting5,
-                      //         xValueMapper: (Settings5 setting5, _) =>
-                      //             setting5.service,
-                      //         yValueMapper: (Settings5 setting5, _) =>
-                      //             int.parse(setting5.count),
-                      //       ),
-                      //     ]),
-                      // SfCircularChart(
-                      //     title: ChartTitle(text: '파트너 분야', textStyle: TextStyle(
-                      //       fontSize: 14.0,
-                      //       fontFamily: 'NanumSquareEB',
-                      //     )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings2, String>>[
-                      //       PieSeries<Settings2, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting2,
-                      //           xValueMapper: (Settings2 setting2, _) => setting2.month,
-                      //           yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
-                      //           dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월 : ${setting2.count}',
-                      //           dataLabelSettings: DataLabelSettings(isVisible: true)),
-                      //     ]
-                      // )
-                    ],
-                  ),
-                ),
-              ),
-              // SizedBox(width: 10.0,),
-              // Expanded(
-              //   child: Container(
-              //     padding: EdgeInsets.all(5),
-              //     width:400,
-              //     height:350,
-              //     decoration:BoxDecoration(
-              //       color:Colors.white,
-              //       borderRadius: BorderRadius.circular(5),
-              //     ),
-              //     child: Column(
-              //       mainAxisAlignment: MainAxisAlignment.start,
-              //       crossAxisAlignment: CrossAxisAlignment.center,
-              //       children: [
-              //         SizedBox(height:15),
-              //         SfCircularChart(
-              //             title: ChartTitle(text: '전체 회원 현황', textStyle: TextStyle(
-              //               fontSize: 14.0,
-              //               fontFamily: 'NanumSquareEB',
-              //             )),
-              //             legend: Legend(isVisible: true),
-              //             series: <PieSeries<Settings2, String>>[
-              //               PieSeries<Settings2, String>(
-              //                   explode: true,
-              //                   explodeIndex: 0,
-              //                   dataSource: setting2,
-              //                   xValueMapper: (Settings2 setting2, _) => setting2.month,
-              //                   yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
-              //                   dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월',
-              //                   dataLabelSettings: DataLabelSettings(isVisible: true)),
-              //             ]
-              //         )
-              //       ],
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 width: MediaQuery.of(context).size.width / 30,
               ),
