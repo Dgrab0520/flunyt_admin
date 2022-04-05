@@ -8,8 +8,6 @@ import '../../constants.dart';
 import '../model/review_model.dart';
 
 class ReviewPageController extends GetxController {
-  static const root = "$baseUrl/web_data/flunyt_admin_order.php";
-
   final _reviews = <Review>[].obs;
 
   List<Review> get reviews => _reviews;
@@ -37,7 +35,9 @@ class ReviewPageController extends GetxController {
     try {
       var map = <String, dynamic>{};
       map['action'] = "GET_REVIEW";
-      final response = await http.post(Uri.parse(root), body: map);
+      final response = await http.post(
+          Uri.parse("$baseUrl/web_data/flunyt_admin_review.php"),
+          body: map);
       print('Get Review Response : ${response.body}');
       if (200 == response.statusCode) {
         reviews = parseResponse(response.body);
