@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 import 'data/banner_data.dart';
-import 'model/banner_model.dart';
+import 'model/main_banner_model.dart';
 
 class BannerAdd extends StatefulWidget {
   const BannerAdd({Key? key, required this.type}) : super(key: key);
@@ -129,22 +129,22 @@ class _BannerAddState extends State<BannerAdd> {
               ),
               InkWell(
                 onTap: () {
-                  var banner = Banners(
-                      banner_id: "MB",
-                      banner_type: widget.type,
-                      banner_img: "banner_img",
-                      banner_title: titleController.text,
-                      banner_sub: contentController.text,
-                      id: 0);
-                  Banner_Data.insertBanner(banner, bannerImage).then((value) {
-                    if (value) {
-                      Get.back(result: true);
-                    } else {
-                      if (!Get.isSnackbarOpen) {
-                        Get.snackbar("오류", "배너를 저장하지 못했습니다");
-                      }
-                    }
-                  });
+                  // var banner = Banners(
+                  //     banner_id: "MB",
+                  //     banner_type: widget.type,
+                  //     banner_img: "banner_img",
+                  //     banner_title: titleController.text,
+                  //     banner_sub: contentController.text,
+                  //     id: 0);
+                  // Banner_Data.insertBanner(banner, bannerImage).then((value) {
+                  //   if (value) {
+                  //     Get.back(result: true);
+                  //   } else {
+                  //     if (!Get.isSnackbarOpen) {
+                  //       Get.snackbar("오류", "배너를 저장하지 못했습니다");
+                  //     }
+                  //   }
+                  // });
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

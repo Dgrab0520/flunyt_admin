@@ -1,13 +1,11 @@
-import 'package:flunyt_admin/admin/review_page.dart';
+import 'package:flunyt_admin/admin/ui/review_page/review_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../admin/data/partner_data.dart';
-import '../admin/model/partner_model.dart';
-import '../admin/setting_page.dart';
-import 'main_page.dart';
+import 'ui/main_page/main_page.dart';
+import 'ui/setting_page/setting_page.dart';
 
 late Widget top;
 
@@ -19,553 +17,223 @@ class PartnerPage extends StatefulWidget {
 }
 
 class _PartnerPageState extends State<PartnerPage> {
-  List<Pro_Summary> summary = [];
-  List<Pro_Detail> detail = [];
-  List<Pro_Detail> detail2 = [];
   bool _isLoading1 = false;
   bool _isLoading2 = false;
   bool _isLoading3 = false;
   String strYear = '';
   String strMonth = '';
 
-  List<Pro_Detail> searchResult = [];
   bool isSearch = false;
 
   TextEditingController searchController = TextEditingController();
 
-  getSummary() {
-    Pro_Data.getSummary().then((value) {
-      setState(() {
-        summary = value;
-      });
-      print('value : $value');
-      if (value.length == 0) {
-        setState(() {
-          _isLoading1 = false;
-        });
-      } else {
-        setState(() {
-          print('summary : $summary');
-          _isLoading1 = true;
-        });
-      }
-    });
-  }
-
-  getPro() {
-    Pro_Data.getPro().then((value) {
-      setState(() {
-        detail = value;
-      });
-      print('length2 : ${value.length}');
-      if (value.length == 0) {
-        setState(() {
-          _isLoading2 = false;
-        });
-      } else {
-        setState(() {
-          _isLoading2 = true;
-        });
-      }
-    });
-  }
-
   selectPro(pro_id) {
-    Pro_Data.selectPro(pro_id).then((value) {
-      setState(() {
-        detail2 = value;
-      });
-      if (value.length == 0) {
-        setState(() {
-          _isLoading3 = false;
-        });
-      } else {
-        setState(() {
-          _isLoading3 = true;
-        });
-        Get.defaultDialog(
-            title: '파트너 상세 정보',
-            titleStyle: TextStyle(
-              fontSize: 14.0,
-              fontFamily: 'NanumSquareB',
-            ),
-            radius: 5.0,
-            content: Container(
-              width: Get.width * 0.5,
-              height: Get.height * 0.45,
-              padding: EdgeInsets.symmetric(vertical: 15.0),
-              child: ListView.builder(
-                itemCount: detail2.length,
-                itemBuilder: (_, int index) {
-                  return Column(
+    Get.defaultDialog(
+        title: '파트너 상세 정보',
+        titleStyle: TextStyle(
+          fontSize: 14.0,
+          fontFamily: 'NanumSquareB',
+        ),
+        radius: 5.0,
+        content: Container(
+          width: Get.width * 0.5,
+          height: Get.height * 0.45,
+          padding: EdgeInsets.symmetric(vertical: 15.0),
+          child: ListView.builder(
+            itemCount: 5,
+            itemBuilder: (_, int index) {
+              return Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '아이디',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                '|  ${detail2[0].pro_id}',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
                       SizedBox(
-                        height: 15.0,
+                        width: 10.0,
                       ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '담당자 명',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                '|  ${detail2[0].pro_name}',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '담당자 연락처',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                '|  ${detail2[0].pro_phone}',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '회사 명',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].com_name != ''
-                                    ? '|  ${detail2[0].com_name}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '사업자 번호',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].com_no != ''
-                                    ? '|  ${detail2[0].com_no}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '서비스 지역1',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_area1 != ''
-                                    ? '|  ${detail2[0].pro_area1}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '서비스 지역2',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_area2 != ''
-                                    ? '|  ${detail2[0].pro_area2}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '서비스 지역3',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_area3 != ''
-                                    ? '|  ${detail2[0].pro_area3}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가능 서비스1',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_service1 != ''
-                                    ? '|  ${detail2[0].pro_service1}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가능 서비스2',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_service2 != ''
-                                    ? '|  ${detail2[0].pro_service2}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가능 서비스3',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_service3 != ''
-                                    ? '|  ${detail2[0].pro_service3}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가능 서비스4',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_service4 != ''
-                                    ? '|  ${detail2[0].pro_service4}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가능 서비스5',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].pro_service5 != ''
-                                    ? '|  ${detail2[0].pro_service5}'
-                                    : '|  -',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '제휴 여부',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                detail2[0].index == 'alli'
-                                    ? '|  재휴 파트너'
-                                    : '|  일반 파트너',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                              flex: 3,
-                              child: Text(
-                                '가입일',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                          Expanded(
-                              flex: 6,
-                              child: Text(
-                                '|  ${detail2[0].register_date}',
-                                style: TextStyle(
-                                  fontSize: 13.0,
-                                  fontFamily: 'NanumSquareR',
-                                ),
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      Center(
-                          child: InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Container(
-                            width: 120,
-                            height: 35.0,
-                            decoration: BoxDecoration(
-                                color: Color(0xff506AB4),
-                                borderRadius: BorderRadius.circular(5.0)),
-                            child: Center(
-                                child: Text(
-                              '확인',
-                              style: TextStyle(
-                                  fontSize: 14.0, color: Colors.white),
-                            ))),
-                      ))
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '아이디',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  pro_id',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
                     ],
-                  );
-                },
-              ),
-            ));
-      }
-    });
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '담당자 명',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  pro_name',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '담당자 연락처',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  pro_phone',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '회사 명',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  com_name',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '사업자 번호',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  com_no',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Text(
+                            '가입일',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                      Expanded(
+                          flex: 6,
+                          child: Text(
+                            '|  register_date',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: 'NanumSquareR',
+                            ),
+                          )),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Center(
+                      child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                        width: 120,
+                        height: 35.0,
+                        decoration: BoxDecoration(
+                            color: Color(0xff506AB4),
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Center(
+                            child: Text(
+                          '확인',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ))),
+                  ))
+                ],
+              );
+            },
+          ),
+        ));
   }
 
   //기준 년/월 불러오기
@@ -583,8 +251,6 @@ class _PartnerPageState extends State<PartnerPage> {
   void initState() {
     super.initState();
     getToday();
-    getSummary();
-    getPro();
   }
 
   @override
@@ -681,7 +347,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Review_Page());
+                                    Get.to(ReviewPage());
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(10.0),
@@ -964,9 +630,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].all_partner} 명'
-                                            : '',
+                                        'all_partner 명',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -996,9 +660,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].alii_partner} 건'
-                                            : '',
+                                        'alii_partner 건',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -1028,9 +690,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].pay_count} 건'
-                                            : '',
+                                        'pay_count 건',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -1085,15 +745,15 @@ class _PartnerPageState extends State<PartnerPage> {
                                   child: TextField(
                                     controller: searchController,
                                     onSubmitted: (text) {
-                                      //검색
-                                      searchResult = [];
-                                      print(text);
-                                      searchResult.addAll(detail.where(
-                                          (element) =>
-                                              element.com_name.contains(text)));
-                                      setState(() {
-                                        isSearch = true;
-                                      });
+                                      // //검색
+                                      // searchResult = [];
+                                      // print(text);
+                                      // searchResult.addAll(detail.where(
+                                      //     (element) =>
+                                      //         element.com_name.contains(text)));
+                                      // setState(() {
+                                      //   isSearch = true;
+                                      // });
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Search",
@@ -1111,17 +771,17 @@ class _PartnerPageState extends State<PartnerPage> {
                                       ),
                                       suffixIcon: InkWell(
                                         onTap: () {
-                                          //검색
-                                          searchResult = [];
-                                          print(searchController.text);
-                                          searchResult.addAll(detail.where(
-                                              (element) => element.com_name
-                                                  .contains(
-                                                      searchController.text)));
-                                          print(searchResult);
-                                          setState(() {
-                                            isSearch = true;
-                                          });
+                                          // //검색
+                                          // searchResult = [];
+                                          // print(searchController.text);
+                                          // searchResult.addAll(detail.where(
+                                          //     (element) => element.com_name
+                                          //         .contains(
+                                          //             searchController.text)));
+                                          // print(searchResult);
+                                          // setState(() {
+                                          //   isSearch = true;
+                                          // });
                                         },
                                         child: Container(
                                           width: 35.0,
@@ -1449,7 +1109,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                       ),
                                       child: isSearch
                                           ? ListView.builder(
-                                              itemCount: searchResult.length,
+                                              itemCount: 5,
                                               itemBuilder: (_, int index) {
                                                 return Row(
                                                   children: [
@@ -1519,8 +1179,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .pro_id,
+                                                            "pro_id",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1555,8 +1214,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .pro_phone,
+                                                            "pro_phone",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1591,8 +1249,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .com_name,
+                                                            "com_name",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1627,8 +1284,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .com_no,
+                                                            "com_no",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1663,11 +1319,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                        .index ==
-                                                                    'alli'
-                                                                ? '제휴 파트너'
-                                                                : '-',
+                                                            "제휴 파트너",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1702,8 +1354,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .register_date,
+                                                            "register_date",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1814,7 +1465,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                 );
                                               })
                                           : ListView.builder(
-                                              itemCount: detail.length,
+                                              itemCount: 5,
                                               itemBuilder: (_, int index) {
                                                 return Row(
                                                   children: [
@@ -1884,7 +1535,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].pro_id}',
+                                                            'pro_id',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1954,7 +1605,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].pro_phone}',
+                                                            'pro_phone',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1989,7 +1640,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].com_name}',
+                                                            'com_name',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -2024,7 +1675,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].com_no}',
+                                                            'com_no',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -2059,7 +1710,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].register_date}',
+                                                            'register_date',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -2229,7 +1880,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(Review_Page());
+                                    Get.to(ReviewPage());
                                   },
                                   child: Container(
                                     padding: EdgeInsets.all(10.0),
@@ -2506,9 +2157,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].all_partner} 명'
-                                            : '',
+                                        'all_partner 명',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -2538,9 +2187,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].alii_partner} 건'
-                                            : '',
+                                        'alii_partner 건',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -2570,9 +2217,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _isLoading1
-                                            ? '${summary[0].pay_count} 건'
-                                            : '',
+                                        'pay_count 건',
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontFamily: 'NanumSquareR',
@@ -2626,15 +2271,15 @@ class _PartnerPageState extends State<PartnerPage> {
                                   child: TextField(
                                     controller: searchController,
                                     onSubmitted: (text) {
-                                      //검색
-                                      searchResult = [];
-                                      print(text);
-                                      searchResult.addAll(detail.where(
-                                          (element) =>
-                                              element.com_name.contains(text)));
-                                      setState(() {
-                                        isSearch = true;
-                                      });
+                                      // //검색
+                                      // searchResult = [];
+                                      // print(text);
+                                      // searchResult.addAll(detail.where(
+                                      //     (element) =>
+                                      //         element.com_name.contains(text)));
+                                      // setState(() {
+                                      //   isSearch = true;
+                                      // });
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Search",
@@ -2652,17 +2297,17 @@ class _PartnerPageState extends State<PartnerPage> {
                                       ),
                                       suffixIcon: InkWell(
                                         onTap: () {
-                                          //검색
-                                          searchResult = [];
-                                          print(searchController.text);
-                                          searchResult.addAll(detail.where(
-                                              (element) => element.com_name
-                                                  .contains(
-                                                      searchController.text)));
-                                          print(searchResult);
-                                          setState(() {
-                                            isSearch = true;
-                                          });
+                                          // //검색
+                                          // searchResult = [];
+                                          // print(searchController.text);
+                                          // searchResult.addAll(detail.where(
+                                          //     (element) => element.com_name
+                                          //         .contains(
+                                          //             searchController.text)));
+                                          // print(searchResult);
+                                          // setState(() {
+                                          //   isSearch = true;
+                                          // });
                                         },
                                         child: Container(
                                           width: 35.0,
@@ -2982,7 +2627,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           horizontal: Get.width * 0.1),
                                       child: isSearch
                                           ? ListView.builder(
-                                              itemCount: searchResult.length,
+                                              itemCount: 5,
                                               itemBuilder: (_, int index) {
                                                 return Row(
                                                   children: [
@@ -3052,8 +2697,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .pro_id,
+                                                            "pro_id",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3088,8 +2732,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .pro_phone,
+                                                            "pro_phone",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3124,8 +2767,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .com_name,
+                                                            "com_name",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3160,8 +2802,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .com_no,
+                                                            "com_no",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3196,11 +2837,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                        .index ==
-                                                                    'alli'
-                                                                ? '제휴 파트너'
-                                                                : '-',
+                                                            "제휴 파트너",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3235,8 +2872,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .register_date,
+                                                            "register_date",
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3347,7 +2983,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                 );
                                               })
                                           : ListView.builder(
-                                              itemCount: detail.length,
+                                              itemCount: 5,
                                               itemBuilder: (_, int index) {
                                                 return Row(
                                                   children: [
@@ -3417,7 +3053,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].pro_id}',
+                                                            'pro_id',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3487,7 +3123,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].pro_phone}',
+                                                            'pro_phone',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3522,7 +3158,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].com_name}',
+                                                            'com_name',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3557,7 +3193,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].com_no}',
+                                                            'com_no',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3592,7 +3228,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].register_date}',
+                                                            'register_date',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:

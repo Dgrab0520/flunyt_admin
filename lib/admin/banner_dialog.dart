@@ -1,20 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../admin/banner_add.dart';
-import '../admin/banner_edit.dart';
-import '../admin/data/banner_data.dart';
+import 'banner_add.dart';
+import 'data/banner_data.dart';
 
 class BannerDialog extends StatelessWidget {
   BannerDialog({Key? key}) : super(key: key);
 
-  final bannerController = Get.put(Banner_Data());
+  final bannerController = Get.put(BannerData());
 
   @override
   Widget build(BuildContext context) {
-    bannerController.getBanner_Main(); //메인 배너 불러오기
-    bannerController.getBanner_Sub(); //서브 배너 불러오기
+    bannerController.getBannerMain(); //메인 배너 불러오기
+    bannerController.getBannerSub(); //서브 배너 불러오기
     return AlertDialog(
       content: SizedBox(
         width: Get.width,
@@ -41,7 +39,7 @@ class BannerDialog extends StatelessWidget {
                       ));
                       if (result != null) {
                         //배너 추가 성공시 메인 배너 리프레쉬
-                        bannerController.getBanner_Main();
+                        bannerController.getBannerMain();
                       }
                     },
                     child: const Text(
@@ -67,13 +65,13 @@ class BannerDialog extends StatelessWidget {
                         return InkWell(
                           //배너 클릭시 배너 업데이트 창
                           onTap: () async {
-                            var result = await Get.dialog(BannerEdit(
-                              banners: bannerController.bannerMain[index],
-                            ));
-                            if (result != null) {
-                              //배너 업데이트 성공시 메인 배너 리프레쉬
-                              bannerController.getBanner_Main();
-                            }
+                            // var result = await Get.dialog(BannerEdit(
+                            //   banners: bannerController.bannerMain[index],
+                            // ));
+                            // if (result != null) {
+                            //   //배너 업데이트 성공시 메인 배너 리프레쉬
+                            //   bannerController.getBannerMain();
+                            // }
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10.0),
@@ -128,7 +126,7 @@ class BannerDialog extends StatelessWidget {
                       ));
                       if (result != null) {
                         //배너 추가 성공시 서브 배너 리프레쉬
-                        bannerController.getBanner_Sub();
+                        bannerController.getBannerSub();
                       }
                     },
                     child: const Text(
@@ -154,12 +152,12 @@ class BannerDialog extends StatelessWidget {
                         return InkWell(
                           //배너 클릭시 서브 배너 업데이트 창
                           onTap: () async {
-                            var result = await Get.dialog(BannerEdit(
-                                banners: bannerController.bannerSub[index]));
-                            if (result != null) {
-                              //배너 업데이트 성공시 서브 배너 리프레쉬
-                              bannerController.getBanner_Sub();
-                            }
+                            // var result = await Get.dialog(BannerEdit(
+                            //     banners: bannerController.bannerSub[index]));
+                            // if (result != null) {
+                            //   //배너 업데이트 성공시 서브 배너 리프레쉬
+                            //   bannerController.getBannerSub();
+                            // }
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10.0),

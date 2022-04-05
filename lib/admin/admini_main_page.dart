@@ -2,13 +2,11 @@ import "dart:ui";
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flunyt_admin/admin/partner_page.dart';
-import 'package:flunyt_admin/admin/setting_page.dart';
+import 'package:flunyt_admin/admin/ui/setting_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:radio_group_v2/radio_group_v2.dart';
-
-import 'chat_page.dart';
 
 late Widget top;
 List<String> map = [
@@ -241,9 +239,7 @@ class _AdminPageState extends State<AdminPage> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {
-                                    Get.to(PointPage());
-                                  },
+                                  onTap: () {},
                                   child: Container(
                                     padding: EdgeInsets.all(10.0),
                                     decoration: BoxDecoration(
@@ -1489,9 +1485,7 @@ class _AdminPageState extends State<AdminPage> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {
-                                    Get.to(PointPage());
-                                  },
+                                  onTap: () {},
                                   child: Container(
                                     padding: EdgeInsets.all(15.0),
                                     decoration: BoxDecoration(
