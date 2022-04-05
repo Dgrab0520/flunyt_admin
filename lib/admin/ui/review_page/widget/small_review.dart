@@ -505,7 +505,7 @@ class SmallReview extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        '남긴 리뷰수',
+                        '남긴 리뷰',
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: 'NanumSquareB',

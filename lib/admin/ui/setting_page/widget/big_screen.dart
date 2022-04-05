@@ -406,7 +406,75 @@ class BigScreen extends StatelessWidget {
               ),
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Center(
+                              child: Text(
+                            '리뷰 내역',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                          content: ListView.builder(
+                              itemCount: 5,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                    leading: Icon(Icons.list),
+                                    trailing: Text(
+                                      "GFG",
+                                      style: TextStyle(
+                                          color: Colors.green, fontSize: 15),
+                                    ),
+                                    title: Text("List item $index"));
+                              }),
+                          actions: <Widget>[
+                            Container(
+                              width: 120,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF363057),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: FlatButton(
+                                child: Text(
+                                  '삭제 하기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ),
+                            Container(
+                              width: 120,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: FlatButton(
+                                child: Text(
+                                  '취소 하기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: Container(
                       padding: const EdgeInsets.all(5),
                       width: 300,

@@ -177,29 +177,64 @@ class ReviewRow extends StatelessWidget {
                           barrierDismissible: false,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text('ss'),
+                              title: Center(
+                                  child: Text(
+                                '리뷰 내역',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
                               content: SingleChildScrollView(
                                 child: ListBody(
                                   children: [
-                                    Image.network(
-                                        '$baseUrl/review_img/${review.images[0]}'),
-                                    Text('dd'),
-                                    Text('aa'),
+                                    Container(
+                                      width: 200,
+                                      child: Image.network(
+                                          '$baseUrl/review_img/${review.images[0]}'),
+                                    ),
+                                    SizedBox(height: 15),
+                                    Text(review.review),
                                   ],
                                 ),
                               ),
                               actions: <Widget>[
-                                FlatButton(
-                                  child: Text('ok'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
+                                Container(
+                                  width: 120,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF363057),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: FlatButton(
+                                    child: Text(
+                                      '삭제 하기',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
                                 ),
-                                FlatButton(
-                                  child: Text('cancel'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
+                                Container(
+                                  width: 120,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: FlatButton(
+                                    child: Text(
+                                      '취소 하기',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
                                 ),
                               ],
                             );
