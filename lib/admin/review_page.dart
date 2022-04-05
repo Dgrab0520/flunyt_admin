@@ -618,16 +618,6 @@ class _Review_PageState extends State<Review_Page> {
                       ),
                     ),
                   )),
-                  InkWell(
-                      //초기 홈페이지
-                      onTap: () {
-                        print("main");
-                        Get.toNamed('/');
-                      },
-                      child: const Icon(
-                        CupertinoIcons.home,
-                        color: Colors.white,
-                      )),
                 ],
               ),
             ),
@@ -683,7 +673,7 @@ class _Review_PageState extends State<Review_Page> {
                                         '업체 관리',
                                         style: TextStyle(
                                           fontSize: 16,
-                                          fontFamily: 'NanumSquareB',
+                                          fontFamily: 'NanumSquareR',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -858,7 +848,7 @@ class _Review_PageState extends State<Review_Page> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '하루 평균 리뷰 수',
+                                              '$strMonth월 평균 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -893,7 +883,7 @@ class _Review_PageState extends State<Review_Page> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '$strMonth월 평균 리뷰 수',
+                                              '하루 평균 리뷰 수 ',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -1249,7 +1239,7 @@ class _Review_PageState extends State<Review_Page> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        '사업자번호',
+                                        '남긴 리뷰 수',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'NanumSquareB',
@@ -1285,7 +1275,7 @@ class _Review_PageState extends State<Review_Page> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        '가입일',
+                                        '남긴 날짜',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'NanumSquareB',
@@ -1553,7 +1543,7 @@ class _Review_PageState extends State<Review_Page> {
                                                                             0xFF656565)),
                                                                     child: Center(
                                                                         child: Text(
-                                                                      '삭제',
+                                                                      '자세히 보기',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -1567,35 +1557,6 @@ class _Review_PageState extends State<Review_Page> {
                                                               ),
                                                               SizedBox(
                                                                   width: 10),
-                                                              Expanded(
-                                                                child: InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    height: 25,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                5),
-                                                                        color: Color(
-                                                                            0xFF656565)),
-                                                                    child: Center(
-                                                                        child: Text(
-                                                                      '상세',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                    )),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10.0,
-                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -1710,7 +1671,7 @@ class _Review_PageState extends State<Review_Page> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '${detail[index].com_no}',
+                                                            '1건',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -1787,10 +1748,15 @@ class _Review_PageState extends State<Review_Page> {
                                                                 CrossAxisAlignment
                                                                     .center,
                                                             children: [
+                                                              Expanded(
+                                                                child:
+                                                                    Container(),
+                                                              ),
                                                               SizedBox(
                                                                 width: 10.0,
                                                               ),
                                                               Expanded(
+                                                                flex: 5,
                                                                 child: InkWell(
                                                                   onTap: () {},
                                                                   child:
@@ -1804,35 +1770,7 @@ class _Review_PageState extends State<Review_Page> {
                                                                             0xFF656565)),
                                                                     child: Center(
                                                                         child: Text(
-                                                                      '삭제',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                    )),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 10),
-                                                              Expanded(
-                                                                child: InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    height: 25,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                5),
-                                                                        color: Color(
-                                                                            0xFF656565)),
-                                                                    child: Center(
-                                                                        child: Text(
-                                                                      '상세',
+                                                                      '자세히 보기',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -1846,6 +1784,10 @@ class _Review_PageState extends State<Review_Page> {
                                                               ),
                                                               SizedBox(
                                                                 width: 10.0,
+                                                              ),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(),
                                                               ),
                                                             ],
                                                           ),
@@ -1909,7 +1851,7 @@ class _Review_PageState extends State<Review_Page> {
                                         '업체 관리',
                                         style: TextStyle(
                                           fontSize: 16,
-                                          fontFamily: 'NanumSquareB',
+                                          fontFamily: 'NanumSquareR',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -1969,7 +1911,7 @@ class _Review_PageState extends State<Review_Page> {
                               vertical: 35.0,
                             ),
                             child: Text(
-                              '업체 관리',
+                              '리뷰 관리',
                               style: TextStyle(
                                 fontFamily: 'NanumSquareEB',
                                 fontSize: 18,
@@ -2080,7 +2022,7 @@ class _Review_PageState extends State<Review_Page> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 진행 수',
+                                              '$strMonth월 평균 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -2115,7 +2057,7 @@ class _Review_PageState extends State<Review_Page> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 완료 수',
+                                              '하루 평균 리뷰 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -2467,7 +2409,7 @@ class _Review_PageState extends State<Review_Page> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        '담당자명',
+                                        '남긴 리뷰수',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'NanumSquareB',
@@ -2503,115 +2445,7 @@ class _Review_PageState extends State<Review_Page> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        '연락처',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '회사명',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '사업자번호',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    width: 120,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFeeeeee),
-                                      border: Border(
-                                        top: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        right: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                        bottom: BorderSide(
-                                          // POINT
-                                          color: Color(0xFFcccccc),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '가입일',
+                                        '남긴 날짜',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'NanumSquareB',
@@ -2774,119 +2608,7 @@ class _Review_PageState extends State<Review_Page> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            searchResult[index]
-                                                                .pro_phone,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                .com_name,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                .com_no,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            searchResult[index]
-                                                                        .index ==
-                                                                    'alli'
-                                                                ? '제휴 파트너'
-                                                                : '-',
+                                                            '1건',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -2981,7 +2703,7 @@ class _Review_PageState extends State<Review_Page> {
                                                                             0xFF656565)),
                                                                     child: Center(
                                                                         child: Text(
-                                                                      '삭제',
+                                                                      '자세히 보기',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -2995,35 +2717,6 @@ class _Review_PageState extends State<Review_Page> {
                                                               ),
                                                               SizedBox(
                                                                   width: 10),
-                                                              Expanded(
-                                                                child: InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    height: 25,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                5),
-                                                                        color: Color(
-                                                                            0xFF656565)),
-                                                                    child: Center(
-                                                                        child: Text(
-                                                                      '상세',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                    )),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10.0,
-                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -3138,112 +2831,7 @@ class _Review_PageState extends State<Review_Page> {
                                                         ),
                                                         child: Center(
                                                           child: Text(
-                                                            '율유류',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '${detail[index].pro_phone}',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '${detail[index].com_name}',
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontFamily:
-                                                                  'NanumSquareR',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Container(
-                                                        width: 120,
-                                                        height: 40,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          border: Border(
-                                                            right: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                            bottom: BorderSide(
-                                                              // POINT
-                                                              color: Color(
-                                                                  0xFFcccccc),
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                          child: Text(
-                                                            '${detail[index].com_no}',
+                                                            '1건',
                                                             style: TextStyle(
                                                               fontSize: 12,
                                                               fontFamily:
@@ -3320,10 +2908,15 @@ class _Review_PageState extends State<Review_Page> {
                                                                 CrossAxisAlignment
                                                                     .center,
                                                             children: [
+                                                              Expanded(
+                                                                child:
+                                                                    Container(),
+                                                              ),
                                                               SizedBox(
                                                                 width: 10.0,
                                                               ),
                                                               Expanded(
+                                                                flex: 2,
                                                                 child: InkWell(
                                                                   onTap: () {},
                                                                   child:
@@ -3337,7 +2930,7 @@ class _Review_PageState extends State<Review_Page> {
                                                                             0xFF656565)),
                                                                     child: Center(
                                                                         child: Text(
-                                                                      '삭제',
+                                                                      '자세히 보기',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
@@ -3352,33 +2945,8 @@ class _Review_PageState extends State<Review_Page> {
                                                               SizedBox(
                                                                   width: 10),
                                                               Expanded(
-                                                                child: InkWell(
-                                                                  onTap: () {},
-                                                                  child:
-                                                                      Container(
-                                                                    height: 25,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                5),
-                                                                        color: Color(
-                                                                            0xFF656565)),
-                                                                    child: Center(
-                                                                        child: Text(
-                                                                      '상세',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      ),
-                                                                    )),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              SizedBox(
-                                                                width: 10.0,
+                                                                child:
+                                                                    Container(),
                                                               ),
                                                             ],
                                                           ),

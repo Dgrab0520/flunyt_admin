@@ -620,16 +620,6 @@ class _PartnerPageState extends State<PartnerPage> {
                       ),
                     ),
                   )),
-                  InkWell(
-                      //초기 홈페이지
-                      onTap: () {
-                        print("main");
-                        Get.toNamed('/');
-                      },
-                      child: const Icon(
-                        CupertinoIcons.home,
-                        color: Colors.white,
-                      )),
                 ],
               ),
             ),
@@ -2404,7 +2394,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 진행 수',
+                                              '$strMonth월 캠페인 진행 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',
@@ -2439,7 +2429,7 @@ class _PartnerPageState extends State<PartnerPage> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              '전체 캠페인 완료 수',
+                                              '$strMonth월 캠페인 완료 수',
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 fontFamily: 'NanumSquareB',

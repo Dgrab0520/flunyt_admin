@@ -131,16 +131,6 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                   ),
                 )),
-                InkWell(
-                    //초기 홈페이지
-                    onTap: () {
-                      print("main");
-                      Get.toNamed('/');
-                    },
-                    child: const Icon(
-                      CupertinoIcons.home,
-                      color: Colors.white,
-                    )),
               ],
             ),
           ),
@@ -446,65 +436,6 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 Expanded(
                   child: Container(
-                      padding: const EdgeInsets.only(top: 20),
-                      height: 350,
-                      width: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            '리뷰 내역 관리',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'NanumSquareEB',
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          SizedBox(
-                              height: 250,
-                              child: SingleChildScrollView(
-                                child: DataTable2(
-                                  columnSpacing: 10,
-                                  minWidth: 450,
-                                  columns: const [
-                                    DataColumn(
-                                      label: Text(
-                                        "카테고리",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.deepOrange,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    ),
-                                    DataColumn(
-                                        label: Center(
-                                      child: Text(
-                                        "자세히 보기",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.deepOrange,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      ),
-                                    )),
-                                  ],
-                                  rows: rowList3,
-                                ),
-                              )),
-                        ],
-                      )),
-                ),
-                const SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: Container(
                     padding: const EdgeInsets.all(5),
                     width: 400,
                     height: 350,
@@ -588,6 +519,61 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 const SizedBox(
                   width: 10.0,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    width: 400,
+                    height: 350,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 15),
+                        SfCartesianChart(
+                            title: ChartTitle(
+                                text: '카테고리 Top 5',
+                                textStyle: const TextStyle(
+                                  fontSize: 14.0,
+                                  fontFamily: 'NanumSquareEB',
+                                )),
+                            primaryXAxis: CategoryAxis(),
+                            primaryYAxis: NumericAxis(),
+                            series: <ChartSeries<Settings5, String>>[
+                              // Renders column chart
+                              BarSeries<Settings5, String>(
+                                // color: Color(0xFF506AB4),
+                                dataSource: setting5,
+                                xValueMapper: (Settings5 setting5, _) =>
+                                    setting5.service,
+                                yValueMapper: (Settings5 setting5, _) =>
+                                    int.parse(setting5.count),
+                              ),
+                            ]),
+                        // SfCircularChart(
+                        //     title: ChartTitle(text: '파트너 분야', textStyle: TextStyle(
+                        //       fontSize: 14.0,
+                        //       fontFamily: 'NanumSquareEB',
+                        //     )),
+                        //     legend: Legend(isVisible: true),
+                        //     series: <PieSeries<Settings2, String>>[
+                        //       PieSeries<Settings2, String>(
+                        //           explode: true,
+                        //           explodeIndex: 0,
+                        //           dataSource: setting2,
+                        //           xValueMapper: (Settings2 setting2, _) => setting2.month,
+                        //           yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
+                        //           dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월 : ${setting2.count}',
+                        //           dataLabelSettings: DataLabelSettings(isVisible: true)),
+                        //     ]
+                        // )
+                      ],
+                    ),
+                  ),
                 ),
                 // SizedBox(width: 10.0,),
                 // Expanded(
@@ -1067,6 +1053,64 @@ class _SettingPageState extends State<SettingPage> {
                                   dataLabelSettings:
                                       const DataLabelSettings(isVisible: true)),
                             ])
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10.0,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    width: 400,
+                    height: 350,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 15),
+                        SfCartesianChart(
+                            title: ChartTitle(
+                                text: '카테고리 Top 5',
+                                textStyle: const TextStyle(
+                                  fontSize: 14.0,
+                                  fontFamily: 'NanumSquareEB',
+                                )),
+                            primaryXAxis: CategoryAxis(),
+                            primaryYAxis: NumericAxis(),
+                            series: <ChartSeries<Settings5, String>>[
+                              // Renders column chart
+                              BarSeries<Settings5, String>(
+                                // color: Color(0xFF506AB4),
+                                dataSource: setting5,
+                                xValueMapper: (Settings5 setting5, _) =>
+                                    setting5.service,
+                                yValueMapper: (Settings5 setting5, _) =>
+                                    int.parse(setting5.count),
+                              ),
+                            ]),
+                        // SfCircularChart(
+                        //     title: ChartTitle(text: '파트너 분야', textStyle: TextStyle(
+                        //       fontSize: 14.0,
+                        //       fontFamily: 'NanumSquareEB',
+                        //     )),
+                        //     legend: Legend(isVisible: true),
+                        //     series: <PieSeries<Settings2, String>>[
+                        //       PieSeries<Settings2, String>(
+                        //           explode: true,
+                        //           explodeIndex: 0,
+                        //           dataSource: setting2,
+                        //           xValueMapper: (Settings2 setting2, _) => setting2.month,
+                        //           yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
+                        //           dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월 : ${setting2.count}',
+                        //           dataLabelSettings: DataLabelSettings(isVisible: true)),
+                        //     ]
+                        // )
                       ],
                     ),
                   ),
