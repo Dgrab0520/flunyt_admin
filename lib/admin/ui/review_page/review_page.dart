@@ -19,7 +19,8 @@ class ReviewPage extends StatelessWidget {
         backgroundColor: const Color(0xff506AB4),
         elevation: 0,
         toolbarHeight: 80,
-        leading: null,
+        leading: Container(),
+        leadingWidth: 0,
         title: Container(
           padding: EdgeInsets.only(
               left: MediaQuery.of(context).size.width / 30 - 15,

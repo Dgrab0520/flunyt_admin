@@ -1,7 +1,8 @@
+import 'package:flunyt_admin/admin/ui/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../partner_page.dart';
+import '../partner_page/partner_page.dart';
 import '../review_page/review_page.dart';
 import '../setting_page/setting_page.dart';
 
@@ -11,8 +12,7 @@ class CategoryHeader extends StatelessWidget {
   final String currentPage;
   @override
   Widget build(BuildContext context) {
-    return //Header
-        Container(
+    return Container(
       width: Get.width,
       height: 60,
       padding: EdgeInsets.only(
@@ -23,7 +23,9 @@ class CategoryHeader extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.offAll(MainPage());
+            },
             child: Container(
               padding: const EdgeInsets.all(10),
               margin: currentPage == "인플루언서 관리"
@@ -47,7 +49,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(PartnerPage());
+              Get.offAll(const PartnerPage());
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),
@@ -71,7 +73,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(ReviewPage());
+              Get.offAll(ReviewPage());
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),
@@ -95,7 +97,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(SettingPage());
+              Get.offAll(const SettingPage());
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),

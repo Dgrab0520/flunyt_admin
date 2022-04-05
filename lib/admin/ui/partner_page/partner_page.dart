@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'ui/main_page/main_page.dart';
-import 'ui/setting_page/setting_page.dart';
+import '../main_page/main_page.dart';
+import '../setting_page/setting_page.dart';
 
 late Widget top;
 

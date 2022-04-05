@@ -12,17 +12,29 @@ class SettingPageController extends GetxController {
   List<DataRow> categoryList = []; //카테고리 현황 리스트
 
   //Get User
-  getUser() async {
+  getArea() async {
     try {
       var map = <String, dynamic>{};
       map['action'] = "GET_USER";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_user.php"),
+          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get User Response : ${response.body}');
       if (200 == response.statusCode) {
         //users = parseResponse(response.body);
         //isLoading = true;
+        // rowList = List.generate(
+        //   //서비스 현황 리스트 초기화
+        //   setting.length,
+        //   (index) => DataRow(
+        //     cells: [
+        //       DataCell(Text(setting[index].sub_category)),
+        //       DataCell(Center(
+        //         child: Text('${setting[index].count} 건'),
+        //       )),
+        //     ],
+        //   ),
+        // );
       }
     } catch (e) {
       print("exception : $e");

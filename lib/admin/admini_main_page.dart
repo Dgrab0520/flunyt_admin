@@ -1,7 +1,7 @@
 import "dart:ui";
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flunyt_admin/admin/partner_page.dart';
+import 'package:flunyt_admin/admin/ui/partner_page/partner_page.dart';
 import 'package:flunyt_admin/admin/ui/setting_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

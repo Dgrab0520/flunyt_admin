@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:radio_group_v2/radio_group_v2.dart';
 
 import '../admin/admini_main_page.dart';
-import '../admin/partner_page.dart';
+import 'ui/partner_page/partner_page.dart';
 import 'ui/setting_page/setting_page.dart';
 
 List<String> map = [
