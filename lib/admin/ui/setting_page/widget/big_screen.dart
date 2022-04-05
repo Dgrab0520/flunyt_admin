@@ -5,8 +5,11 @@ import 'package:flunyt_admin/admin/ui/setting_page/widget/chart_widget.dart';
 import 'package:flunyt_admin/admin/ui/setting_page/widget/top_category.dart';
 import 'package:flunyt_admin/admin/ui/setting_page/widget/top_saved.dart';
 import 'package:flunyt_admin/admin/ui/widget/category_header.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../banner_dialog.dart';
 
 class BigScreen extends StatelessWidget {
   BigScreen({Key? key}) : super(key: key);
@@ -331,23 +334,40 @@ class BigScreen extends StatelessWidget {
                         return AlertDialog(
                           title: Center(
                               child: Text(
-                            '리뷰 내역',
+                            '쿠폰 내역',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           )),
-                          content: ListView.builder(
-                              itemCount: 5,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                    leading: Icon(Icons.list),
+                          content: Container(
+                            width: 500,
+                            height: 200,
+                            child: ListView.builder(
+                                itemCount: 10,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListTile(
+                                    leading: Text('${index + 1}'),
                                     trailing: Text(
-                                      "GFG",
+                                      "지급완료",
                                       style: TextStyle(
-                                          color: Colors.green, fontSize: 15),
+                                          color: Color(0xFF4B87B9),
+                                          fontSize: 15),
                                     ),
-                                    title: Text("List item $index"));
-                              }),
+                                    title: Row(
+                                      children: [
+                                        Text('car108'),
+                                        SizedBox(width: 25),
+                                        Text(
+                                          "메가커피 아메리카노 1잔",
+                                          style: TextStyle(
+                                            color: Color(0XFF363057),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                          ),
                           actions: <Widget>[
                             Container(
                               width: 120,
@@ -439,7 +459,9 @@ class BigScreen extends StatelessWidget {
               ),
               Expanded(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.dialog(BannerDialog());
+                  },
                   child: Container(
                       padding: const EdgeInsets.all(5),
                       width: 300,
