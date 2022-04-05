@@ -1,3 +1,4 @@
+import 'package:flunyt_admin/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -170,7 +171,41 @@ class ReviewRow extends StatelessWidget {
                   ),
                   Expanded(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('ss'),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: [
+                                    Image.network(
+                                        '$baseUrl/review_img/${review.images[0]}'),
+                                    Text('dd'),
+                                    Text('aa'),
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text('ok'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                FlatButton(
+                                  child: Text('cancel'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: Container(
                         height: 25,
                         decoration: BoxDecoration(

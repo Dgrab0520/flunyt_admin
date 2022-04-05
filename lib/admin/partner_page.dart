@@ -1944,156 +1944,156 @@ class _PartnerPageState extends State<PartnerPage> {
 
                           //Summary Header
                           Container(
-                              width: Get.width,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: Get.width * 0.1),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(Icons.arrow_right),
-                                      Text(
-                                        '요약 정보',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'NanumSquareB',
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 20.0),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          width: 120,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xFFeeeeee),
-                                              border: Border.all(
-                                                  width: 1,
-                                                  color: Color(0xFFcccccc))),
-                                          child: Center(
-                                            child: Text(
-                                              '기준 일자',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                            width: Get.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: Get.width * 0.1),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.arrow_right),
+                                    Text(
+                                      '요약 정보',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'NanumSquareB',
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          width: 120,
-                                          height: 40,
-                                          decoration: BoxDecoration(
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 20.0),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: 120,
+                                        height: 40,
+                                        decoration: BoxDecoration(
                                             color: Color(0xFFeeeeee),
-                                            border: Border(
-                                              top: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              bottom: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              '전체 업체 수',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
+                                            border: Border.all(
+                                                width: 1,
+                                                color: Color(0xFFcccccc))),
+                                        child: Center(
+                                          child: Text(
+                                            '기준 일자',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NanumSquareB',
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          width: 120,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFeeeeee),
-                                            border: Border(
-                                              top: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              bottom: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width: 120,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFeeeeee),
+                                          border: Border(
+                                            top: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            right: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            bottom: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
                                             ),
                                           ),
-                                          child: Center(
-                                            child: Text(
-                                              '$strMonth월 캠페인 진행 수',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            '전체 업체 수',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NanumSquareB',
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Container(
-                                          width: 120,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFeeeeee),
-                                            border: Border(
-                                              top: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              right: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
-                                              bottom: BorderSide(
-                                                // POINT
-                                                color: Color(0xFFcccccc),
-                                                width: 1.0,
-                                              ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width: 120,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFeeeeee),
+                                          border: Border(
+                                            top: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            right: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            bottom: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
                                             ),
                                           ),
-                                          child: Center(
-                                            child: Text(
-                                              '$strMonth월 캠페인 완료 수',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            '$strMonth월 캠페인 진행 수',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NanumSquareB',
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        width: 120,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFeeeeee),
+                                          border: Border(
+                                            top: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            right: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                            bottom: BorderSide(
+                                              // POINT
+                                              color: Color(0xFFcccccc),
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            '$strMonth월 캠페인 완료 수',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NanumSquareB',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                           //Summary Body
                           Container(
                             width: Get.width,
