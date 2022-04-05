@@ -97,7 +97,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(const SettingPage());
+              Get.offAll(SettingPage());
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),

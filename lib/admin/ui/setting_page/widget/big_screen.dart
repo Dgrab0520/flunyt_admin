@@ -1,5 +1,9 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flunyt_admin/admin/data/setting_page_controller.dart';
+import 'package:flunyt_admin/admin/ui/setting_page/widget/all_inf_chart.dart';
+import 'package:flunyt_admin/admin/ui/setting_page/widget/chart_widget.dart';
+import 'package:flunyt_admin/admin/ui/setting_page/widget/top_category.dart';
+import 'package:flunyt_admin/admin/ui/setting_page/widget/top_saved.dart';
 import 'package:flunyt_admin/admin/ui/widget/category_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +11,7 @@ import 'package:get/get.dart';
 class BigScreen extends StatelessWidget {
   BigScreen({Key? key}) : super(key: key);
 
-  final settingPageController = Get.put(SettingPageController());
+  final settingPageController = Get.find<SettingPageController>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -41,38 +45,40 @@ class BigScreen extends StatelessWidget {
                             const SizedBox(
                               height: 20.0,
                             ),
-                            SizedBox(
-                                height: 150,
-                                child: SingleChildScrollView(
-                                  child: DataTable2(
-                                    columnSpacing: 10,
-                                    minWidth: 450,
-                                    columns: const [
-                                      DataColumn(
-                                        label: Text(
-                                          "지역",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.deepOrange,
-                                            fontFamily: 'NanumSquareB',
+                            Obx(
+                              () => SizedBox(
+                                  height: 150,
+                                  child: SingleChildScrollView(
+                                    child: DataTable2(
+                                      columnSpacing: 10,
+                                      minWidth: 450,
+                                      columns: const [
+                                        DataColumn(
+                                          label: Text(
+                                            "지역",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.deepOrange,
+                                              fontFamily: 'NanumSquareB',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      DataColumn(
-                                          label: Center(
-                                        child: Text(
-                                          "리뷰 횟수(건)",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.deepOrange,
-                                            fontFamily: 'NanumSquareB',
+                                        DataColumn(
+                                            label: Center(
+                                          child: Text(
+                                            "리뷰 횟수(건)",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.deepOrange,
+                                              fontFamily: 'NanumSquareB',
+                                            ),
                                           ),
-                                        ),
-                                      )),
-                                    ],
-                                    rows: settingPageController.areaList,
-                                  ),
-                                )),
+                                        )),
+                                      ],
+                                      rows: settingPageController.areaList,
+                                    ),
+                                  )),
+                            ),
                           ],
                         )),
                     const SizedBox(height: 10),
@@ -98,38 +104,40 @@ class BigScreen extends StatelessWidget {
                             const SizedBox(
                               height: 20.0,
                             ),
-                            SizedBox(
-                                height: 150,
-                                child: SingleChildScrollView(
-                                  child: DataTable2(
-                                    columnSpacing: 10,
-                                    minWidth: 450,
-                                    columns: const [
-                                      DataColumn(
-                                        label: Text(
-                                          "카테고리",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.deepOrange,
-                                            fontFamily: 'NanumSquareB',
+                            Obx(
+                              () => SizedBox(
+                                  height: 150,
+                                  child: SingleChildScrollView(
+                                    child: DataTable2(
+                                      columnSpacing: 10,
+                                      minWidth: 450,
+                                      columns: const [
+                                        DataColumn(
+                                          label: Text(
+                                            "카테고리",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.deepOrange,
+                                              fontFamily: 'NanumSquareB',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      DataColumn(
-                                          label: Center(
-                                        child: Text(
-                                          "리뷰 횟수(건)",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.deepOrange,
-                                            fontFamily: 'NanumSquareB',
+                                        DataColumn(
+                                            label: Center(
+                                          child: Text(
+                                            "리뷰 횟수(건)",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.deepOrange,
+                                              fontFamily: 'NanumSquareB',
+                                            ),
                                           ),
-                                        ),
-                                      )),
-                                    ],
-                                    rows: settingPageController.categoryList,
-                                  ),
-                                )),
+                                        )),
+                                      ],
+                                      rows: settingPageController.categoryList,
+                                    ),
+                                  )),
+                            ),
                           ],
                         )),
                   ],
@@ -154,32 +162,19 @@ class BigScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           '월별 이용현황',
                           style: TextStyle(
                             fontSize: 16,
                             fontFamily: 'NanumSquareEB',
                           ),
                         ),
-                        const SizedBox(height: 30),
-                        // SizedBox(
-                        //   height: 410,
-                        //   child: SfCartesianChart(
-                        //       primaryXAxis: CategoryAxis(),
-                        //       primaryYAxis: NumericAxis(),
-                        //       series: <ChartSeries<Settings2, String>>[
-                        //         // Renders column chart
-                        //         ColumnSeries<Settings2, String>(
-                        //           color: const Color(0xFF506AB4),
-                        //           dataSource: setting2,
-                        //           xValueMapper: (Settings2 setting2, _) =>
-                        //               setting2.month + '월',
-                        //           yValueMapper: (Settings2 setting2, _) =>
-                        //               int.parse(setting2.count),
-                        //         ),
-                        //       ]),
-                        // ),
+                        SizedBox(height: 30),
+                        SizedBox(
+                          height: 410,
+                          child: ChartWidget(),
+                        ),
                       ],
                     ),
                   ),
@@ -204,30 +199,9 @@ class BigScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCircularChart(
-                      //     title: ChartTitle(
-                      //         text: '전체 인플루언서 현황',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<MemberData, String>>[
-                      //       PieSeries<MemberData, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: chartData,
-                      //           xValueMapper: (MemberData member, _) =>
-                      //               member.type,
-                      //           yValueMapper: (MemberData member, _) =>
-                      //               member.count,
-                      //           dataLabelMapper: (MemberData member, _) =>
-                      //               member.type,
-                      //           dataLabelSettings:
-                      //               const DataLabelSettings(isVisible: true)),
-                      //     ])
+                    children: const [
+                      SizedBox(height: 15),
+                      AllInfChart(),
                     ],
                   ),
                 ),
@@ -247,30 +221,9 @@ class BigScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCircularChart(
-                      //     title: ChartTitle(
-                      //         text: '업체 현황',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings3, String>>[
-                      //       PieSeries<Settings3, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting3,
-                      //           xValueMapper: (Settings3 setting3, _) =>
-                      //               setting3.index == '' ? '일반 업체' : '제휴 업체',
-                      //           yValueMapper: (Settings3 setting3, _) =>
-                      //               int.parse(setting3.count),
-                      //           dataLabelMapper: (Settings3 setting3, _) =>
-                      //               setting3.index == '' ? '일반 업체' : '제휴 업체',
-                      //           dataLabelSettings:
-                      //               const DataLabelSettings(isVisible: true)),
-                      //     ])
+                    children: const [
+                      SizedBox(height: 15),
+                      TopSaved(),
                     ],
                   ),
                 ),
@@ -290,45 +243,9 @@ class BigScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 15),
-                      // SfCartesianChart(
-                      //     title: ChartTitle(
-                      //         text: '카테고리 Top 5',
-                      //         textStyle: const TextStyle(
-                      //           fontSize: 14.0,
-                      //           fontFamily: 'NanumSquareEB',
-                      //         )),
-                      //     primaryXAxis: CategoryAxis(),
-                      //     primaryYAxis: NumericAxis(),
-                      //     series: <ChartSeries<Settings5, String>>[
-                      //       // Renders column chart
-                      //       BarSeries<Settings5, String>(
-                      //         // color: Color(0xFF506AB4),
-                      //         dataSource: setting5,
-                      //         xValueMapper: (Settings5 setting5, _) =>
-                      //             setting5.service,
-                      //         yValueMapper: (Settings5 setting5, _) =>
-                      //             int.parse(setting5.count),
-                      //       ),
-                      //     ]),
-                      // SfCircularChart(
-                      //     title: ChartTitle(text: '파트너 분야', textStyle: TextStyle(
-                      //       fontSize: 14.0,
-                      //       fontFamily: 'NanumSquareEB',
-                      //     )),
-                      //     legend: Legend(isVisible: true),
-                      //     series: <PieSeries<Settings2, String>>[
-                      //       PieSeries<Settings2, String>(
-                      //           explode: true,
-                      //           explodeIndex: 0,
-                      //           dataSource: setting2,
-                      //           xValueMapper: (Settings2 setting2, _) => setting2.month,
-                      //           yValueMapper: (Settings2 setting2, _) => int.parse(setting2.count),
-                      //           dataLabelMapper: (Settings2 setting2, _) => setting2.month+'월 : ${setting2.count}',
-                      //           dataLabelSettings: DataLabelSettings(isVisible: true)),
-                      //     ]
-                      // )
+                    children: const [
+                      SizedBox(height: 15),
+                      TopCategory(),
                     ],
                   ),
                 ),

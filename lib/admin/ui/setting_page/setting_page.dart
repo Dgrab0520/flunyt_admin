@@ -2,14 +2,18 @@ import 'package:flunyt_admin/admin/ui/setting_page/widget/big_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/setting_page_controller.dart';
 import '../main_page/main_page.dart';
 import 'widget/small_screen.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  SettingPage({Key? key}) : super(key: key);
 
+  final settingPageController = Get.put(SettingPageController());
   @override
   Widget build(BuildContext context) {
+    settingPageController.getArea();
+    settingPageController.getService();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff506AB4),
