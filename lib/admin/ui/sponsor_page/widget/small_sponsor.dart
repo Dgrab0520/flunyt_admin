@@ -134,7 +134,7 @@ class SmallReview extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              '${DateTime.now().month}월 추가 수',
+                              '${DateTime.now().month}월 추가 스폰서 수',
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -426,20 +426,23 @@ class SmallReview extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(),
-                Container(
-                  width: 80,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF362C5E),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '+  광고 추가',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 80,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF362C5E),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '+  광고 추가',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -453,6 +456,7 @@ class SmallReview extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.1,
+                    vertical: 10,
                   ),
                   width: Get.width,
                   child: Row(
@@ -464,13 +468,71 @@ class SmallReview extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Center(
-                                      child: Text(
-                                    '스폰서 내역',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                  title: Container(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '스폰서 내역',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 30),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '매장',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Image.asset(
+                                          'friday.png',
+                                          width: 200,
+                                        ),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '광고 포스터',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Image.asset('tgi.jpg'),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '컨텐츠 내용',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text('컨텐츠 내용'),
+                                        Text('컨텐츠 내용'),
+                                      ],
                                     ),
-                                  )),
+                                  ),
                                   content: SingleChildScrollView(
                                     child: ListBody(
                                       children: [
@@ -484,6 +546,7 @@ class SmallReview extends StatelessWidget {
                                         Get.back();
                                       },
                                       child: Container(
+                                        margin: EdgeInsets.only(bottom: 15),
                                         width: 120,
                                         height: 30,
                                         decoration: BoxDecoration(
@@ -492,7 +555,7 @@ class SmallReview extends StatelessWidget {
                                               BorderRadius.circular(5),
                                         ),
                                         child: const Text(
-                                          '삭제 하기',
+                                          '수정 하기',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
@@ -505,6 +568,7 @@ class SmallReview extends StatelessWidget {
                                         Get.back();
                                       },
                                       child: Container(
+                                        margin: EdgeInsets.only(bottom: 15),
                                         width: 120,
                                         height: 30,
                                         decoration: BoxDecoration(
@@ -513,7 +577,7 @@ class SmallReview extends StatelessWidget {
                                               BorderRadius.circular(5),
                                         ),
                                         child: const Text(
-                                          '닫기',
+                                          '취소 하기',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
@@ -528,7 +592,6 @@ class SmallReview extends StatelessWidget {
                           },
                           child: Container(
                             width: 200,
-                            height: 150,
                             child: Column(
                               children: [
                                 Image.asset('friday.png'),
@@ -546,7 +609,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
@@ -563,7 +625,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
@@ -580,7 +641,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
@@ -597,10 +657,11 @@ class SmallReview extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 30),
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.1,
+                    vertical: 10,
                   ),
                   width: Get.width,
                   child: Row(
@@ -612,13 +673,71 @@ class SmallReview extends StatelessWidget {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: const Center(
-                                      child: Text(
-                                    '리뷰 내역',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                  title: Container(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '스폰서 내역',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(height: 30),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '매장',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Image.asset(
+                                          'friday.png',
+                                          width: 200,
+                                        ),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '광고 포스터',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Image.asset('tgi.jpg'),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          children: const [
+                                            Icon(Icons.arrow_right),
+                                            Text(
+                                              '컨텐츠 내용',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'NanumSquareB',
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 10),
+                                        Text('컨텐츠 내용'),
+                                        Text('컨텐츠 내용'),
+                                      ],
                                     ),
-                                  )),
+                                  ),
                                   content: SingleChildScrollView(
                                     child: ListBody(
                                       children: [
@@ -632,6 +751,7 @@ class SmallReview extends StatelessWidget {
                                         Get.back();
                                       },
                                       child: Container(
+                                        margin: EdgeInsets.only(bottom: 15),
                                         width: 120,
                                         height: 30,
                                         decoration: BoxDecoration(
@@ -640,7 +760,7 @@ class SmallReview extends StatelessWidget {
                                               BorderRadius.circular(5),
                                         ),
                                         child: const Text(
-                                          '삭제 하기',
+                                          '수정 하기',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
@@ -653,6 +773,7 @@ class SmallReview extends StatelessWidget {
                                         Get.back();
                                       },
                                       child: Container(
+                                        margin: EdgeInsets.only(bottom: 15),
                                         width: 120,
                                         height: 30,
                                         decoration: BoxDecoration(
@@ -661,7 +782,7 @@ class SmallReview extends StatelessWidget {
                                               BorderRadius.circular(5),
                                         ),
                                         child: const Text(
-                                          '닫기',
+                                          '취소 하기',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
@@ -676,7 +797,6 @@ class SmallReview extends StatelessWidget {
                           },
                           child: Container(
                             width: 200,
-                            height: 150,
                             child: Column(
                               children: [
                                 Image.asset('friday.png'),
@@ -694,7 +814,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
@@ -711,7 +830,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
@@ -728,7 +846,6 @@ class SmallReview extends StatelessWidget {
                       Expanded(
                         child: Container(
                           width: 200,
-                          height: 150,
                           child: Column(
                             children: [
                               Image.asset('friday.png'),
