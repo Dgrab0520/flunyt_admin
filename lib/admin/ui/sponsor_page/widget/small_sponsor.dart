@@ -99,7 +99,7 @@ class SmallReview extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              '전체 업체 수',
+                              '전체 스폰서 수',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -134,7 +134,7 @@ class SmallReview extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              '${DateTime.now().month}월 평균 리뷰 수',
+                              '${DateTime.now().month}월 추가 수',
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -169,7 +169,7 @@ class SmallReview extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              '하루 평균 리뷰 수',
+                              '계약 종료 수',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
