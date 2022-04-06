@@ -329,7 +329,6 @@ class BigScreen extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      barrierDismissible: false,
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Center(

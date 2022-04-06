@@ -1,4 +1,5 @@
 import 'package:flunyt_admin/admin/ui/main_page/main_page.dart';
+import 'package:flunyt_admin/admin/ui/sponsor_page/sponsor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,7 @@ class CategoryHeader extends StatelessWidget {
               Get.offAll(MainPage());
             },
             child: Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(7),
               margin: currentPage == "인플루언서 관리"
                   ? const EdgeInsets.only(top: 1, bottom: 1)
                   : null,
@@ -39,7 +40,7 @@ class CategoryHeader extends StatelessWidget {
                   '인플루언서 관리',
                   style: TextStyle(
                     fontSize: 16,
-                    fontFamily: 'NanumSquareB',
+                    fontFamily: 'NanumSquareR',
                     color:
                         currentPage == "인플루언서 관리" ? Colors.black : Colors.white,
                   ),
@@ -52,7 +53,7 @@ class CategoryHeader extends StatelessWidget {
               Get.offAll(PartnerPage());
             },
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(7.0),
               margin: currentPage == "업체 관리"
                   ? const EdgeInsets.only(top: 1, bottom: 1)
                   : null,
@@ -76,7 +77,7 @@ class CategoryHeader extends StatelessWidget {
               Get.offAll(ReviewPage());
             },
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(7.0),
               margin: currentPage == "리뷰 관리"
                   ? const EdgeInsets.only(top: 1, bottom: 1)
                   : null,
@@ -97,10 +98,35 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
+              Get.offAll(SponsorPage());
+            },
+            child: Container(
+              padding: const EdgeInsets.all(7.0),
+              margin: currentPage == "스폰서 관리"
+                  ? const EdgeInsets.only(top: 1, bottom: 1)
+                  : null,
+              color: currentPage == "스폰서 관리"
+                  ? Colors.white
+                  : const Color(0xFF3B4E84),
+              child: Center(
+                child: Text(
+                  '스폰서 관리',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'NanumSquareR',
+                    color:
+                        currentPage == "스폰서 관리" ? Colors.black : Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
               Get.offAll(SettingPage());
             },
             child: Container(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(7.0),
               margin: currentPage == "통계&설정"
                   ? const EdgeInsets.only(top: 1, bottom: 1)
                   : null,
