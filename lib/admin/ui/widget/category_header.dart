@@ -1,11 +1,12 @@
 import 'package:flunyt_admin/admin/ui/main_page/main_page.dart';
-import 'package:flunyt_admin/admin/ui/sponsor_page/sponsor_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/main_page_controller.dart';
 import '../partner_page/partner_page.dart';
 import '../review_page/review_page.dart';
 import '../setting_page/setting_page.dart';
+import '../sponsor_page/sponsor_page.dart';
 
 class CategoryHeader extends StatelessWidget {
   const CategoryHeader({Key? key, required this.currentPage}) : super(key: key);
@@ -25,7 +26,10 @@ class CategoryHeader extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Get.offAll(MainPage());
+              Get.find<MainPageController>().users.clear();
+              Get.find<MainPageController>().getUser();
+              Get.find<MainPageController>().hasReachedMax = false;
+              Get.offAll(() => MainPage());
             },
             child: Container(
               padding: const EdgeInsets.all(7),
@@ -50,7 +54,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(PartnerPage());
+              Get.offAll(() => PartnerPage());
             },
             child: Container(
               padding: const EdgeInsets.all(7.0),
@@ -74,7 +78,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(ReviewPage());
+              Get.offAll(() => ReviewPage());
             },
             child: Container(
               padding: const EdgeInsets.all(7.0),
@@ -98,7 +102,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(SponsorPage());
+              Get.offAll(() => SponsorPage());
             },
             child: Container(
               padding: const EdgeInsets.all(7.0),
@@ -123,7 +127,7 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.offAll(SettingPage());
+              Get.offAll(() => SettingPage());
             },
             child: Container(
               padding: const EdgeInsets.all(7.0),

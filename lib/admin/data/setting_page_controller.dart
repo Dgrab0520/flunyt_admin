@@ -62,7 +62,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_AREA";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get Area Response : ${response.body}');
       if (200 == response.statusCode) {
@@ -93,7 +93,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_SERVICE";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get Area Response : ${response.body}');
       if (200 == response.statusCode) {
@@ -124,7 +124,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_MONTH";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get Month Response : ${response.body}');
       if (200 == response.statusCode) {
@@ -144,7 +144,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_USER_TOTAL";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get User Total Response : ${response.body}');
       if (200 == response.statusCode) {
@@ -163,7 +163,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_TOP_CATEGORY";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get Top Category Response : ${response.body}');
       if (200 == response.statusCode) {
@@ -182,7 +182,7 @@ class SettingPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_TOP_SAVED";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_setting.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_setting.php"),
           body: map);
       print('Get Top Saved Response : ${response.body}');
       if (200 == response.statusCode) {

@@ -199,11 +199,11 @@ class ReviewRow extends StatelessWidget {
                                               return InkWell(
                                                 onTap: () {
                                                   html.window.open(
-                                                      '$baseUrl/review_img/${review.images[index]}',
+                                                      '$kBaseUrl/review_img/${review.images[index]}',
                                                       '리뷰 이미지');
                                                 },
                                                 child: Image.network(
-                                                    '$baseUrl/review_img/${review.images[index]}'),
+                                                    '$kBaseUrl/review_img/${review.images[index]}'),
                                               );
                                             })),
                                     SizedBox(

@@ -6,7 +6,7 @@ import '../../constants.dart';
 import '../model/coupon_model.dart';
 
 class CouponData {
-  static const root = "$baseUrl/web_data/flunyt_admin_coupon.php";
+  static const root = "$kBaseUrl/web_data/flunyt_admin_coupon.php";
 
   //Get Coupon
   static Future<List<Coupon>> getCoupon(String date) async {

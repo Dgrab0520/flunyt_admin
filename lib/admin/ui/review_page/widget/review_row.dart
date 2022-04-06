@@ -1,10 +1,7 @@
-import 'dart:html' as html;
-
+import 'package:flunyt_admin/admin/ui/review_page/widget/review_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../constants.dart';
 import '../../../model/review_model.dart';
 
 class ReviewRow extends StatelessWidget {
@@ -178,97 +175,8 @@ class ReviewRow extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Center(
-                                  child: Text(
-                                '리뷰 내역',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: [
-                                    SizedBox(
-                                        width: 200,
-                                        height: 200,
-                                        child: PageView.builder(
-                                            itemCount: review.images.length,
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return InkWell(
-                                                onTap: () {
-                                                  html.window.open(
-                                                      '$baseUrl/review_img/${review.images[index]}',
-                                                      '리뷰 이미지');
-                                                },
-                                                child: Image.network(
-                                                    '$baseUrl/review_img/${review.images[index]}'),
-                                              );
-                                            })),
-                                    SizedBox(
-                                      height: 30,
-                                      width: 200,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemCount: review.images.length,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Container(
-                                              height: 30,
-                                              width: 30,
-                                              color: Colors.black,
-                                            );
-                                          }),
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Text(review.review),
-                                  ],
-                                ),
-                              ),
-                              actions: <Widget>[
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: Container(
-                                    width: 120,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF363057),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Text(
-                                      '삭제 하기',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: Container(
-                                    width: 120,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Text(
-                                      '닫기',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                  ),
-                                ),
-                              ],
+                            return ReviewDetail(
+                              review: review,
                             );
                           },
                         );

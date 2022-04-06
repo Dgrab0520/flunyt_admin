@@ -41,7 +41,7 @@ class PartnerController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_PARTNER";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_client.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_client.php"),
           body: map);
       print('Get Partner Response : ${response.body}');
       if (200 == response.statusCode) {

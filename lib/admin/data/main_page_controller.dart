@@ -19,6 +19,10 @@ class MainPageController extends GetxController {
   List<User> get users => _users;
   set users(val) => _users.value = val;
 
+  final _hasReachedMax = false.obs;
+  bool get hasReachedMax => _hasReachedMax.value;
+  set hasReachedMax(val) => _hasReachedMax.value = val;
+
   final _searchedUsers = <User>[].obs;
 
   List<User> get searchedUsers => _searchedUsers;
@@ -36,16 +40,20 @@ class MainPageController extends GetxController {
   TextEditingController searchController = TextEditingController();
 
   //Get User
-  getUser() async {
+  getUser([int startIndex = 0]) async {
     try {
       var map = <String, dynamic>{};
       map['action'] = "GET_USER";
+      map['startIndex'] = startIndex.toString();
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_user.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_user.php"),
           body: map);
       print('Get User Response : ${response.body}');
       if (200 == response.statusCode) {
-        users = parseResponse(response.body);
+        if (response.body == "errors") {
+          hasReachedMax = true;
+        }
+        users.addAll(parseResponse(response.body));
         isLoading = true;
       }
     } catch (e) {

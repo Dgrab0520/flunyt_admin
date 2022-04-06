@@ -6,7 +6,7 @@ import '../../constants.dart';
 import '../model/client_model.dart';
 
 class ClientData {
-  static const root = "$baseUrl/web_data/flunyt_admin_client.php";
+  static const root = "$kBaseUrl/web_data/flunyt_admin_client.php";
 
   //모든 채팅 목록 불러오기
   static Future<List<Client>> getClient() async {

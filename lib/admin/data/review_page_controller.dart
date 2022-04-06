@@ -42,7 +42,7 @@ class ReviewPageController extends GetxController {
       var map = <String, dynamic>{};
       map['action'] = "GET_REVIEW";
       final response = await http.post(
-          Uri.parse("$baseUrl/web_data/flunyt_admin_review.php"),
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_review.php"),
           body: map);
       print('Get Review Response : ${response.body}');
       if (200 == response.statusCode) {

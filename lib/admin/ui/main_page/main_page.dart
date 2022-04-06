@@ -52,7 +52,7 @@ class MainPage extends StatelessWidget {
       body: SafeArea(
           child: MediaQuery.of(context).size.width < 1500
               ? SmallMain()
-              : BigMain()),
+              : const BigMain()),
     );
   }
 }

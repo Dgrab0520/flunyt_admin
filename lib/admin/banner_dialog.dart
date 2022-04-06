@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
+import '../constants.dart';
 import 'banner_add.dart';
 import 'data/banner_data.dart';
 
@@ -81,11 +83,11 @@ class BannerDialog extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Image.network(
-                                        "http://211.110.44.91/plus/banner/${bannerController.bannerMain[index].banner_img}"),
+                                        "$kBaseUrl/main_banner/${bannerController.bannerMain[index].bannerImg}"),
                                   ),
                                   Text(
                                     bannerController
-                                        .bannerMain[index].banner_title,
+                                        .bannerMain[index].bannerMainTitle,
                                     style: const TextStyle(
                                       fontFamily: 'NanumSquareEB',
                                       fontSize: 12,
@@ -93,7 +95,7 @@ class BannerDialog extends StatelessWidget {
                                   ),
                                   Text(
                                     bannerController
-                                        .bannerMain[index].banner_sub,
+                                        .bannerMain[index].bannerSubTitle,
                                     style: const TextStyle(
                                       fontFamily: 'NanumSquareR',
                                       fontSize: 12,
@@ -167,19 +169,20 @@ class BannerDialog extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Image.network(
-                                        "http://211.110.44.91/plus/banner/${bannerController.bannerSub[index].banner_img}"),
+                                        "$kBaseUrl/sub_banner/${bannerController.bannerSub[index].bannerImg}"),
                                   ),
                                   Text(
                                     bannerController
-                                        .bannerSub[index].banner_title,
+                                        .bannerSub[index].bannerStatus,
                                     style: const TextStyle(
                                       fontFamily: 'NanumSquareEB',
                                       fontSize: 12,
                                     ),
                                   ),
                                   Text(
-                                    bannerController
-                                        .bannerSub[index].banner_sub,
+                                    DateFormat("yyyy-MM-dd").format(
+                                        bannerController.bannerSub[index]
+                                            .bannerRegisterDate),
                                     style: const TextStyle(
                                       fontFamily: 'NanumSquareR',
                                       fontSize: 12,

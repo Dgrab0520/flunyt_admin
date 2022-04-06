@@ -11,15 +11,15 @@ import '../../admin/model/main_banner_model.dart';
 import '../model/sub_banner_model.dart';
 
 class BannerData extends GetxController {
-  static const root = "$baseUrl/web_data/flunyt_admin_banner.php";
+  static const root = "$kBaseUrl/web_data/flunyt_admin_banner.php";
 
   final _bannerMain = <MainBanner>[].obs; //메인 배너
   final _bannerSub = <SubBanner>[].obs; //서브 배너
 
-  get bannerMain => _bannerMain;
+  List<MainBanner> get bannerMain => _bannerMain;
   set bannerMain(val) => _bannerMain.value = val;
 
-  get bannerSub => _bannerSub;
+  List<SubBanner> get bannerSub => _bannerSub;
   set bannerSub(val) => _bannerSub.value = val;
 
   final _isMainLoading = false.obs;
