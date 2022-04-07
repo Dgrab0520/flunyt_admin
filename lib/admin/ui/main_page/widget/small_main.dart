@@ -1,4 +1,5 @@
 import 'package:flunyt_admin/admin/ui/widget/category_header.dart';
+import 'package:flunyt_admin/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,10 +7,43 @@ import 'package:get/get.dart';
 import '../../../data/main_page_controller.dart';
 import 'user_row.dart';
 
-class SmallMain extends StatelessWidget {
-  SmallMain({Key? key}) : super(key: key);
+class SmallMain extends StatefulWidget {
+  const SmallMain({Key? key}) : super(key: key);
 
+  @override
+  _SmallMainState createState() => _SmallMainState();
+}
+
+class _SmallMainState extends State<SmallMain> {
   final mainPageController = Get.find<MainPageController>();
+
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) mainPageController.getUser(mainPageController.users.length);
+  }
+
+  bool get _isBottom {
+    if (mainPageController.hasReachedMax) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.99);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,6 +53,7 @@ class SmallMain extends StatelessWidget {
         ),
         Expanded(
           child: SingleChildScrollView(
+            controller: _scrollController,
             child: Column(
               children: [
                 const SizedBox(height: 20),
@@ -196,72 +231,42 @@ class SmallMain extends StatelessWidget {
                     )),
 
                 //Summary Body
-                Container(
-                  width: Get.width,
-                  padding: EdgeInsets.only(
-                    left: Get.width / 30,
-                    right: Get.width / 30,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              left: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${DateTime.now().year}년 ${DateTime.now().month}월',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                Obx(
+                  () => Container(
+                    width: Get.width,
+                    padding: EdgeInsets.only(
+                      left: Get.width / 30,
+                      right: Get.width / 30,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                left: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Obx(
-                              () => Text(
-                                mainPageController.users.length.toString(),
+                            child: Center(
+                              child: Text(
+                                '${DateTime.now().year}년 ${DateTime.now().month}월',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',
@@ -270,68 +275,101 @@ class SmallMain extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                            child: Center(
+                              child: Obx(
+                                () => Text(
+                                  mainPageController.mainSummary.allUserCount,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'NanumSquareR',
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                mainPageController.mainSummary.monthJoinCount,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                mainPageController
+                                    .mainSummary.monthCampaignCount,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -694,14 +732,25 @@ class SmallMain extends StatelessWidget {
                   child: Obx(() => mainPageController.isLoading
                       ? ListView.builder(
                           shrinkWrap: true,
-                          itemCount: mainPageController.isSearch
-                              ? mainPageController.searchedUsers.length
-                              : mainPageController.users.length,
+                          itemCount: (mainPageController.isSearch
+                                  ? mainPageController.searchedUsers.length
+                                  : mainPageController.users.length) +
+                              (mainPageController.hasReachedMax ? 0 : 1),
                           itemBuilder: (_, int index) {
-                            return UserRow(
-                                user: mainPageController.isSearch
-                                    ? mainPageController.searchedUsers[index]
-                                    : mainPageController.users[index]);
+                            return index >= mainPageController.users.length
+                                ? const Center(
+                                    child: SizedBox(
+                                      height: 24,
+                                      width: 24,
+                                      child: CircularProgressIndicator(
+                                          strokeWidth: 1.5),
+                                    ),
+                                  )
+                                : UserRow(
+                                    user: mainPageController.isSearch
+                                        ? mainPageController
+                                            .searchedUsers[index]
+                                        : mainPageController.users[index]);
                           },
                         )
                       : const Center(
@@ -714,6 +763,18 @@ class SmallMain extends StatelessWidget {
                 )
               ],
             ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              _scrollController.animateTo(0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut);
+            },
+            style: ElevatedButton.styleFrom(primary: kPrimaryColor),
+            child: const Icon(CupertinoIcons.up_arrow),
           ),
         ),
       ],

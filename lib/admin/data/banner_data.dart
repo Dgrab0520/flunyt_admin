@@ -81,7 +81,7 @@ class BannerData extends GetxController {
     try {
       var url = Uri.parse(root);
       var request = http.MultipartRequest('POST', url);
-      request.fields['action'] = "BANNER_INSERT_ACTION";
+      request.fields['action'] = "BANNER_INSERT_MAIN";
       request.fields['banner_id'] = bannerId;
       request.fields['banner_status'] = banner.bannerStatus;
       request.fields['banner_title'] = banner.bannerMainTitle;
@@ -97,7 +97,7 @@ class BannerData extends GetxController {
       print(request);
       http.Response response =
           await http.Response.fromStream(await request.send());
-      print("Insert Banner Response : ${response.body}");
+      print("Insert Main Banner Response : ${response.body}");
       if (response.statusCode == 200) {
         if (response.body == "success") {
           return true;
@@ -119,7 +119,7 @@ class BannerData extends GetxController {
     try {
       var url = Uri.parse(root);
       var request = http.MultipartRequest('POST', url);
-      request.fields['action'] = "BANNER_INSERT_ACTION";
+      request.fields['action'] = "BANNER_INSERT_SUB";
       request.fields['banner_id'] = bannerId;
       request.fields['banner_status'] = bannerStatus;
       request.fields['banner_image'] = bannerId + ".gif";
@@ -133,7 +133,7 @@ class BannerData extends GetxController {
       print(request);
       http.Response response =
           await http.Response.fromStream(await request.send());
-      print("Insert Banner Response : ${response.body}");
+      print("Insert Sub Banner Response : ${response.body}");
       if (response.statusCode == 200) {
         if (response.body == "success") {
           return true;
@@ -154,7 +154,7 @@ class BannerData extends GetxController {
     try {
       var url = Uri.parse(root);
       var request = http.MultipartRequest('POST', url);
-      request.fields['action'] = "BANNER_MAIN_DELETE_ACTION";
+      request.fields['action'] = "BANNER_MAIN_DELETE";
       request.fields['id'] = mainBannerId.toString();
 
       http.Response response =
@@ -180,7 +180,7 @@ class BannerData extends GetxController {
     try {
       var url = Uri.parse(root);
       var request = http.MultipartRequest('POST', url);
-      request.fields['action'] = "BANNER_SUB_DELETE_ACTION";
+      request.fields['action'] = "BANNER_SUB_DELETE";
       request.fields['id'] = subBannerId.toString();
 
       http.Response response =
@@ -201,46 +201,88 @@ class BannerData extends GetxController {
     }
   }
 
-  // //배너 업데이트
-  // static Future<bool> updateBanner(
-  //     String banner_id, String banner_title, String banner_sub,
-  //     {String? banner_img, Uint8List? ufile}) async {
-  //   try {
-  //     var url = Uri.parse(ROOT);
-  //     var request = http.MultipartRequest('POST', url);
-  //     request.fields['action'] = "BANNER_UPDATE_ACTION";
-  //     request.fields['banner_id'] = banner_id;
-  //     request.fields['banner_title'] = banner_title;
-  //     request.fields['banner_sub'] = banner_sub;
-  //
-  //     if (ufile != null) {
-  //       request.fields['banner_image'] = getRandomString() + '.gif';
-  //       print(request.fields['banner_image']);
-  //       request.files.add(http.MultipartFile.fromBytes(
-  //         "userfile",
-  //         ufile,
-  //         contentType: MediaType('application', 'octet-stream'),
-  //         filename: "userfile",
-  //       ));
-  //     }
-  //     print(request);
-  //     http.Response response =
-  //         await http.Response.fromStream(await request.send());
-  //     print("Update Banner Response : ${response.body}");
-  //     if (response.statusCode == 200) {
-  //       if (response.body == "success") {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     } else {
-  //       return false;
-  //     }
-  //   } catch (e) {
-  //     print("exception : $e");
-  //     return false;
-  //   }
-  // }
+  //메인 배너 업데이트
+  Future<bool> updateMainBanner(
+      {String? id,
+      String? title,
+      String? sub,
+      required String status,
+      Uint8List? uFile}) async {
+    try {
+      var url = Uri.parse(root);
+      var request = http.MultipartRequest('POST', url);
+      request.fields['action'] = "BANNER_UPDATE_MAIN";
+      request.fields['id'] = id ?? "";
+      request.fields['title'] = title ?? "";
+      request.fields['sub'] = sub ?? "";
+      request.fields['status'] = status;
+
+      if (uFile != null) {
+        request.fields['banner_image'] = getRandomString() + '.gif';
+        request.files.add(http.MultipartFile.fromBytes(
+          "userFile",
+          uFile,
+          contentType: MediaType('application', 'octet-stream'),
+          filename: "userFile",
+        ));
+      }
+      print(request);
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      print("Update Main Banner Response : ${response.body}");
+      if (response.statusCode == 200) {
+        if (response.body == "success") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("exception : $e");
+      return false;
+    }
+  }
+
+  //서브 배너 업데이트
+  Future<bool> updateSubBanner(
+      {String? id, required String status, Uint8List? uFile}) async {
+    try {
+      var url = Uri.parse(root);
+      var request = http.MultipartRequest('POST', url);
+      request.fields['action'] = "BANNER_UPDATE_SUB";
+      request.fields['id'] = id ?? "";
+      request.fields['status'] = status;
+
+      if (uFile != null) {
+        request.fields['banner_image'] = getRandomString() + '.gif';
+        print(request.fields['banner_image']);
+        request.files.add(http.MultipartFile.fromBytes(
+          "userFile",
+          uFile,
+          contentType: MediaType('application', 'octet-stream'),
+          filename: "userFile",
+        ));
+      }
+      print(request);
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      print("Update Sub Banner Response : ${response.body}");
+      if (response.statusCode == 200) {
+        if (response.body == "success") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("exception : $e");
+      return false;
+    }
+  }
 
   static List<MainBanner> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();

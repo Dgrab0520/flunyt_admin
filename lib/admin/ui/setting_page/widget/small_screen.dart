@@ -3,9 +3,9 @@ import 'package:flunyt_admin/admin/data/setting_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../banner_dialog.dart';
 import '../../widget/category_header.dart';
 import 'all_inf_chart.dart';
+import 'banner_dialog.dart';
 import 'chart_widget.dart';
 import 'top_category.dart';
 import 'top_saved.dart';

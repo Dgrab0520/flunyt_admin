@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants.dart';
+
 class BigMain extends StatefulWidget {
   const BigMain({Key? key}) : super(key: key);
 
@@ -223,7 +225,7 @@ class _BigMainState extends State<BigMain> {
                     )),
 
                 //Summary Body
-                Container(
+                Obx(()=>Container(
                   width: Get.width,
                   padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
                   child: Row(
@@ -284,8 +286,8 @@ class _BigMainState extends State<BigMain> {
                           ),
                           child: Center(
                             child: Obx(
-                              () => Text(
-                                mainPageController.users.length.toString(),
+                                  () => Text(
+                                mainPageController.mainSummary.allUserCount,
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',
@@ -316,7 +318,7 @@ class _BigMainState extends State<BigMain> {
                           ),
                           child: Center(
                             child: Text(
-                              '',
+                              mainPageController.mainSummary.monthJoinCount,
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'NanumSquareR',
@@ -346,7 +348,7 @@ class _BigMainState extends State<BigMain> {
                           ),
                           child: Center(
                             child: Text(
-                              '',
+                              mainPageController.mainSummary.monthCampaignCount,
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'NanumSquareR',
@@ -357,7 +359,7 @@ class _BigMainState extends State<BigMain> {
                       ),
                     ],
                   ),
-                ),
+                ),),
 
                 const SizedBox(height: 30),
 
@@ -742,6 +744,19 @@ class _BigMainState extends State<BigMain> {
                 )
               ],
             ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(bottom: 10, right: 10),
+          alignment: Alignment.bottomRight,
+          child: ElevatedButton(
+            onPressed: () {
+              _scrollController.animateTo(0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut);
+            },
+            style: ElevatedButton.styleFrom(primary: kPrimaryColor),
+            child: const Icon(CupertinoIcons.up_arrow),
           ),
         ),
       ],

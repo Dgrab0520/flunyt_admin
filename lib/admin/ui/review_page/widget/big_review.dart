@@ -5,10 +5,46 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BigReview extends StatelessWidget {
-  BigReview({Key? key}) : super(key: key);
+import '../../../../constants.dart';
 
+class BigReview extends StatefulWidget {
+  const BigReview({Key? key}) : super(key: key);
+
+  @override
+  _BigReviewState createState() => _BigReviewState();
+}
+
+class _BigReviewState extends State<BigReview> {
   final reviewPageController = Get.find<ReviewPageController>();
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) {
+      reviewPageController.getReview(reviewPageController.reviews.length);
+    }
+  }
+
+  bool get _isBottom {
+    if (reviewPageController.hasReachedMax) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.99);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,6 +52,7 @@ class BigReview extends StatelessWidget {
         const CategoryHeader(currentPage: "리뷰 관리"),
         Expanded(
           child: SingleChildScrollView(
+            controller: _scrollController,
             child: Column(
               children: [
                 const SizedBox(height: 20),
@@ -103,7 +140,7 @@ class BigReview extends StatelessWidget {
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    '전체 업체 수',
+                                    '전체 리뷰 수',
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'NanumSquareB',
@@ -188,137 +225,139 @@ class BigReview extends StatelessWidget {
                     )),
 
                 //Summary Body
-                Container(
-                  width: Get.width,
-                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              left: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${DateTime.now().year}년 ${DateTime.now().month}월',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                Obx(
+                  () => Container(
+                    width: Get.width,
+                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                left: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '0 명',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                            child: Center(
+                              child: Text(
+                                '${DateTime.now().year}년 ${DateTime.now().month}월',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '0 건',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '0 건',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                            child: Center(
+                              child: Text(
+                                '${reviewPageController.reviewSummary.allReviewCount} 건',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${(reviewPageController.reviewSummary.monthReviewCount / DateTime.now().day).toPrecision(2)} 건',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '0 건',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -406,7 +445,7 @@ class BigReview extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   CupertinoIcons.search,
                                   color: Colors.white,
                                 ),
@@ -601,15 +640,28 @@ class BigReview extends StatelessWidget {
                     child: Obx(() => reviewPageController.isLoading
                         ? ListView.builder(
                             shrinkWrap: true,
-                            itemCount: reviewPageController.isSearch
-                                ? reviewPageController.searchedReviews.length
-                                : reviewPageController.reviews.length,
+                            itemCount: (reviewPageController.isSearch
+                                    ? reviewPageController
+                                        .searchedReviews.length
+                                    : reviewPageController.reviews.length) +
+                                (reviewPageController.hasReachedMax ? 0 : 1),
                             itemBuilder: (_, int index) {
-                              return ReviewRow(
-                                  review: reviewPageController.isSearch
-                                      ? reviewPageController
-                                          .searchedReviews[index]
-                                      : reviewPageController.reviews[index]);
+                              return index >=
+                                      reviewPageController.reviews.length
+                                  ? const Center(
+                                      child: SizedBox(
+                                        height: 24,
+                                        width: 24,
+                                        child: CircularProgressIndicator(
+                                            strokeWidth: 1.5),
+                                      ),
+                                    )
+                                  : ReviewRow(
+                                      review: reviewPageController.isSearch
+                                          ? reviewPageController
+                                              .searchedReviews[index]
+                                          : reviewPageController
+                                              .reviews[index]);
                             },
                           )
                         : const Center(
@@ -619,6 +671,19 @@ class BigReview extends StatelessWidget {
                 const SizedBox(height: 10.0)
               ],
             ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(bottom: 10, right: 10),
+          alignment: Alignment.bottomRight,
+          child: ElevatedButton(
+            onPressed: () {
+              _scrollController.animateTo(0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut);
+            },
+            style: ElevatedButton.styleFrom(primary: kPrimaryColor),
+            child: const Icon(CupertinoIcons.up_arrow),
           ),
         ),
       ],

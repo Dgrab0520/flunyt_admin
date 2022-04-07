@@ -101,7 +101,9 @@ class ReviewRow extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                review.review,
+                review.review.length >= 15
+                    ? review.review.substring(0, 15) + "..."
+                    : review.review,
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: 'NanumSquareR',

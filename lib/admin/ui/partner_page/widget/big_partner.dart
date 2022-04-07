@@ -191,69 +191,39 @@ class BigPartner extends StatelessWidget {
                   ),
                 ),
                 //Summary Body
-                Container(
-                  width: Get.width,
-                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              left: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${DateTime.now().year}년 ${DateTime.now().month}월',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                Obx(
+                  () => Container(
+                    width: Get.width,
+                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                left: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Obx(
-                              () => Text(
-                                '${partnerPageController.partners.length} 명',
+                            child: Center(
+                              child: Text(
+                                '${DateTime.now().year}년 ${DateTime.now().month}월',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',
@@ -262,68 +232,100 @@ class BigPartner extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'alii_partner 건',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'pay_count 건',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                            child: Center(
+                              child: Obx(
+                                () => Text(
+                                  '${partnerPageController.partnerSummary.allClientCount} 명',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'NanumSquareR',
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${partnerPageController.partnerSummary.monthCampaignCount} 건',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${partnerPageController.partnerSummary.completeCampaignCount} 건',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 

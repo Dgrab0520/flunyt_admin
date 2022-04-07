@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flunyt_admin/admin/model/main_summary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +11,7 @@ import '../model/user_model.dart';
 class MainPageController extends GetxController {
   @override
   void onInit() {
+    getSummary();
     getUser();
     super.onInit();
   }
@@ -39,6 +41,14 @@ class MainPageController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
+  final _mainSummary = MainSummary(
+          allUserCount: "allUserCount",
+          monthJoinCount: "monthJoinCount",
+          monthCampaignCount: "monthCampaignCount")
+      .obs;
+  MainSummary get mainSummary => _mainSummary.value;
+  set mainSummary(val) => _mainSummary.value = val;
+
   //Get User
   getUser([int startIndex = 0]) async {
     try {
@@ -55,6 +65,25 @@ class MainPageController extends GetxController {
         }
         users.addAll(parseResponse(response.body));
         isLoading = true;
+      }
+    } catch (e) {
+      print("exception : $e");
+    }
+  }
+
+  //Get Summary
+  getSummary() async {
+    try {
+      var map = <String, dynamic>{};
+      map['action'] = "GET_SUMMARY";
+      final response = await http.post(
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_user.php"),
+          body: map);
+      print('Get Summary Response : ${response.body}');
+      if (200 == response.statusCode) {
+        var json = jsonDecode(response.body);
+        print("json : $json");
+        mainSummary = MainSummary.fromJson(json);
       }
     } catch (e) {
       print("exception : $e");

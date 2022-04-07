@@ -5,18 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
-import 'data/banner_data.dart';
-import 'model/main_banner_model.dart';
+import '../../../../constants.dart';
+import '../../../data/banner_data.dart';
+import '../../../model/main_banner_model.dart';
+import 'banner_status.dart';
 
-class BannerAdd extends StatefulWidget {
-  const BannerAdd({Key? key, required this.type}) : super(key: key);
-  final String type; //배너 타입 [main, sub]
+class BannerAddMain extends StatefulWidget {
+  const BannerAddMain({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _BannerAddState createState() => _BannerAddState();
+  _BannerAddMainState createState() => _BannerAddMainState();
 }
 
-class _BannerAddState extends State<BannerAdd> {
+class _BannerAddMainState extends State<BannerAddMain> {
+  BannerStatus? bannerStatus = BannerStatus.start;
   Uint8List? bannerImage; //배너 이미지
   Widget selectedImage = Container(
     height: 180,
@@ -28,6 +32,8 @@ class _BannerAddState extends State<BannerAdd> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
+
+  final bannerController = Get.put(BannerData());
 
   @override
   Widget build(BuildContext context) {
@@ -127,24 +133,77 @@ class _BannerAddState extends State<BannerAdd> {
               const SizedBox(
                 height: 15,
               ),
+              SizedBox(
+                height: 50,
+                width: 350,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: const Text(
+                          '진행중',
+                          style: TextStyle(
+                            fontFamily: 'NanumSquareEB',
+                          ),
+                        ),
+                        leading: Radio<BannerStatus>(
+                          activeColor: kPrimaryColor,
+                          value: BannerStatus.start,
+                          groupValue: bannerStatus,
+                          onChanged: (BannerStatus? value) {
+                            setState(() {
+                              bannerStatus = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: const Text(
+                          '종료',
+                          style: TextStyle(
+                            fontFamily: 'NanumSquareEB',
+                          ),
+                        ),
+                        leading: Radio<BannerStatus>(
+                          activeColor: kPrimaryColor,
+                          value: BannerStatus.end,
+                          groupValue: bannerStatus,
+                          onChanged: (BannerStatus? value) {
+                            setState(() {
+                              bannerStatus = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               InkWell(
                 onTap: () {
-                  // var banner = Banners(
-                  //     banner_id: "MB",
-                  //     banner_type: widget.type,
-                  //     banner_img: "banner_img",
-                  //     banner_title: titleController.text,
-                  //     banner_sub: contentController.text,
-                  //     id: 0);
-                  // Banner_Data.insertBanner(banner, bannerImage).then((value) {
-                  //   if (value) {
-                  //     Get.back(result: true);
-                  //   } else {
-                  //     if (!Get.isSnackbarOpen) {
-                  //       Get.snackbar("오류", "배너를 저장하지 못했습니다");
-                  //     }
-                  //   }
-                  // });
+                  var banner = MainBanner(
+                      id: 0,
+                      bannerId: "bannerId",
+                      bannerMainTitle: titleController.text,
+                      bannerSubTitle: contentController.text,
+                      bannerImg: "bannerImg",
+                      bannerDetailImg: "bannerDetailImg",
+                      bannerStatus:
+                          bannerStatus == BannerStatus.start ? "start" : "end",
+                      bannerRegisterDate: DateTime.now());
+                  bannerController
+                      .insertMainBanner(banner, bannerImage)
+                      .then((value) {
+                    if (value) {
+                      Get.back(result: true);
+                    } else {
+                      if (!Get.isSnackbarOpen) {
+                        Get.snackbar("오류", "배너를 저장하지 못했습니다");
+                      }
+                    }
+                  });
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

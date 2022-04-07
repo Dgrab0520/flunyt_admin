@@ -5,10 +5,46 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SmallReview extends StatelessWidget {
-  SmallReview({Key? key}) : super(key: key);
+import '../../../../constants.dart';
 
+class SmallReview extends StatefulWidget {
+  const SmallReview({Key? key}) : super(key: key);
+
+  @override
+  _SmallReviewState createState() => _SmallReviewState();
+}
+
+class _SmallReviewState extends State<SmallReview> {
   final reviewPageController = Get.find<ReviewPageController>();
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) {
+      reviewPageController.getReview(reviewPageController.reviews.length);
+    }
+  }
+
+  bool get _isBottom {
+    if (reviewPageController.hasReachedMax) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.99);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,6 +52,7 @@ class SmallReview extends StatelessWidget {
         const CategoryHeader(currentPage: "리뷰 관리"),
         Expanded(
           child: SingleChildScrollView(
+            controller: _scrollController,
             child: Column(
               children: [
                 const SizedBox(height: 20),
@@ -103,7 +140,7 @@ class SmallReview extends StatelessWidget {
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    '전체 업체 수',
+                                    '전체 리뷰 수',
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'NanumSquareB',
@@ -602,15 +639,28 @@ class SmallReview extends StatelessWidget {
                     child: Obx(() => reviewPageController.isLoading
                         ? ListView.builder(
                             shrinkWrap: true,
-                            itemCount: reviewPageController.isSearch
-                                ? reviewPageController.searchedReviews.length
-                                : reviewPageController.reviews.length,
+                            itemCount: (reviewPageController.isSearch
+                                    ? reviewPageController
+                                        .searchedReviews.length
+                                    : reviewPageController.reviews.length) +
+                                (reviewPageController.hasReachedMax ? 0 : 1),
                             itemBuilder: (_, int index) {
-                              return ReviewRow(
-                                  review: reviewPageController.isSearch
-                                      ? reviewPageController
-                                          .searchedReviews[index]
-                                      : reviewPageController.reviews[index]);
+                              return index >=
+                                      reviewPageController.reviews.length
+                                  ? const Center(
+                                      child: SizedBox(
+                                        height: 24,
+                                        width: 24,
+                                        child: CircularProgressIndicator(
+                                            strokeWidth: 1.5),
+                                      ),
+                                    )
+                                  : ReviewRow(
+                                      review: reviewPageController.isSearch
+                                          ? reviewPageController
+                                              .searchedReviews[index]
+                                          : reviewPageController
+                                              .reviews[index]);
                             },
                           )
                         : const Center(
@@ -620,6 +670,18 @@ class SmallReview extends StatelessWidget {
                 SizedBox(height: 10.0)
               ],
             ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              _scrollController.animateTo(0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut);
+            },
+            style: ElevatedButton.styleFrom(primary: kPrimaryColor),
+            child: const Icon(CupertinoIcons.up_arrow),
           ),
         ),
       ],

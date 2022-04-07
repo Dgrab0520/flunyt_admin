@@ -99,7 +99,7 @@ class BigReview extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              '전체 업체 수',
+                              '전체 스폰서 수',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -134,7 +134,7 @@ class BigReview extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              '${DateTime.now().month}월 평균 리뷰 수',
+                              '${DateTime.now().month}월 추가 스폰서 수',
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -169,7 +169,7 @@ class BigReview extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              '하루 평균 리뷰 수',
+                              '계약 종료 수',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -350,91 +350,20 @@ class BigReview extends StatelessWidget {
                   )
                 ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: 180,
-                  margin: EdgeInsets.only(right: Get.width * 0.1),
-                  child: TextField(
-                    controller: reviewPageController.searchController,
-                    onSubmitted: (text) {
-                      // //검색
-                      // searchResult = [];
-                      // print(text);
-                      // searchResult.addAll(detail
-                      //     .where((element) => element.com_name.contains(text)));
-                      // setState(() {
-                      //   isSearch = true;
-                      // });
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Search",
-                      hintStyle: const TextStyle(
-                        fontSize: 14.0,
-                        fontFamily: 'NanumSquareB',
-                      ),
-                      fillColor: const Color(0xFF2A2D3E).withOpacity(0.1),
-                      filled: true,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          // //검색
-                          // searchResult = [];
-                          // print(searchController.text);
-                          // searchResult.addAll(detail.where((element) =>
-                          //     element.com_name.contains(searchController.text)));
-                          // print(searchResult);
-                          // setState(() {
-                          //   isSearch = true;
-                          // });
-                        },
-                        child: Container(
-                          width: 35.0,
-                          height: 35.0,
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF2697FF),
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: Icon(
-                            CupertinoIcons.search,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(
+                  right: Get.width * 0.1,
                 ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 40),
-
-          //Table Head
-          Container(
-            width: Get.width,
-            padding: EdgeInsets.symmetric(
-              horizontal: Get.width * 0.1,
-              vertical: 35.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(),
-                InkWell(
+                child: InkWell(
                   onTap: () {},
                   child: Container(
                     width: 80,
                     height: 30,
                     decoration: BoxDecoration(
-                      color: Color(0xFF362C5E),
+                      color: const Color(0xFF362C5E),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         '+  광고 추가',
                         style: TextStyle(
@@ -446,423 +375,156 @@ class BigReview extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+
+          const SizedBox(height: 40),
           Container(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Get.width * 0.1,
-                    vertical: 10,
-                  ),
-                  width: Get.width,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '스폰서 내역',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(height: 30),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '매장',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Image.asset(
-                                          'friday.png',
-                                          width: 200,
-                                        ),
-                                        SizedBox(height: 20),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '광고 포스터',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Image.asset('tgi.jpg'),
-                                        SizedBox(height: 20),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '컨텐츠 내용',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text('컨텐츠 내용'),
-                                        Text('컨텐츠 내용'),
-                                      ],
-                                    ),
-                                  ),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: [
-                                        Container(),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 15),
-                                        width: 120,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF363057),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Text(
-                                          '수정 하기',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 15),
-                                        width: 120,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Text(
-                                          '취소 하기',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          child: Container(
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Image.asset('friday.png'),
-                                Text(
-                                  '[하남 미사점] TGI FRIDAYS',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 30),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: Get.width * 0.1,
-                    vertical: 10,
-                  ),
-                  width: Get.width,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Container(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '스폰서 내역',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        SizedBox(height: 30),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '매장',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Image.asset(
-                                          'friday.png',
-                                          width: 200,
-                                        ),
-                                        SizedBox(height: 20),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '광고 포스터',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Image.asset('tgi.jpg'),
-                                        SizedBox(height: 20),
-                                        Row(
-                                          children: const [
-                                            Icon(Icons.arrow_right),
-                                            Text(
-                                              '컨텐츠 내용',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'NanumSquareB',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text('컨텐츠 내용'),
-                                        Text('컨텐츠 내용'),
-                                      ],
-                                    ),
-                                  ),
-                                  content: SingleChildScrollView(
-                                    child: ListBody(
-                                      children: [
-                                        Container(),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 15),
-                                        width: 120,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF363057),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Text(
-                                          '수정 하기',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(bottom: 15),
-                                        width: 120,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Text(
-                                          '취소 하기',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          child: Container(
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Image.asset('friday.png'),
-                                Text(
-                                  '[하남 미사점] TGI FRIDAYS',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Image.asset('friday.png'),
-                              Text(
-                                '[하남 미사점] TGI FRIDAYS',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            padding: EdgeInsets.symmetric(
+              horizontal: Get.width * 0.1,
+              vertical: 10,
             ),
+            width: Get.width,
+            child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  childAspectRatio: 4 / 3,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                ),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text(
+                              '스폰서 내역',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            content: SingleChildScrollView(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 30),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.arrow_right),
+                                    Text(
+                                      '매장',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'NanumSquareB',
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Image.asset(
+                                  'friday.png',
+                                  width: 200,
+                                ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.arrow_right),
+                                    Text(
+                                      '광고 포스터',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'NanumSquareB',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Image.asset('tgi.jpg'),
+                                const SizedBox(height: 20),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.arrow_right),
+                                    Text(
+                                      '컨텐츠 내용',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'NanumSquareB',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                const Text('컨텐츠 내용'),
+                                const Text('컨텐츠 내용'),
+                              ],
+                            )),
+                            actions: <Widget>[
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(bottom: 15),
+                                  width: 120,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF363057),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Text(
+                                    '수정 하기',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(bottom: 15),
+                                  width: 120,
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Text(
+                                    '취소 하기',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('friday.png'),
+                        const Text(
+                          '[하남 미사점] TGI FRIDAYS',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
           ),
 
           const SizedBox(height: 10.0)

@@ -196,7 +196,7 @@ class SmallPartner extends StatelessWidget {
                     )),
 
                 //Summary Body
-                Container(
+                Obx(()=>Container(
                   width: Get.width,
                   padding: EdgeInsets.only(
                     left: Get.width / 30,
@@ -260,8 +260,8 @@ class SmallPartner extends StatelessWidget {
                           ),
                           child: Center(
                             child: Obx(
-                              () => Text(
-                                '${partnerPageController.partners.length} 명',
+                                  () => Text(
+                                '${partnerPageController.partnerSummary.allClientCount} 명',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',
@@ -292,7 +292,7 @@ class SmallPartner extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              'alii_partner 건',
+                              '${partnerPageController.partnerSummary.monthCampaignCount} 건',
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'NanumSquareR',
@@ -322,7 +322,7 @@ class SmallPartner extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              'pay_count 건',
+                              '${partnerPageController.partnerSummary.completeCampaignCount} 건',
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'NanumSquareR',
@@ -333,7 +333,7 @@ class SmallPartner extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                ),),
 
                 const SizedBox(height: 30),
 

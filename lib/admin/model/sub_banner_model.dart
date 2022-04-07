@@ -16,12 +16,18 @@ class SubBanner {
   factory SubBanner.fromJson(Map<String, dynamic> json) {
     return SubBanner(
       id: json['id'] == null ? 0 : int.parse(json['id']),
-      bannerId: json['banner_id'] == null ? "" : json['banner_id'] as String,
-      bannerImg: json['banner_img'] == null ? "" : json['banner_img'] as String,
-      bannerStatus: json['status'] == null ? "" : json['status'] as String,
-      bannerRegisterDate: json['register_date'] == null
+      bannerId:
+          json['subbanner_id'] == null ? "" : json['subbanner_id'] as String,
+      bannerImg:
+          json['subbanner_img'] == null ? "" : json['subbanner_img'] as String,
+      bannerStatus: json['subbanner_status'] == null
+          ? ""
+          : json['subbanner_status'] == "start"
+              ? "진행중"
+              : "종료",
+      bannerRegisterDate: json['subbanner_registe_date'] == null
           ? DateTime.now()
-          : DateTime.parse(json['register_date']),
+          : DateTime.parse(json['subbanner_registe_date']),
     );
   }
 }

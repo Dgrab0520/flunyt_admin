@@ -56,8 +56,8 @@ class _SponsorPageState extends State<SponsorPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: MediaQuery.of(context).size.width < 1500
-            ? BigReview()
-            : SmallReview(),
+            ? SmallReview()
+            : BigReview(),
       ),
     );
   }

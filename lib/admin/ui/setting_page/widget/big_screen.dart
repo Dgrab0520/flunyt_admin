@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../banner_dialog.dart';
+import 'banner_dialog.dart';
 
 class BigScreen extends StatelessWidget {
   BigScreen({Key? key}) : super(key: key);

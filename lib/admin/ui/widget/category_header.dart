@@ -1,3 +1,4 @@
+import 'package:flunyt_admin/admin/data/review_page_controller.dart';
 import 'package:flunyt_admin/admin/ui/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,6 +79,9 @@ class CategoryHeader extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
+              Get.put(ReviewPageController()).reviews.clear();
+              Get.find<ReviewPageController>().getReview();
+              Get.find<ReviewPageController>().hasReachedMax = false;
               Get.offAll(() => ReviewPage());
             },
             child: Container(

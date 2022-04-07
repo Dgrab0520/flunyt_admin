@@ -1,0 +1,1 @@
+enum BannerStatus { start, end }

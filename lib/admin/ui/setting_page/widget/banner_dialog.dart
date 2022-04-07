@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../constants.dart';
-import 'banner_add.dart';
-import 'data/banner_data.dart';
+import '../../../../constants.dart';
+import '../../../data/banner_data.dart';
+import 'banner_add_main.dart';
+import 'banner_add_sub.dart';
+import 'banner_main_edit.dart';
+import 'banner_sub_edit.dart';
 
 class BannerDialog extends StatelessWidget {
   BannerDialog({Key? key}) : super(key: key);
@@ -36,9 +39,7 @@ class BannerDialog extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () async {
-                      var result = await Get.dialog(const BannerAdd(
-                        type: "main",
-                      ));
+                      var result = await Get.dialog(const BannerAddMain());
                       if (result != null) {
                         //배너 추가 성공시 메인 배너 리프레쉬
                         bannerController.getBannerMain();
@@ -67,13 +68,13 @@ class BannerDialog extends StatelessWidget {
                         return InkWell(
                           //배너 클릭시 배너 업데이트 창
                           onTap: () async {
-                            // var result = await Get.dialog(BannerEdit(
-                            //   banners: bannerController.bannerMain[index],
-                            // ));
-                            // if (result != null) {
-                            //   //배너 업데이트 성공시 메인 배너 리프레쉬
-                            //   bannerController.getBannerMain();
-                            // }
+                            var result = await Get.dialog(BannerMainEdit(
+                              banner: bannerController.bannerMain[index],
+                            ));
+                            if (result != null) {
+                              //배너 업데이트 성공시 메인 배너 리프레쉬
+                              bannerController.getBannerMain();
+                            }
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10.0),
@@ -123,9 +124,7 @@ class BannerDialog extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () async {
-                      var result = await Get.dialog(const BannerAdd(
-                        type: "sub",
-                      ));
+                      var result = await Get.dialog(const BannerAddSub());
                       if (result != null) {
                         //배너 추가 성공시 서브 배너 리프레쉬
                         bannerController.getBannerSub();
@@ -154,12 +153,12 @@ class BannerDialog extends StatelessWidget {
                         return InkWell(
                           //배너 클릭시 서브 배너 업데이트 창
                           onTap: () async {
-                            // var result = await Get.dialog(BannerEdit(
-                            //     banners: bannerController.bannerSub[index]));
-                            // if (result != null) {
-                            //   //배너 업데이트 성공시 서브 배너 리프레쉬
-                            //   bannerController.getBannerSub();
-                            // }
+                            var result = await Get.dialog(BannerSubEdit(
+                                banner: bannerController.bannerSub[index]));
+                            if (result != null) {
+                              //배너 업데이트 성공시 서브 배너 리프레쉬
+                              bannerController.getBannerSub();
+                            }
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 10.0),

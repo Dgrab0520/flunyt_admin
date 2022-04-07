@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flunyt_admin/admin/model/partner_summary_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +11,7 @@ import '../model/client_model.dart';
 class PartnerController extends GetxController {
   @override
   void onInit() {
+    getSummary();
     getPartner();
     super.onInit();
   }
@@ -33,6 +35,14 @@ class PartnerController extends GetxController {
   bool get isSearch => _isSearch.value;
   set isSearch(val) => _isSearch.value = val;
 
+  final _partnerSummary = PartnerSummary(
+          allClientCount: "allClientCount",
+          monthCampaignCount: "monthCampaignCount",
+          completeCampaignCount: "completeCampaignCount")
+      .obs;
+  PartnerSummary get partnerSummary => _partnerSummary.value;
+  set partnerSummary(val) => _partnerSummary.value = val;
+
   TextEditingController searchController = TextEditingController();
 
   //Get Partner
@@ -47,6 +57,25 @@ class PartnerController extends GetxController {
       if (200 == response.statusCode) {
         partners = parseResponse(response.body);
         isLoading = true;
+      }
+    } catch (e) {
+      print("exception : $e");
+    }
+  }
+
+  //Get Summary
+  getSummary() async {
+    try {
+      var map = <String, dynamic>{};
+      map['action'] = "GET_SUMMARY";
+      final response = await http.post(
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_client.php"),
+          body: map);
+      print('Get Summary Response : ${response.body}');
+      if (200 == response.statusCode) {
+        var json = jsonDecode(response.body);
+        print("json : $json");
+        partnerSummary = PartnerSummary.fromJson(json);
       }
     } catch (e) {
       print("exception : $e");
