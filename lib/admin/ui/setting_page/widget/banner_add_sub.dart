@@ -142,11 +142,11 @@ class _BannerAddSubState extends State<BannerAddSub> {
 
   selectImage() async {
     bannerImage = await ImagePickerWeb.getImageAsBytes();
-    if (bannerImage == null) {
+    if (bannerImage == null && !Get.isSnackbarOpen) {
       Get.snackbar("실패", "파일 불러오기를 실패했습니다 다시 시도해주세요");
     }
     print(bannerImage!.length);
-    if (bannerImage!.length >= 8388608) {
+    if (bannerImage!.length >= 8388608 && !Get.isSnackbarOpen) {
       Get.back();
       Get.snackbar("Error", "Too Big File(max : 8MB)",
           backgroundColor: Colors.white);

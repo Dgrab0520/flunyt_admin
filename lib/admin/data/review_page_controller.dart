@@ -41,9 +41,7 @@ class ReviewPageController extends GetxController {
   set isSearch(val) => _isSearch.value = val;
 
   final _reviewSummary = ReviewSummary(
-          allReviewCount: "allReviewCount",
-          monthReviewCount: 0,
-          firstDate: DateTime.now())
+          allReviewCount: "0", monthReviewCount: 0, firstDate: DateTime.now())
       .obs;
   ReviewSummary get reviewSummary => _reviewSummary.value;
   set reviewSummary(val) => _reviewSummary.value = val;

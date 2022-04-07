@@ -1,0 +1,1 @@
+enum SponsorStatus { proceeding, end }

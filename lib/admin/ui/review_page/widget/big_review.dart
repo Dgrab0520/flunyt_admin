@@ -347,7 +347,7 @@ class _BigReviewState extends State<BigReview> {
                             ),
                             child: Center(
                               child: Text(
-                                '0 건',
+                                '${(int.parse(reviewPageController.reviewSummary.allReviewCount) / DateTime.now().difference(reviewPageController.reviewSummary.firstDate).inDays).toPrecision(1)} 건',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',

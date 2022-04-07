@@ -1,12 +1,14 @@
-import 'package:flunyt_admin/admin/data/review_page_controller.dart';
 import 'package:flunyt_admin/admin/ui/widget/category_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/sponsor_page_controller.dart';
+
 class SmallReview extends StatelessWidget {
   SmallReview({Key? key}) : super(key: key);
 
-  final reviewPageController = Get.find<ReviewPageController>();
+  final sponsorController = Get.find<SponsorPageController>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -183,7 +185,7 @@ class SmallReview extends StatelessWidget {
               )),
 
           //Summary Body
-          Container(
+          Obx(()=>Container(
             width: Get.width,
             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
             child: Row(
@@ -244,7 +246,7 @@ class SmallReview extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        '0 명',
+                        '${sponsorController.sponsorSummary.allSponsorCount} 개',
                         style: const TextStyle(
                           fontSize: 12,
                           fontFamily: 'NanumSquareR',
@@ -274,7 +276,7 @@ class SmallReview extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        '0 건',
+                        '${sponsorController.sponsorSummary.monthSponsorCount} 건',
                         style: const TextStyle(
                           fontSize: 12,
                           fontFamily: 'NanumSquareR',
@@ -304,7 +306,7 @@ class SmallReview extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        '0 건',
+                        '${sponsorController.sponsorSummary.completeSponsorCount} 건',
                         style: const TextStyle(
                           fontSize: 12,
                           fontFamily: 'NanumSquareR',
@@ -315,7 +317,7 @@ class SmallReview extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          ),),
 
           const SizedBox(height: 30),
 
@@ -470,7 +472,7 @@ class SmallReview extends StatelessWidget {
                                   Get.back();
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.only(bottom: 15),
+                                  margin: const EdgeInsets.only(bottom: 15),
                                   width: 120,
                                   height: 30,
                                   decoration: BoxDecoration(
@@ -515,8 +517,8 @@ class SmallReview extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('friday.png'),
-                        FittedBox(
-                          child: const Text(
+                        const FittedBox(
+                          child: Text(
                             '[하남 미사점] TGI FRIDAYS',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

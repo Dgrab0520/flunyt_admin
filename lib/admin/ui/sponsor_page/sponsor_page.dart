@@ -3,18 +3,13 @@ import 'package:flunyt_admin/admin/ui/sponsor_page/widget/small_sponsor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/review_page_controller.dart';
+import '../../data/sponsor_page_controller.dart';
 import '../main_page/main_page.dart';
 
-class SponsorPage extends StatefulWidget {
+class SponsorPage extends StatelessWidget {
   SponsorPage({Key? key}) : super(key: key);
 
-  final reviewPageController = Get.put(ReviewPageController());
-  @override
-  _SponsorPageState createState() => _SponsorPageState();
-}
-
-class _SponsorPageState extends State<SponsorPage> {
+  final sponsorPageController = Get.put(SponsorPageController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

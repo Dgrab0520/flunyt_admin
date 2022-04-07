@@ -175,7 +175,7 @@ class BannerData extends GetxController {
     }
   }
 
-  //메인 배너 삭제
+  //서브 배너 삭제
   static Future<bool> deleteSubBanner(int subBannerId) async {
     try {
       var url = Uri.parse(root);

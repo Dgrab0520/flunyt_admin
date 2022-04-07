@@ -300,11 +300,11 @@ class _BannerMainEditState extends State<BannerMainEdit> {
   selectImage() async {
     //이미지 찾기
     bannerImage = await ImagePickerWeb.getImageAsBytes(); //이미지 한개 byte로 불러오기
-    if (bannerImage == null) {
+    if (bannerImage == null && !Get.isSnackbarOpen) {
       Get.snackbar("실패", "파일 불러오기를 실패했습니다 다시 시도해주세요");
     }
     print(bannerImage!.length);
-    if (bannerImage!.length >= 8388608) {
+    if (bannerImage!.length >= 8388608 && !Get.isSnackbarOpen) {
       Get.back();
       Get.snackbar("Error", "Too Big File(max : 8MB)",
           backgroundColor: Colors.white);
