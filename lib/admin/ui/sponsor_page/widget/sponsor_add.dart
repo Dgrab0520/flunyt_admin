@@ -4,10 +4,12 @@ import 'package:flunyt_admin/admin/data/sponsor_page_controller.dart';
 import 'package:flunyt_admin/admin/model/sponsor_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 import '../../../../constants.dart';
+import '../../../data/sponsor_add_controller.dart';
 import '../sponsor_status.dart';
 
 class SponsorAdd extends StatefulWidget {
@@ -24,26 +26,56 @@ class _SponsorAddState extends State<SponsorAdd> {
   Uint8List? bannerImage;
   Uint8List? contentImage;
   Widget selectedBanner = Container(
-    height: 100,
-    width: 320,
-    alignment: Alignment.center,
-    color: Colors.grey.withOpacity(0.3),
-    child: const Icon(CupertinoIcons.add_circled),
-  );
+      height: 120,
+      width: 320,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: kAccentColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Container(
+        width: 25,
+        height: 25,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        alignment: Alignment.center,
+        child: const Icon(
+          FontAwesomeIcons.plus,
+          size: 20,
+          color: kAccentColor,
+        ),
+      ));
   Widget selectedImage = Container(
     height: 180,
     width: 320,
     alignment: Alignment.center,
-    color: Colors.grey.withOpacity(0.3),
-    child: const Icon(CupertinoIcons.add_circled),
+    decoration: BoxDecoration(
+      color: kAccentColor,
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Container(
+      width: 25,
+      height: 25,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      alignment: Alignment.center,
+      child: const Icon(
+        FontAwesomeIcons.plus,
+        size: 20,
+        color: kAccentColor,
+      ),
+    ),
   );
 
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
 
   final sponsorController = Get.find<SponsorPageController>();
-
-  List<String> areaList = ["하남", "강동", "송파"];
+  final sponsorAddController = Get.put(SponsorAddController());
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +90,57 @@ class _SponsorAddState extends State<SponsorAdd> {
                 children: const [
                   Icon(Icons.arrow_right),
                   Text(
-                    '매장',
+                    '지역',
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'NanumSquareB',
                     ),
                   )
                 ],
+              ),
+              Container(
+                width: 350,
+                height: 24,
+                margin: const EdgeInsets.only(left: 10, top: 10, bottom: 20),
+                child: Obx(
+                  () => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: sponsorAddController.areaList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () {
+                            sponsorAddController.selectArea(sponsorAddController
+                                .areaList.keys
+                                .elementAt(index));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 22),
+                            decoration: BoxDecoration(
+                                color: sponsorAddController.areaList.values
+                                        .elementAt(index)
+                                    ? kAccentColor
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(3),
+                                border:
+                                    Border.all(color: kAccentColor, width: 1)),
+                            alignment: Alignment.center,
+                            child: Text(
+                              sponsorAddController.areaList.keys
+                                  .elementAt(index),
+                              style: TextStyle(
+                                color: sponsorAddController.areaList.values
+                                        .elementAt(index)
+                                    ? Colors.white
+                                    : kAccentColor,
+                                fontSize: 12,
+                                fontFamily: 'NanumSquareB',
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
               ),
               Row(
                 children: const [
@@ -78,37 +154,104 @@ class _SponsorAddState extends State<SponsorAdd> {
                   )
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 15),
-                child: Text(
-                  '브랜드 이미지',
-                  style: TextStyle(
-                    fontFamily: 'NanumSquareEB',
-                    fontSize: 18,
-                  ),
+              Container(
+                width: 350,
+                margin: const EdgeInsets.only(
+                    left: 10, right: 30, top: 10, bottom: 20),
+                child: Obx(
+                  () => GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        childAspectRatio: 3.1,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                      ),
+                      itemCount: sponsorAddController.serviceList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () {
+                            sponsorAddController.selectService(
+                                sponsorAddController.serviceList.keys
+                                    .elementAt(index));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: sponsorAddController.serviceList.values
+                                        .elementAt(index)
+                                    ? kAccentColor
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(3),
+                                border:
+                                    Border.all(color: kAccentColor, width: 1)),
+                            alignment: Alignment.center,
+                            child: Text(
+                              sponsorAddController.serviceList.keys
+                                  .elementAt(index),
+                              style: TextStyle(
+                                color: sponsorAddController.serviceList.values
+                                        .elementAt(index)
+                                    ? Colors.white
+                                    : kAccentColor,
+                                fontSize: 12,
+                                fontFamily: 'NanumSquareB',
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
                 ),
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.arrow_right),
+                  Text(
+                    '썸네일 이미지',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'NanumSquareB',
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 7,
               ),
               InkWell(onTap: selectBanner, child: selectedBanner),
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 15),
-                child: Text(
-                  '광고 이미지',
-                  style: TextStyle(
-                    fontFamily: 'NanumSquareEB',
-                    fontSize: 18,
-                  ),
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.arrow_right),
+                  Text(
+                    '광고 이미지',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'NanumSquareB',
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 7,
               ),
               InkWell(onTap: selectImage, child: selectedImage),
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 15),
-                child: Text(
-                  '제목',
-                  style: TextStyle(
-                    fontFamily: 'NanumSquareEB',
-                    fontSize: 18,
-                  ),
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.arrow_right),
+                  Text(
+                    '제목',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'NanumSquareB',
+                    ),
+                  )
+                ],
               ),
               Container(
                 width: Get.width,
@@ -116,6 +259,7 @@ class _SponsorAddState extends State<SponsorAdd> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: TextField(
                   controller: titleController,
+                  cursorColor: kPrimaryColor,
                   decoration: const InputDecoration(
                     counterText: "",
                     hintText: '제목을 입력해주세요',
@@ -137,15 +281,20 @@ class _SponsorAddState extends State<SponsorAdd> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10.0, top: 15),
-                child: Text(
-                  '내용',
-                  style: TextStyle(
-                    fontFamily: 'NanumSquareEB',
-                    fontSize: 18,
-                  ),
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: const [
+                  Icon(Icons.arrow_right),
+                  Text(
+                    '내용',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'NanumSquareB',
+                    ),
+                  )
+                ],
               ),
               TextField(
                 controller: contentController,
@@ -153,6 +302,7 @@ class _SponsorAddState extends State<SponsorAdd> {
                 maxLines: 5,
                 minLines: 2,
                 keyboardType: TextInputType.multiline,
+                cursorColor: kPrimaryColor,
                 decoration: const InputDecoration(
                   counterText: "",
                   hintText: '내용을 입력해주세요',
@@ -180,15 +330,10 @@ class _SponsorAddState extends State<SponsorAdd> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: ListTile(
-                        title: const Text(
-                          '진행중',
-                          style: TextStyle(
-                            fontFamily: 'NanumSquareEB',
-                          ),
-                        ),
-                        leading: Radio<SponsorStatus>(
-                          activeColor: kPrimaryColor,
+                        child: Row(
+                      children: [
+                        Radio<SponsorStatus>(
+                          activeColor: kAccentColor,
                           value: SponsorStatus.proceeding,
                           groupValue: sponsorStatus,
                           onChanged: (SponsorStatus? value) {
@@ -197,18 +342,23 @@ class _SponsorAddState extends State<SponsorAdd> {
                             });
                           },
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: const Text(
-                          '종료',
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          '진행중',
                           style: TextStyle(
                             fontFamily: 'NanumSquareEB',
+                            fontSize: 14,
                           ),
                         ),
-                        leading: Radio<SponsorStatus>(
-                          activeColor: kPrimaryColor,
+                      ],
+                    )),
+                    Expanded(
+                        child: Row(
+                      children: [
+                        Radio<SponsorStatus>(
+                          activeColor: kAccentColor,
                           value: SponsorStatus.end,
                           groupValue: sponsorStatus,
                           onChanged: (SponsorStatus? value) {
@@ -217,8 +367,18 @@ class _SponsorAddState extends State<SponsorAdd> {
                             });
                           },
                         ),
-                      ),
-                    ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          '종료',
+                          style: TextStyle(
+                            fontFamily: 'NanumSquareEB',
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    )),
                   ],
                 ),
               ),
@@ -232,22 +392,36 @@ class _SponsorAddState extends State<SponsorAdd> {
                       id: 0,
                       area: "area",
                       serviceType: "serviceType",
-                      title: "title",
+                      title: titleController.text,
                       thumbnail: "thumbnail",
                       contentImage: "contentImage",
-                      content: "content",
-                      status: "status",
+                      content: contentController.text,
+                      status: sponsorStatus == SponsorStatus.proceeding
+                          ? "proceeding"
+                          : "end",
                     );
 
-                    sponsorController.insertSponsor(
-                        sponsor, bannerImage, contentImage);
+                    sponsorAddController
+                        .insertSponsor(sponsor, bannerImage, contentImage)
+                        .then((value) {
+                      if (value) {
+                        Get.back(result: true);
+                        if (!Get.isSnackbarOpen) {
+                          Get.snackbar("성공", "스폰서를 성공적으로 추가했습니다");
+                        }
+                      } else {
+                        if (!Get.isSnackbarOpen) {
+                          Get.snackbar("실패", "추가하지 못했습니다");
+                        }
+                      }
+                    });
                   }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: const Color(0xff506AB4),
+                      color: kAccentColor,
                       borderRadius: BorderRadius.circular(5)),
                   child: const Center(
                     child: Text(
@@ -309,7 +483,7 @@ class _SponsorAddState extends State<SponsorAdd> {
           width: 320,
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: MemoryImage(bannerImage!),
+            image: MemoryImage(contentImage!),
           )),
         );
       });

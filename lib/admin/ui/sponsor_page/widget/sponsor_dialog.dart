@@ -2,6 +2,7 @@
 import 'dart:html' as html;
 import 'dart:typed_data';
 
+import 'package:flunyt_admin/admin/data/sponsor_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,8 @@ class _SponsorDialogState extends State<SponsorDialog> {
   );
   bool isEdit = false;
   TextEditingController contentController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  final sponsorController = Get.find<SponsorPageController>();
 
   @override
   void initState() {
@@ -37,6 +40,7 @@ class _SponsorDialogState extends State<SponsorDialog> {
         sponsorStatus = SponsorStatus.end;
       }
       contentController.text = widget.sponsor.content;
+      titleController.text = widget.sponsor.title;
       selectedImage = Image.network(
         '$kBaseUrl/sponsor_img/${widget.sponsor.contentImage}',
         width: 300,
@@ -48,18 +52,53 @@ class _SponsorDialogState extends State<SponsorDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text(
-        '스폰서 내역',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            '스폰서 내역',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(CupertinoIcons.xmark)),
+        ],
       ),
       content: SingleChildScrollView(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 30),
+          Row(
+            children: [
+              const Icon(Icons.arrow_right),
+              Text(
+                '지역 : ${widget.sponsor.area}',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const Icon(Icons.arrow_right),
+              Text(
+                '카테고리 : ${widget.sponsor.serviceType}',
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
           Row(
             children: const [
               Icon(Icons.arrow_right),
@@ -108,6 +147,21 @@ class _SponsorDialogState extends State<SponsorDialog> {
             children: const [
               Icon(Icons.arrow_right),
               Text(
+                '스폰서 제목',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          titleWidget(),
+          const SizedBox(height: 10),
+          Row(
+            children: const [
+              Icon(Icons.arrow_right),
+              Text(
                 '컨텐츠 내용',
                 style: TextStyle(
                   fontSize: 14,
@@ -119,15 +173,37 @@ class _SponsorDialogState extends State<SponsorDialog> {
           const SizedBox(height: 10),
           contentWidget(),
           const SizedBox(height: 10),
-          statusWidget()
+          statusWidget(),
+          const SizedBox(height: 30),
         ],
       )),
       actions: <Widget>[
         InkWell(
           onTap: () {
-            setState(() {
-              isEdit = !isEdit;
-            });
+            if (isEdit) {
+              sponsorController
+                  .updateSponsor(
+                status: sponsorStatus == SponsorStatus.proceeding
+                    ? "proceeding"
+                    : "end",
+                contentImage: bannerImage,
+                title: titleController.text,
+                content: contentController.text,
+                id: widget.sponsor.id.toString(),
+              )
+                  .then((value) {
+                if (value) {
+                  Get.back(result: true);
+                  if (!Get.isSnackbarOpen) {
+                    Get.snackbar("성공", "스폰서 정보를 업데이트했습니다");
+                  }
+                }
+              });
+            } else {
+              setState(() {
+                isEdit = !isEdit;
+              });
+            }
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 15),
@@ -137,9 +213,9 @@ class _SponsorDialogState extends State<SponsorDialog> {
               color: const Color(0xFF363057),
               borderRadius: BorderRadius.circular(5),
             ),
-            child: const Text(
-              '수정 하기',
-              style: TextStyle(
+            child: Text(
+              isEdit ? '수정 완료' : '수정 하기',
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
@@ -148,18 +224,29 @@ class _SponsorDialogState extends State<SponsorDialog> {
         ),
         InkWell(
           onTap: () {
-            Get.back();
+            sponsorController.deleteSponsor(widget.sponsor.id).then((value) {
+              if (value) {
+                Get.back(result: true, closeOverlays: true);
+                if (!Get.isSnackbarOpen) {
+                  Get.snackbar("성공", "스폰서를 삭제했습니다");
+                }
+              } else {
+                if (!Get.isSnackbarOpen) {
+                  Get.snackbar("실패", "삭제하지 못했습니다");
+                }
+              }
+            });
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 15),
             width: 120,
             height: 30,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Colors.redAccent,
               borderRadius: BorderRadius.circular(5),
             ),
             child: const Text(
-              '닫기',
+              '삭제',
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -238,6 +325,33 @@ class _SponsorDialogState extends State<SponsorDialog> {
           );
   }
 
+  Widget titleWidget() {
+    return isEdit
+        ? TextField(
+            controller: titleController,
+            onSubmitted: (text) {},
+            cursorColor: kAccentColor,
+            decoration: const InputDecoration(
+              counterText: "",
+              hintText: '제목을 입력해주세요',
+              hintStyle: TextStyle(
+                color: Color(0xFF929292),
+                fontSize: 12,
+              ),
+              fillColor: Color(0xFFF5F7F9),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Color(0xFF616CA1), width: 1),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Color(0xFF616CA1), width: 2),
+              ),
+            ),
+          )
+        : Text(titleController.text);
+  }
+
   Widget contentWidget() {
     return isEdit
         ? TextField(
@@ -245,6 +359,7 @@ class _SponsorDialogState extends State<SponsorDialog> {
             onSubmitted: (text) {},
             maxLines: 4,
             minLines: 2,
+            cursorColor: kAccentColor,
             keyboardType: TextInputType.multiline,
             decoration: const InputDecoration(
               counterText: "",

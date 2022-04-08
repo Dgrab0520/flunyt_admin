@@ -360,8 +360,12 @@ class BigReview extends StatelessWidget {
                   right: Get.width * 0.1,
                 ),
                 child: InkWell(
-                  onTap: () {
-                    Get.dialog(const SponsorAdd());
+                  onTap: () async {
+                    var result = await Get.dialog(const SponsorAdd());
+                    if (result != null) {
+                      sponsorController.getSponsor();
+                      sponsorController.getSummary();
+                    }
                   },
                   child: Container(
                     width: 80,
@@ -399,26 +403,27 @@ class BigReview extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     childAspectRatio: 5 / 3,
-                    mainAxisSpacing: 0,
-                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
                   ),
                   itemCount: sponsorController.sponsors.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return SponsorDialog(
-                                sponsor: sponsorController.sponsors[index]);
-                          },
-                        );
+                      onTap: () async {
+                        var result = await Get.dialog(SponsorDialog(
+                            sponsor: sponsorController.sponsors[index]));
+                        if (result != null) {
+                          sponsorController.getSponsor();
+                          sponsorController.getSummary();
+                        }
                       },
                       child: Column(
                         children: [
-                          Image.network(
-                            "$kBaseUrl/sponsor_img/${sponsorController.sponsors[index].thumbnail}",
-                            fit: BoxFit.cover,
+                          Expanded(
+                            child: Image.network(
+                              "$kBaseUrl/sponsor_img/${sponsorController.sponsors[index].thumbnail}",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           Text(
                             sponsorController.sponsors[index].title,

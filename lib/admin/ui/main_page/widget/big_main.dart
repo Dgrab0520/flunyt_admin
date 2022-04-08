@@ -225,69 +225,39 @@ class _BigMainState extends State<BigMain> {
                     )),
 
                 //Summary Body
-                Obx(()=>Container(
-                  width: Get.width,
-                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              left: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${DateTime.now().year}년 ${DateTime.now().month}월',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                Obx(
+                  () => Container(
+                    width: Get.width,
+                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                left: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Obx(
-                                  () => Text(
-                                mainPageController.mainSummary.allUserCount,
+                            child: Center(
+                              child: Text(
+                                '${DateTime.now().year}년 ${DateTime.now().month}월',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: 'NanumSquareR',
@@ -296,70 +266,103 @@ class _BigMainState extends State<BigMain> {
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              mainPageController.mainSummary.monthJoinCount,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: 120,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            border: Border(
-                              right: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                              bottom: BorderSide(
-                                // POINT
-                                color: Color(0xFFcccccc),
-                                width: 1.0,
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              mainPageController.mainSummary.monthCampaignCount,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'NanumSquareR',
+                            child: Center(
+                              child: Obx(
+                                () => Text(
+                                  mainPageController.mainSummary.allUserCount,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'NanumSquareR',
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                mainPageController.mainSummary.monthJoinCount,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 120,
+                            height: 40,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              border: Border(
+                                right: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                                bottom: BorderSide(
+                                  // POINT
+                                  color: Color(0xFFcccccc),
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                mainPageController
+                                    .mainSummary.monthCampaignCount,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'NanumSquareR',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),),
+                ),
 
                 const SizedBox(height: 30),
 
@@ -709,6 +712,7 @@ class _BigMainState extends State<BigMain> {
                 ),
 
                 //Table Body
+
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
                     child: Obx(() => mainPageController.isLoading

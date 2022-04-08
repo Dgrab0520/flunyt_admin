@@ -51,7 +51,7 @@ class MainPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
           child: MediaQuery.of(context).size.width < 1500
-              ? SmallMain()
+              ? const SmallMain()
               : const BigMain()),
     );
   }

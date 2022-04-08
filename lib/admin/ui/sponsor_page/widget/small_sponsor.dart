@@ -2,7 +2,10 @@ import 'package:flunyt_admin/admin/ui/widget/category_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants.dart';
 import '../../../data/sponsor_page_controller.dart';
+import 'sponsor_add.dart';
+import 'sponsor_dialog.dart';
 
 class SmallReview extends StatelessWidget {
   SmallReview({Key? key}) : super(key: key);
@@ -185,139 +188,141 @@ class SmallReview extends StatelessWidget {
               )),
 
           //Summary Body
-          Obx(()=>Container(
-            width: Get.width,
-            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        left: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                        right: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${DateTime.now().year}년 ${DateTime.now().month}월',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'NanumSquareR',
+          Obx(
+            () => Container(
+              width: Get.width,
+              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      width: 120,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                          left: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                          right: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        right: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${sponsorController.sponsorSummary.allSponsorCount} 개',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'NanumSquareR',
+                      child: Center(
+                        child: Text(
+                          '${DateTime.now().year}년 ${DateTime.now().month}월',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'NanumSquareR',
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        right: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${sponsorController.sponsorSummary.monthSponsorCount} 건',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'NanumSquareR',
+                  Expanded(
+                    child: Container(
+                      width: 120,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                          right: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: 120,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        right: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          // POINT
-                          color: Color(0xFFcccccc),
-                          width: 1.0,
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '${sponsorController.sponsorSummary.completeSponsorCount} 건',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontFamily: 'NanumSquareR',
+                      child: Center(
+                        child: Text(
+                          '${sponsorController.sponsorSummary.allSponsorCount} 개',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'NanumSquareR',
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Container(
+                      width: 120,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                          right: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${sponsorController.sponsorSummary.monthSponsorCount} 건',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'NanumSquareR',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      width: 120,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        border: Border(
+                          right: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            // POINT
+                            color: Color(0xFFcccccc),
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${sponsorController.sponsorSummary.completeSponsorCount} 건',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'NanumSquareR',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),),
+          ),
 
           const SizedBox(height: 30),
 
@@ -356,7 +361,13 @@ class SmallReview extends StatelessWidget {
                   right: Get.width * 0.1,
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    var result = await Get.dialog(const SponsorAdd());
+                    if (result != null) {
+                      sponsorController.getSponsor();
+                      sponsorController.getSummary();
+                    }
+                  },
                   child: Container(
                     width: 80,
                     height: 30,
@@ -388,147 +399,46 @@ class SmallReview extends StatelessWidget {
               vertical: 10,
             ),
             width: Get.width,
-            child: GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 4 / 3,
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 5,
-                ),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text(
-                              '스폰서 내역',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            content: SingleChildScrollView(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 30),
-                                Row(
-                                  children: const [
-                                    Icon(Icons.arrow_right),
-                                    Text(
-                                      '매장',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'NanumSquareB',
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Image.asset(
-                                  'friday.png',
-                                  width: 200,
-                                ),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: const [
-                                    Icon(Icons.arrow_right),
-                                    Text(
-                                      '광고 포스터',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'NanumSquareB',
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Image.asset('tgi.jpg'),
-                                const SizedBox(height: 20),
-                                Row(
-                                  children: const [
-                                    Icon(Icons.arrow_right),
-                                    Text(
-                                      '컨텐츠 내용',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: 'NanumSquareB',
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                const Text('컨텐츠 내용'),
-                                const Text('컨텐츠 내용'),
-                              ],
-                            )),
-                            actions: <Widget>[
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(bottom: 15),
-                                  width: 120,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFF363057),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: const Text(
-                                    '수정 하기',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  alignment: Alignment.center,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.only(bottom: 15),
-                                  width: 120,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: const Text(
-                                    '취소 하기',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  alignment: Alignment.center,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset('friday.png'),
-                        const FittedBox(
-                          child: Text(
-                            '[하남 미사점] TGI FRIDAYS',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+            child: Obx(
+              () => GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    childAspectRatio: 4 / 3,
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 5,
+                  ),
+                  itemCount: sponsorController.sponsors.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () async {
+                        var result = await Get.dialog(SponsorDialog(
+                            sponsor: sponsorController.sponsors[index]));
+                        if (result != null) {
+                          sponsorController.getSponsor();
+                          sponsorController.getSummary();
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Image.network(
+                              "$kBaseUrl/sponsor_img/${sponsorController.sponsors[index].thumbnail}",
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                          Text(
+                            sponsorController.sponsors[index].title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
           ),
 
           const SizedBox(height: 10.0)
