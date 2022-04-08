@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../model/user_model.dart';
+
 class UserDetail extends StatefulWidget {
-  const UserDetail({Key? key}) : super(key: key);
+  const UserDetail({Key? key, required this.user}) : super(key: key);
+  final User user;
 
   @override
   _UserDetailState createState() => _UserDetailState();
 }
 
-enum Gender { MAN, WOMEN }
-
 class _UserDetailState extends State<UserDetail> {
-  int _counter = 0;
-  var _isChecked = false;
-  Gender _gender = Gender.MAN;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -59,7 +50,7 @@ class _UserDetailState extends State<UserDetail> {
                         Icons.arrow_right,
                         color: Colors.white,
                       ),
-                      Text('339'),
+                      Text(widget.user.id.toString()),
                     ],
                   ),
                   SizedBox(height: 30),
@@ -82,7 +73,7 @@ class _UserDetailState extends State<UserDetail> {
                         Icons.arrow_right,
                         color: Colors.white,
                       ),
-                      Text('인스타그램'),
+                      Text(widget.user.userSNSType.toString()),
                     ],
                   ),
                   SizedBox(height: 30),
@@ -105,7 +96,7 @@ class _UserDetailState extends State<UserDetail> {
                         Icons.arrow_right,
                         color: Colors.white,
                       ),
-                      Text('car108'),
+                      Text(widget.user.userId.toString()),
                     ],
                   ),
                   SizedBox(height: 30),
@@ -129,7 +120,7 @@ class _UserDetailState extends State<UserDetail> {
                           child: Row(
                             children: [
                               Icon(Icons.arrow_right, color: Colors.white),
-                              Text('남자'),
+                              Text(widget.user.userSex.toString()),
                             ],
                           )),
                     ],
@@ -223,7 +214,7 @@ class _UserDetailState extends State<UserDetail> {
                         Icons.arrow_right,
                         color: Colors.white,
                       ),
-                      Text('2022-04-06'),
+                      Text(widget.user.userRegisterDate.toString()),
                     ],
                   ),
                 ],

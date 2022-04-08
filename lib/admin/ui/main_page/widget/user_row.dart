@@ -234,7 +234,9 @@ class UserRow extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return UserDetail();
+                          return UserDetail(
+                            user: user,
+                          );
                         },
                       );
                     },

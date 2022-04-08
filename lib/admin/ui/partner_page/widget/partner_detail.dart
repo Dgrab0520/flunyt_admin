@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../model/client_model.dart';
+
 class PartnerDetail extends StatefulWidget {
-  const PartnerDetail({Key? key}) : super(key: key);
+  const PartnerDetail({Key? key, required this.client}) : super(key: key);
+  final Client client;
 
   @override
   _PartnerDetailState createState() => _PartnerDetailState();
@@ -58,7 +61,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('1'),
+                    Text(widget.client.id.toString()),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -81,7 +84,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('car108'),
+                    Text(widget.client.clientId.toString()),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -105,7 +108,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                         child: Row(
                           children: [
                             Icon(Icons.arrow_right, color: Colors.white),
-                            Text('남자'),
+                            Text(''),
                           ],
                         )),
                   ],
@@ -130,7 +133,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('테스트'),
+                    Text(widget.client.clientName.toString()),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -153,7 +156,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('01055552222'),
+                    Text(widget.client.clientPhone.toString()),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -176,7 +179,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('디그랩 ( D-Grab)'),
+                    Text(widget.client.clientCompany.toString()),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -199,7 +202,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text('1104578465'),
+                    Text(widget.client.clientNo),
                   ],
                 ),
                 SizedBox(height: 30),
@@ -223,7 +226,7 @@ class _PartnerDetailState extends State<PartnerDetail> {
                       color: Colors.white,
                     ),
                     SizedBox(height: 5),
-                    Text('2022-10-11'),
+                    Text(''),
                   ],
                 ),
               ],

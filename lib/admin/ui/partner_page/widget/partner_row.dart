@@ -264,7 +264,9 @@ class PartnerRow extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return PartnerDetail();
+                          return PartnerDetail(
+                            client: client,
+                          );
                         },
                       );
                     },
