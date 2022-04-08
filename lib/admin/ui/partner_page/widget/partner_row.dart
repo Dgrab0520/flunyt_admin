@@ -298,7 +298,7 @@ class PartnerRow extends StatelessWidget {
                             color: const Color(0xFF656565)),
                         child: const Center(
                             child: Text(
-                          '상세',
+                          '자세히 보기',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,

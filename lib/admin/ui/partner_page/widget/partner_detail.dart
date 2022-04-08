@@ -101,37 +101,13 @@ class _PartnerDetailState extends State<PartnerDetail> {
                     ),
                     SizedBox(height: 5),
                     SizedBox(
-                      width: 400,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 1,
-                            child: RadioListTile(
-                              title: Text('남자'),
-                              value: Gender.MAN,
-                              groupValue: _gender,
-                              onChanged: (Gender? value) {
-                                setState(() {
-                                  _gender = value!;
-                                });
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text('여자'),
-                              value: Gender.WOMEN,
-                              groupValue: _gender,
-                              onChanged: (Gender? value) {
-                                setState(() {
-                                  _gender = value!;
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                        width: 400,
+                        child: Row(
+                          children: [
+                            Icon(Icons.arrow_right, color: Colors.white),
+                            Text('남자'),
+                          ],
+                        )),
                   ],
                 ),
                 SizedBox(height: 30),

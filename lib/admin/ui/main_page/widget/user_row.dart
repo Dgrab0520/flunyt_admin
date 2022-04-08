@@ -270,7 +270,7 @@ class UserRow extends StatelessWidget {
                             color: const Color(0xFF656565)),
                         child: const Center(
                             child: Text(
-                          '수정',
+                          '자세히 보기',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,
