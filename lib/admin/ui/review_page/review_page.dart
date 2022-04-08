@@ -52,8 +52,8 @@ class ReviewPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: MediaQuery.of(context).size.width < 1500
-            ? SmallReview()
-            : BigReview(),
+            ? const SmallReview()
+            : const BigReview(),
       ),
     );
   }

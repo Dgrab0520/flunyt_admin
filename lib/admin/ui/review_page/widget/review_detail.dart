@@ -1,5 +1,7 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
+import 'package:flunyt_admin/admin/data/review_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +25,8 @@ class _ReviewDetailState extends State<ReviewDetail> {
     super.initState();
   }
 
+  final reviewController = Get.find<ReviewPageController>();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -37,7 +41,7 @@ class _ReviewDetailState extends State<ReviewDetail> {
         child: ListBody(
           children: [
             SizedBox(
-                width: 200,
+                width: 350,
                 height: 200,
                 child: PageView.builder(
                     onPageChanged: (index) {
@@ -54,12 +58,14 @@ class _ReviewDetailState extends State<ReviewDetail> {
                               '리뷰 이미지');
                         },
                         child: Image.network(
-                            '$kBaseUrl/review_img/${review.images[index]}'),
+                          '$kBaseUrl/review_img/${review.images[index]}',
+                          fit: BoxFit.cover,
+                        ),
                       );
                     })),
             Container(
               height: 7,
-              width: 200,
+              width: 350,
               margin: const EdgeInsets.only(top: 10),
               alignment: Alignment.center,
               child: ListView.builder(
@@ -80,14 +86,30 @@ class _ReviewDetailState extends State<ReviewDetail> {
                   }),
             ),
             const SizedBox(height: 15),
-            Text(review.review),
+            SizedBox(
+                width: 350,
+                child: Text(
+                  review.review,
+                  softWrap: true,
+                )),
           ],
         ),
       ),
       actions: <Widget>[
         InkWell(
           onTap: () {
-            Get.back();
+            reviewController.deleteReview(review.id).then((value) {
+              if (value) {
+                Get.back(result: true);
+                if (!Get.isSnackbarOpen) {
+                  Get.snackbar("성공", "리뷰를 성공적으로 삭제했습니다");
+                }
+              } else {
+                if (!Get.isSnackbarOpen) {
+                  Get.snackbar("실패", "삭제를 실패했습니다");
+                }
+              }
+            });
           },
           child: Container(
             width: 120,

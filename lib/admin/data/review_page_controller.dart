@@ -91,6 +91,32 @@ class ReviewPageController extends GetxController {
     }
   }
 
+  //리뷰 삭제
+  Future<bool> deleteReview(int reviewId) async {
+    try {
+      var url = Uri.parse("$kBaseUrl/web_data/flunyt_admin_review.php");
+      var request = http.MultipartRequest('POST', url);
+      request.fields['action'] = "REVIEW_DELETE";
+      request.fields['id'] = reviewId.toString();
+
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      print("Delete Review Response : ${response.body}");
+      if (response.statusCode == 200) {
+        if (response.body == "success") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("exception : $e");
+      return false;
+    }
+  }
+
   //모든 거래 목록 불러오기
   static List<Review> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
