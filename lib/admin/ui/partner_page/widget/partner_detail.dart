@@ -37,199 +37,176 @@ class _PartnerDetailState extends State<PartnerDetail> {
       content: SingleChildScrollView(
         child: ListBody(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(height: 10),
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '번호',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.id.toString()),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '아이디',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.clientId.toString()),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.arrow_right),
-                        Text(
-                          '성별',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),
+            Container(
+              width: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(height: 10),
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '번호',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    SizedBox(
-                        width: 400,
-                        child: Row(
-                          children: [
-                            Icon(Icons.arrow_right, color: Colors.white),
-                            Text(''),
-                          ],
-                        )),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '담당자명',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.clientName.toString()),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '연락처',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.clientPhone.toString()),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '회사명',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                      Text(widget.client.id.toString()),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '아이디',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.clientCompany.toString()),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '사업자번호',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    Text(widget.client.clientNo),
-                  ],
-                ),
-                SizedBox(height: 30),
-                Row(
-                  children: [
-                    Icon(Icons.arrow_right),
-                    Text(
-                      '가입일',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
+                      Text(widget.client.clientId.toString()),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '담당자명',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 0),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_right,
-                      color: Colors.white,
-                    ),
-                    SizedBox(height: 5),
-                    Text(''),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(widget.client.clientName.toString()),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '연락처',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(widget.client.clientPhone.toString()),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '회사명',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(widget.client.clientCompany.toString()),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '사업자번호',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      Text(widget.client.clientNo),
+                    ],
+                  ),
+                  SizedBox(height: 30),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_right),
+                      Text(
+                        '가입일',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 0),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_right,
+                        color: Colors.white,
+                      ),
+                      SizedBox(height: 5),
+                      Text(''),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 15),
           ],
