@@ -223,67 +223,42 @@ class UserRow extends StatelessWidget {
                 ),
               ),
             ),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        height: 25.0,
-                        width: 77.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xFF656565)),
-                        child: const Center(
-                            child: Text(
-                          '삭제',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        )),
-                      ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(width: 10),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return UserDetail();
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: 25.0,
+                      width: 77.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: const Color(0xFF656565)),
+                      child: const Center(
+                          child: Text(
+                        '자세히 보기',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      )),
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return UserDetail();
-                          },
-                        );
-                      },
-                      child: Container(
-                        height: 25.0,
-                        width: 77.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xFF656565)),
-                        child: const Center(
-                            child: Text(
-                          '자세히 보기',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        )),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  width: 10.0,
+                ),
+              ],
             ),
           ),
         ),
