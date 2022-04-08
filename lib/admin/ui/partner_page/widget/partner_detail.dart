@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/client_model.dart';
 
@@ -202,7 +203,8 @@ class _PartnerDetailState extends State<PartnerDetail> {
                         color: Colors.white,
                       ),
                       SizedBox(height: 5),
-                      Text(''),
+                      Text(DateFormat('yyyy-MM-dd')
+                          .format(widget.client.registerDate)),
                     ],
                   ),
                 ],

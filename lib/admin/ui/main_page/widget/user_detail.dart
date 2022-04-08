@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/user_model.dart';
 
@@ -214,7 +215,8 @@ class _UserDetailState extends State<UserDetail> {
                         Icons.arrow_right,
                         color: Colors.white,
                       ),
-                      Text(widget.user.userRegisterDate.toString()),
+                      Text(DateFormat("yyyy-MM-dd")
+                          .format(widget.user.userRegisterDate)),
                     ],
                   ),
                 ],
