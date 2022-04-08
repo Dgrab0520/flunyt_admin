@@ -12,7 +12,7 @@ class ReviewSummary {
   factory ReviewSummary.fromJson(Map<String, dynamic> json) {
     return ReviewSummary(
       allReviewCount: json['allReviewCount'] == null
-          ? ""
+          ? "0"
           : json['allReviewCount'] as String,
       monthReviewCount: json['monthReviewCount'] == null
           ? 0

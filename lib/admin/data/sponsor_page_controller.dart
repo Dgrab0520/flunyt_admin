@@ -91,55 +91,8 @@ class SponsorPageController extends GetxController {
     }
   }
 
-  //스폰서 추가
-  Future<bool> insertSponsor(
-      Sponsor sponsor, Uint8List? thumb, Uint8List? content) async {
-    String sponsorId = getRandomString();
-    try {
-      var url = Uri.parse("$kBaseUrl/web_data/flunyt_admin_sponsor.php");
-      var request = http.MultipartRequest('POST', url);
-      request.fields['action'] = "SPONSOR_INSERT";
-      request.fields['sponsorId'] = sponsorId;
-      request.fields['status'] = sponsor.status;
-      request.fields['title'] = sponsor.title;
-      request.fields['content'] = sponsor.content;
-      request.fields['area'] = sponsor.area;
-      request.fields['serviceType'] = sponsor.serviceType;
-      request.fields['image'] = sponsorId + ".gif";
-
-      request.files.add(http.MultipartFile.fromBytes(
-        "thumb",
-        thumb!,
-        contentType: MediaType('application', 'octet-stream'),
-        filename: "thumb",
-      ));
-      request.files.add(http.MultipartFile.fromBytes(
-        "content",
-        content!,
-        contentType: MediaType('application', 'octet-stream'),
-        filename: "content",
-      ));
-      print(request);
-      http.Response response =
-          await http.Response.fromStream(await request.send());
-      print("Insert Sponsor Response : ${response.body}");
-      if (response.statusCode == 200) {
-        if (response.body == "success") {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    } catch (e) {
-      print("exception : $e");
-      return false;
-    }
-  }
-
   //스폰서 삭제
-  static Future<bool> deleteSponsor(int sponsorId) async {
+  Future<bool> deleteSponsor(int sponsorId) async {
     try {
       var url = Uri.parse("$kBaseUrl/web_data/flunyt_admin_sponsor.php");
       var request = http.MultipartRequest('POST', url);
@@ -164,8 +117,8 @@ class SponsorPageController extends GetxController {
     }
   }
 
-  //메인 배너 업데이트
-  Future<bool> updateMainBanner(
+  //스폰서 업데이트
+  Future<bool> updateSponsor(
       {String? id,
       String? title,
       String? content,
