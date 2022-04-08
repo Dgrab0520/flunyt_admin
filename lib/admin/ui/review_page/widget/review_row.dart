@@ -82,6 +82,7 @@ class ReviewRow extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Container(
+            padding: EdgeInsets.only(left: 10, right: 10),
             width: 120,
             height: 40,
             decoration: const BoxDecoration(

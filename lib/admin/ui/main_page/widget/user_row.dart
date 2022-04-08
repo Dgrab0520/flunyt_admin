@@ -1,3 +1,4 @@
+import 'package:flunyt_admin/admin/ui/main_page/widget/user_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -253,7 +254,14 @@ class UserRow extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return UserDetail();
+                          },
+                        );
+                      },
                       child: Container(
                         height: 25.0,
                         width: 77.0,

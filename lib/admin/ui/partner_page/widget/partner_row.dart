@@ -1,4 +1,5 @@
 import 'package:flunyt_admin/admin/model/client_model.dart';
+import 'package:flunyt_admin/admin/ui/partner_page/widget/partner_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -282,7 +283,14 @@ class PartnerRow extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return PartnerDetail();
+                          },
+                        );
+                      },
                       child: Container(
                         height: 25,
                         decoration: BoxDecoration(
