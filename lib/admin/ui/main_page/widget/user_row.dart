@@ -7,6 +7,23 @@ import '../../../model/user_model.dart';
 class UserRow extends StatelessWidget {
   const UserRow({Key? key, required this.user}) : super(key: key);
 
+  String snsName(String snsType) {
+    switch (snsType) {
+      case "IS":
+        return "인스타그램";
+      case "BG":
+        return "블로그";
+      case "YT":
+        return "유튜브";
+      case "FB":
+        return "페이스북";
+      case "TT":
+        return "틱톡";
+      default:
+        return "X";
+    }
+  }
+
   final User user;
   @override
   Widget build(BuildContext context) {
@@ -101,7 +118,7 @@ class UserRow extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "${user.mileage} M",
+                snsName(user.userSNSType),
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: 'NanumSquareR',

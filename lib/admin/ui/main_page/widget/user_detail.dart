@@ -13,6 +13,23 @@ class UserDetail extends StatefulWidget {
 }
 
 class _UserDetailState extends State<UserDetail> {
+  String snsName(String snsType) {
+    switch (snsType) {
+      case "IS":
+        return "인스타그램";
+      case "BG":
+        return "블로그";
+      case "YT":
+        return "유튜브";
+      case "FB":
+        return "페이스북";
+      case "TT":
+        return "틱톡";
+      default:
+        return "X";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -73,7 +90,7 @@ class _UserDetailState extends State<UserDetail> {
                       Icons.arrow_right,
                       color: Colors.white,
                     ),
-                    Text(widget.user.userSNSType.toString()),
+                    Text(snsName(widget.user.userSNSType.toString())),
                   ],
                 ),
                 const SizedBox(height: 30),

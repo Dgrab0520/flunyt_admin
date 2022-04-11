@@ -14,19 +14,9 @@ class BigMain extends StatefulWidget {
   _BigMainState createState() => _BigMainState();
 }
 
-enum Gender { Silver, Gold, Platinum, Vip }
+enum Rank { silver, gold, platinum, vip }
 
 class _BigMainState extends State<BigMain> {
-  int _counter = 0;
-  var _isChecked = false;
-  Gender _gender = Gender.Silver;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   final mainPageController = Get.find<MainPageController>();
 
   final _scrollController = ScrollController();
@@ -519,164 +509,7 @@ class _BigMainState extends State<BigMain> {
                                                           context: context,
                                                           builder: (BuildContext
                                                               context) {
-                                                            return Container(
-                                                              child:
-                                                                  AlertDialog(
-                                                                title: Center(
-                                                                    child: Text(
-                                                                  'SNS 승인',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                )),
-                                                                content:
-                                                                    Container(
-                                                                  height: 500,
-                                                                  width: 300,
-                                                                  child:
-                                                                      ListView(
-                                                                    children: <
-                                                                        Widget>[
-                                                                      ListTile(
-                                                                        title: Text(
-                                                                            'SILVER'),
-                                                                        leading:
-                                                                            Radio(
-                                                                          value:
-                                                                              Gender.Silver,
-                                                                          groupValue:
-                                                                              _gender,
-                                                                          onChanged:
-                                                                              (Gender? value) {
-                                                                            setState(() {
-                                                                              _gender = value!;
-                                                                            });
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      ListTile(
-                                                                        title: Text(
-                                                                            'GOLD'),
-                                                                        leading:
-                                                                            Radio(
-                                                                          value:
-                                                                              Gender.Gold,
-                                                                          groupValue:
-                                                                              _gender,
-                                                                          onChanged:
-                                                                              (Gender? value) {
-                                                                            setState(() {
-                                                                              _gender = value!;
-                                                                            });
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      ListTile(
-                                                                        title: Text(
-                                                                            'PLATINUM'),
-                                                                        leading:
-                                                                            Radio(
-                                                                          value:
-                                                                              Gender.Platinum,
-                                                                          groupValue:
-                                                                              _gender,
-                                                                          onChanged:
-                                                                              (Gender? value) {
-                                                                            setState(() {
-                                                                              _gender = value!;
-                                                                            });
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      ListTile(
-                                                                        title: Text(
-                                                                            'VIP'),
-                                                                        leading:
-                                                                            Radio(
-                                                                          value:
-                                                                              Gender.Vip,
-                                                                          groupValue:
-                                                                              _gender,
-                                                                          onChanged:
-                                                                              (Gender? value) {
-                                                                            setState(() {
-                                                                              _gender = value!;
-                                                                            });
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      SizedBox(
-                                                                        height:
-                                                                            40,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                actions: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    width: 120,
-                                                                    height: 30,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Color(
-                                                                          0xFF3B4E84),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              5),
-                                                                    ),
-                                                                    child:
-                                                                        FlatButton(
-                                                                      child:
-                                                                          Text(
-                                                                        '승인 하기',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        Navigator.of(context)
-                                                                            .pop();
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    width: 120,
-                                                                    height: 30,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: Colors
-                                                                          .grey,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              5),
-                                                                    ),
-                                                                    child:
-                                                                        FlatButton(
-                                                                      child:
-                                                                          Text(
-                                                                        '취소 하기',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Colors.white,
-                                                                        ),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        Get.back();
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            );
+                                                            return RankDialog();
                                                           },
                                                         );
                                                       },
@@ -1387,7 +1220,7 @@ class _BigMainState extends State<BigMain> {
                           ),
                           child: const Center(
                             child: Text(
-                              '마일리지',
+                              'SNS',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontFamily: 'NanumSquareB',
@@ -1594,6 +1427,129 @@ class _BigMainState extends State<BigMain> {
             },
             style: ElevatedButton.styleFrom(primary: kPrimaryColor),
             child: const Icon(CupertinoIcons.up_arrow),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class RankDialog extends StatefulWidget {
+  const RankDialog({Key? key}) : super(key: key);
+
+  @override
+  _RankDialogState createState() => _RankDialogState();
+}
+
+class _RankDialogState extends State<RankDialog> {
+  Rank _rank = Rank.silver;
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Center(
+          child: Text(
+        'SNS 승인',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      )),
+      content: Container(
+        height: 500,
+        width: 300,
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text('SILVER'),
+              leading: Radio(
+                value: Rank.silver,
+                groupValue: _rank,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('GOLD'),
+              leading: Radio(
+                value: Rank.gold,
+                groupValue: _rank,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('PLATINUM'),
+              leading: Radio(
+                value: Rank.platinum,
+                groupValue: _rank,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('VIP'),
+              leading: Radio(
+                value: Rank.vip,
+                groupValue: _rank,
+                onChanged: (Rank? value) {
+                  print(value);
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        Container(
+          width: 120,
+          height: 30,
+          decoration: BoxDecoration(
+            color: Color(0xFF3B4E84),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: FlatButton(
+            child: Text(
+              '승인 하기',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+        Container(
+          width: 120,
+          height: 30,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: FlatButton(
+            child: Text(
+              '취소 하기',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              Get.back();
+            },
           ),
         ),
       ],
