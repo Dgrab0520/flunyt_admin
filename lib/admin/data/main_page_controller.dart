@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flunyt_admin/admin/model/main_summary_model.dart';
+import 'package:flunyt_admin/admin/model/user_auth_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -20,6 +21,10 @@ class MainPageController extends GetxController {
 
   List<User> get users => _users;
   set users(val) => _users.value = val;
+
+  final _userAuth = <UserAuth>[].obs;
+  List<UserAuth> get userAuth => _userAuth;
+  set userAuth(val) => _userAuth.value = val;
 
   final _hasReachedMax = false.obs;
   bool get hasReachedMax => _hasReachedMax.value;
@@ -90,9 +95,32 @@ class MainPageController extends GetxController {
     }
   }
 
+  //Get Auth
+  getUserAuth() async {
+    try {
+      var map = <String, dynamic>{};
+      map['action'] = "GET_AUTH";
+      final response = await http.post(
+          Uri.parse("$kBaseUrl/web_data/flunyt_admin_user.php"),
+          body: map);
+      print('Get Auth Response : ${response.body}');
+      if (200 == response.statusCode) {
+        userAuth = parseSNSResponse(response.body);
+      }
+    } catch (e) {
+      print("exception : $e");
+    }
+  }
+
   //모든 거래 목록 불러오기
   static List<User> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<User>((json) => User.fromJson(json)).toList();
+  }
+
+  //모든 sns 인증 불러오기
+  static List<UserAuth> parseSNSResponse(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<UserAuth>((json) => UserAuth.fromJson(json)).toList();
   }
 }
