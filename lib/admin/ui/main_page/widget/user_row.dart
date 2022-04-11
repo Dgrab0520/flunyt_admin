@@ -101,7 +101,7 @@ class UserRow extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "0 M",
+                "${user.mileage} M",
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: 'NanumSquareR',
@@ -132,7 +132,7 @@ class UserRow extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                '0 PT',
+                '${user.point} PT',
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: 'NanumSquareR',
@@ -163,7 +163,7 @@ class UserRow extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                '0 건',
+                '${user.campaignCount} 건',
                 style: const TextStyle(
                   fontSize: 12,
                   fontFamily: 'NanumSquareR',

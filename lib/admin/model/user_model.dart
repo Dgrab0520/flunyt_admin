@@ -10,6 +10,9 @@ class User {
   String userProfileImg;
   String userStatus;
   DateTime userRegisterDate;
+  int point;
+  int mileage;
+  int campaignCount;
 
   User({
     required this.id,
@@ -23,6 +26,9 @@ class User {
     required this.userProfileImg,
     required this.userStatus,
     required this.userRegisterDate,
+    required this.point,
+    required this.mileage,
+    required this.campaignCount,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -44,6 +50,9 @@ class User {
       userRegisterDate: json['registerdate'] == null
           ? DateTime.now()
           : DateTime.parse(json['registerdate']),
+      point: json['point'] == null ? 0 : int.parse(json['point']),
+      mileage: json['mileage'] == null ? 0 : int.parse(json['mileage']),
+      campaignCount: json['campaign'] == null ? 0 : int.parse(json['campaign']),
     );
   }
 }

@@ -26,201 +26,199 @@ class _UserDetailState extends State<UserDetail> {
       content: SingleChildScrollView(
         child: ListBody(
           children: [
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(height: 10),
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '번호',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: const [
+                    SizedBox(height: 10),
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '번호',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text(widget.user.id.toString()),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      'SNS 정보',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(widget.user.id.toString()),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        'SNS 정보',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text(widget.user.userSNSType.toString()),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '아이디',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
-                      ),
-                      Text(widget.user.userSNSType.toString()),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '아이디',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
-                      ),
-                      Text(widget.user.userId.toString()),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.arrow_right),
-                          Text(
-                            '성별',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text(widget.user.userId.toString()),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Column(
+                  children: [
+                    Row(
+                      children: const [
+                        Icon(Icons.arrow_right),
+                        Text(
+                          '성별',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      SizedBox(
-                          width: 400,
-                          child: Row(
-                            children: [
-                              Icon(Icons.arrow_right, color: Colors.white),
-                              Text(widget.user.userSex.toString()),
-                            ],
-                          )),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '마일리지',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
                         ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                        width: 400,
+                        child: Row(
+                          children: [
+                            const Icon(Icons.arrow_right, color: Colors.white),
+                            Text(widget.user.userSex.toString()),
+                          ],
+                        )),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '마일리지',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text('${widget.user.mileage} M'),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '포인트',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text('0 M'),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '포인트',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text('${widget.user.point} P'),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '캠페인 참여 횟수',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text('${widget.user.campaignCount} 건'),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '가입일',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text('0 P'),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '캠페인 참여 횟수',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
-                      ),
-                      Text('0 건'),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_right),
-                      Text(
-                        '가입일',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_right,
-                        color: Colors.white,
-                      ),
-                      Text(DateFormat("yyyy-MM-dd")
-                          .format(widget.user.userRegisterDate)),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_right,
+                      color: Colors.white,
+                    ),
+                    Text(DateFormat("yyyy-MM-dd")
+                        .format(widget.user.userRegisterDate)),
+                  ],
+                ),
+              ],
             ),
             const SizedBox(height: 15),
           ],
