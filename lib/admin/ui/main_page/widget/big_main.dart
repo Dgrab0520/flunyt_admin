@@ -14,7 +14,19 @@ class BigMain extends StatefulWidget {
   _BigMainState createState() => _BigMainState();
 }
 
+enum Gender { Silver, Gold, Platinum, Vip }
+
 class _BigMainState extends State<BigMain> {
+  int _counter = 0;
+  var _isChecked = false;
+  Gender _gender = Gender.Silver;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   final mainPageController = Get.find<MainPageController>();
 
   final _scrollController = ScrollController();
@@ -64,15 +76,836 @@ class _BigMainState extends State<BigMain> {
                     horizontal: Get.width * 0.1,
                     vertical: 35.0,
                   ),
-                  child: const Text(
-                    '인플루언서 관리',
-                    style: TextStyle(
-                      fontFamily: 'NanumSquareEB',
-                      fontSize: 18,
-                    ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        '인플루언서 관리',
+                        style: TextStyle(
+                          fontFamily: 'NanumSquareEB',
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Center(
+                                    child: Text(
+                                  'SNS인증',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
+                                content: Column(
+                                  children: [
+                                    Container(
+                                      width: Get.width,
+                                      padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width /
+                                                30,
+                                        right:
+                                            MediaQuery.of(context).size.width /
+                                                30,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      const Color(0xFFeeeeee),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: const Color(
+                                                          0xFFcccccc))),
+                                              child: const Center(
+                                                child: Text(
+                                                  '번호',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFeeeeee),
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '아이디',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFeeeeee),
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '링크',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFeeeeee),
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '심사과정',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFeeeeee),
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '가입일',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFeeeeee),
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '관리',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareB',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: Get.width,
+                                      padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width /
+                                                30,
+                                        right:
+                                            MediaQuery.of(context).size.width /
+                                                30,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  border: Border(
+                                                    left: BorderSide(
+                                                      // POINT
+                                                      color: Color(0xFFcccccc),
+                                                      width: 1.0,
+                                                    ),
+                                                    right: BorderSide(
+                                                      // POINT
+                                                      color: Color(0xFFcccccc),
+                                                      width: 1.0,
+                                                    ),
+                                                    bottom: BorderSide(
+                                                      // POINT
+                                                      color: Color(0xFFcccccc),
+                                                      width: 1.0,
+                                                    ),
+                                                  )),
+                                              child: const Center(
+                                                child: Text(
+                                                  '1',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareR',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFffffff),
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  'car108',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareR',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFffffff),
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  'https://instagram.com/9_8.aro',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareR',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFffffff),
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '심사중',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareR',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFffffff),
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: const Center(
+                                                child: Text(
+                                                  '2021-04-13',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontFamily: 'NanumSquareR',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              width: 120,
+                                              height: 40,
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFffffff),
+                                                border: Border(
+                                                  right: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                  bottom: BorderSide(
+                                                    // POINT
+                                                    color: Color(0xFFcccccc),
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return Container(
+                                                              child:
+                                                                  AlertDialog(
+                                                                title: Center(
+                                                                    child: Text(
+                                                                  'SNS 승인',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                )),
+                                                                content:
+                                                                    Container(
+                                                                  height: 500,
+                                                                  width: 300,
+                                                                  child:
+                                                                      ListView(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      ListTile(
+                                                                        title: Text(
+                                                                            'SILVER'),
+                                                                        leading:
+                                                                            Radio(
+                                                                          value:
+                                                                              Gender.Silver,
+                                                                          groupValue:
+                                                                              _gender,
+                                                                          onChanged:
+                                                                              (Gender? value) {
+                                                                            setState(() {
+                                                                              _gender = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      ListTile(
+                                                                        title: Text(
+                                                                            'GOLD'),
+                                                                        leading:
+                                                                            Radio(
+                                                                          value:
+                                                                              Gender.Gold,
+                                                                          groupValue:
+                                                                              _gender,
+                                                                          onChanged:
+                                                                              (Gender? value) {
+                                                                            setState(() {
+                                                                              _gender = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      ListTile(
+                                                                        title: Text(
+                                                                            'PLATINUM'),
+                                                                        leading:
+                                                                            Radio(
+                                                                          value:
+                                                                              Gender.Platinum,
+                                                                          groupValue:
+                                                                              _gender,
+                                                                          onChanged:
+                                                                              (Gender? value) {
+                                                                            setState(() {
+                                                                              _gender = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      ListTile(
+                                                                        title: Text(
+                                                                            'VIP'),
+                                                                        leading:
+                                                                            Radio(
+                                                                          value:
+                                                                              Gender.Vip,
+                                                                          groupValue:
+                                                                              _gender,
+                                                                          onChanged:
+                                                                              (Gender? value) {
+                                                                            setState(() {
+                                                                              _gender = value!;
+                                                                            });
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            40,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Container(
+                                                                    width: 120,
+                                                                    height: 30,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Color(
+                                                                          0xFF3B4E84),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    child:
+                                                                        FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        '승인 하기',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    width: 120,
+                                                                    height: 30,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    child:
+                                                                        FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        '취소 하기',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Get.back();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Container(
+                                                        margin: EdgeInsets.only(
+                                                            left: 7,
+                                                            top: 7,
+                                                            bottom: 7),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Color(
+                                                                0xFF3B4E84)),
+                                                        child: Center(
+                                                            child: Text(
+                                                          '승인 하기',
+                                                          style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.white,
+                                                          ),
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  Expanded(
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return Container(
+                                                              child:
+                                                                  AlertDialog(
+                                                                title: Center(
+                                                                    child: Text(
+                                                                  'SNS 거절',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                )),
+                                                                content:
+                                                                    Container(
+                                                                        padding:
+                                                                            EdgeInsets
+                                                                                .only(
+                                                                          bottom:
+                                                                              50,
+                                                                        ),
+                                                                        child:
+                                                                            TextField(
+                                                                          minLines:
+                                                                              2,
+                                                                          maxLines:
+                                                                              7,
+                                                                          decoration: InputDecoration(
+                                                                              border: OutlineInputBorder(),
+                                                                              labelText: "거절 사유를 입력 해주세요.",
+                                                                              labelStyle: TextStyle(
+                                                                                fontSize: 12,
+                                                                              )),
+                                                                        )),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Container(
+                                                                    width: 120,
+                                                                    height: 30,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Color(
+                                                                          0xFF3B4E84),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    child:
+                                                                        FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        '거절 하기',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    width: 120,
+                                                                    height: 30,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                    ),
+                                                                    child:
+                                                                        FlatButton(
+                                                                      child:
+                                                                          Text(
+                                                                        '취소 하기',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.white,
+                                                                        ),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Get.back();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Container(
+                                                        margin: EdgeInsets.only(
+                                                            top: 7,
+                                                            right: 7,
+                                                            bottom: 7),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Color(
+                                                                0xFF656565)),
+                                                        child: Center(
+                                                            child: Text(
+                                                          '거절 하기',
+                                                          style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.white,
+                                                          ),
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                actions: <Widget>[
+                                  Container(
+                                    width: 120,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF363057),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: FlatButton(
+                                      child: Text(
+                                        '삭제 하기',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 120,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: FlatButton(
+                                      child: Text(
+                                        '취소 하기',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: Container(
+                          width: 70,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              color: Color(0xFF3B4E84),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Center(
+                            child: Text(
+                              'SNS인증',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-
                 //Summary Header
                 Container(
                     width: Get.width,
