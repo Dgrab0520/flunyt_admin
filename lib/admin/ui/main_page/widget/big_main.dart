@@ -74,7 +74,7 @@ class _BigMainState extends State<BigMain> {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       InkWell(
                         onTap: () {
                           showDialog(
@@ -88,9 +88,9 @@ class _BigMainState extends State<BigMain> {
                           width: 70,
                           height: 25,
                           decoration: BoxDecoration(
-                              color: Color(0xFF3B4E84),
+                              color: const Color(0xFF3B4E84),
                               borderRadius: BorderRadius.circular(5)),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'SNS인증',
                               style: TextStyle(

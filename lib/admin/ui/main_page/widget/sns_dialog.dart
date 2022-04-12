@@ -1,10 +1,13 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
+import 'package:flunyt_admin/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/main_page_controller.dart';
+import '../../../model/user_auth_model.dart';
 
 enum Rank { silver, gold, platinum, vip }
 
@@ -463,22 +466,32 @@ class SnsDialog extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return RankDialog();
-                                            },
-                                          );
+                                        onTap: () async {
+                                          if (mainPageController
+                                                  .userAuth[index].authResult !=
+                                              "심사완료") {
+                                            var result = await showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return RankDialog(
+                                                  auth: mainPageController
+                                                      .userAuth[index],
+                                                );
+                                              },
+                                            );
+                                            if (result != null) {
+                                              mainPageController.getUserAuth();
+                                            }
+                                          }
                                         },
                                         child: Container(
-                                          margin: EdgeInsets.only(
+                                          margin: const EdgeInsets.only(
                                               left: 7, top: 7, bottom: 7),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              color: Color(0xFF3B4E84)),
-                                          child: Center(
+                                              color: const Color(0xFF3B4E84)),
+                                          child: const Center(
                                               child: Text(
                                             '승인 하기',
                                             style: TextStyle(
@@ -489,100 +502,31 @@ class SnsDialog extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 5),
+                                    const SizedBox(width: 5),
                                     Expanded(
                                       child: InkWell(
-                                        onTap: () {
-                                          showDialog(
+                                        onTap: () async {
+                                          var result = await showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
-                                              return Container(
-                                                child: AlertDialog(
-                                                  title: Center(
-                                                      child: Text(
-                                                    'SNS 거절',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  )),
-                                                  content: Container(
-                                                      padding: EdgeInsets.only(
-                                                        bottom: 50,
-                                                      ),
-                                                      child: TextField(
-                                                        minLines: 2,
-                                                        maxLines: 7,
-                                                        decoration:
-                                                            InputDecoration(
-                                                                border:
-                                                                    OutlineInputBorder(),
-                                                                labelText:
-                                                                    "거절 사유를 입력 해주세요.",
-                                                                labelStyle:
-                                                                    TextStyle(
-                                                                  fontSize: 12,
-                                                                )),
-                                                      )),
-                                                  actions: <Widget>[
-                                                    Container(
-                                                      width: 120,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xFF3B4E84),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      child: FlatButton(
-                                                        child: Text(
-                                                          '거절 하기',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      width: 120,
-                                                      height: 30,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.grey,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                      ),
-                                                      child: FlatButton(
-                                                        child: Text(
-                                                          '취소 하기',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                        onPressed: () {
-                                                          Get.back();
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return RejectedDialog(
+                                                auth: mainPageController
+                                                    .userAuth[index],
                                               );
                                             },
                                           );
+                                          if (result != null) {
+                                            mainPageController.getUserAuth();
+                                          }
                                         },
                                         child: Container(
-                                          margin: EdgeInsets.only(
+                                          margin: const EdgeInsets.only(
                                               top: 7, right: 7, bottom: 7),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              color: Color(0xFF656565)),
-                                          child: Center(
+                                              color: const Color(0xFF656565)),
+                                          child: const Center(
                                               child: Text(
                                             '거절 하기',
                                             style: TextStyle(
@@ -609,31 +553,12 @@ class SnsDialog extends StatelessWidget {
           width: 120,
           height: 30,
           decoration: BoxDecoration(
-            color: Color(0xFF363057),
+            color: const Color(0xFF363057),
             borderRadius: BorderRadius.circular(5),
           ),
           child: FlatButton(
-            child: Text(
-              '삭제 하기',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-        Container(
-          width: 120,
-          height: 30,
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: FlatButton(
-            child: Text(
-              '취소 하기',
+            child: const Text(
+              '닫기',
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -648,102 +573,71 @@ class SnsDialog extends StatelessWidget {
   }
 }
 
-class RankDialog extends StatefulWidget {
-  const RankDialog({Key? key}) : super(key: key);
+class RejectedDialog extends StatefulWidget {
+  const RejectedDialog({Key? key, required this.auth}) : super(key: key);
+
+  final UserAuth auth;
 
   @override
-  _RankDialogState createState() => _RankDialogState();
+  _RejectedDialogState createState() => _RejectedDialogState();
 }
 
-class _RankDialogState extends State<RankDialog> {
-  Rank _rank = Rank.silver;
+class _RejectedDialogState extends State<RejectedDialog> {
+  final reasonController = TextEditingController();
+  final mainPageController = Get.find<MainPageController>();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Center(
+      title: const Center(
           child: Text(
-        'SNS 승인',
+        'SNS 거절',
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
       )),
       content: Container(
-        height: 500,
-        width: 300,
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('SILVER'),
-              leading: Radio(
-                value: Rank.silver,
-                groupValue: _rank,
-                onChanged: (Rank? value) {
-                  setState(() {
-                    _rank = value!;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: Text('GOLD'),
-              leading: Radio(
-                value: Rank.gold,
-                groupValue: _rank,
-                onChanged: (Rank? value) {
-                  setState(() {
-                    _rank = value!;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: Text('PLATINUM'),
-              leading: Radio(
-                value: Rank.platinum,
-                groupValue: _rank,
-                onChanged: (Rank? value) {
-                  setState(() {
-                    _rank = value!;
-                  });
-                },
-              ),
-            ),
-            ListTile(
-              title: Text('VIP'),
-              leading: Radio(
-                value: Rank.vip,
-                groupValue: _rank,
-                onChanged: (Rank? value) {
-                  print(value);
-                  setState(() {
-                    _rank = value!;
-                  });
-                },
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-          ],
-        ),
-      ),
+          padding: const EdgeInsets.only(
+            bottom: 50,
+          ),
+          child: TextField(
+            controller: reasonController,
+            minLines: 2,
+            maxLines: 7,
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "거절 사유를 입력 해주세요.",
+                labelStyle: TextStyle(
+                  fontSize: 12,
+                )),
+          )),
       actions: <Widget>[
         Container(
           width: 120,
           height: 30,
           decoration: BoxDecoration(
-            color: Color(0xFF3B4E84),
+            color: const Color(0xFF3B4E84),
             borderRadius: BorderRadius.circular(5),
           ),
           child: FlatButton(
-            child: Text(
-              '승인 하기',
+            child: const Text(
+              '거절 하기',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              if (reasonController.text != "") {
+                mainPageController
+                    .updateAuth(widget.auth.id, widget.auth.userId, "심사불가",
+                        reasonController.text, "type", "snsId")
+                    .then((value) {
+                  if (value) {
+                    Navigator.of(context).pop(true);
+                  } else {
+                    Get.snackbar("실패", "업데이트 실패");
+                  }
+                });
+              }
             },
           ),
         ),
@@ -755,7 +649,481 @@ class _RankDialogState extends State<RankDialog> {
             borderRadius: BorderRadius.circular(5),
           ),
           child: FlatButton(
-            child: Text(
+            child: const Text(
+              '취소 하기',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class RankDialog extends StatefulWidget {
+  const RankDialog({Key? key, required this.auth}) : super(key: key);
+
+  final UserAuth auth;
+  @override
+  _RankDialogState createState() => _RankDialogState();
+}
+
+class _RankDialogState extends State<RankDialog> {
+  Rank _rank = Rank.silver;
+
+  List<bool> selectedType = [
+    true,
+    false,
+    false,
+    false,
+    false,
+  ];
+
+  final mainPageController = Get.find<MainPageController>();
+  final snsIdController = TextEditingController();
+
+  @override
+  void initState() {
+    snsIdController.text = widget.auth.snsLink.split("/")[3];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Center(
+          child: Text(
+        'SNS 승인',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      )),
+      content: SizedBox(
+        width: 300,
+        child: ListView(
+          shrinkWrap: true,
+          children: <Widget>[
+            Row(
+              children: [
+                const Icon(Icons.arrow_right),
+                Text(
+                  '아이디 : ${widget.auth.userId}',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'NanumSquareB',
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_right),
+                    Text(
+                      '링크 : ',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ],
+                ),
+                Flexible(
+                  child: Text(
+                    widget.auth.snsLink,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'NanumSquareB',
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: const [
+                Icon(Icons.arrow_right),
+                Text(
+                  'SNS ID',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'NanumSquareB',
+                  ),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TextField(
+                controller: snsIdController,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: const [
+                Icon(Icons.arrow_right),
+                Text(
+                  '등급',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'NanumSquareB',
+                  ),
+                )
+              ],
+            ),
+            ListTile(
+              title: const Text(
+                'SILVER',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              ),
+              subtitle: const Text(
+                '100~1000명 미만',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareR',
+                ),
+              ),
+              leading: Radio(
+                value: Rank.silver,
+                groupValue: _rank,
+                activeColor: kPrimaryColor,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'GOLD',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              ),
+              subtitle: const Text(
+                '1000~5000명 미만',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareR',
+                ),
+              ),
+              leading: Radio(
+                value: Rank.gold,
+                groupValue: _rank,
+                activeColor: kPrimaryColor,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'PLATINUM',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              ),
+              subtitle: const Text(
+                '5000~1만명 미만',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareR',
+                ),
+              ),
+              leading: Radio(
+                value: Rank.platinum,
+                groupValue: _rank,
+                activeColor: kPrimaryColor,
+                onChanged: (Rank? value) {
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'VIP',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareB',
+                ),
+              ),
+              subtitle: const Text(
+                '1만명 이상',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: 'NanumSquareR',
+                ),
+              ),
+              leading: Radio(
+                value: Rank.vip,
+                groupValue: _rank,
+                activeColor: kPrimaryColor,
+                onChanged: (Rank? value) {
+                  print(value);
+                  setState(() {
+                    _rank = value!;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: const [
+                Icon(Icons.arrow_right),
+                Text(
+                  '타입',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'NanumSquareB',
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedType
+                          .setRange(0, 5, [true, false, false, false, false]);
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: selectedType[0] ? kAccentColor : Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: kAccentColor, width: 1)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "인스타그램",
+                      style: TextStyle(
+                        color: selectedType[0] ? Colors.white : kAccentColor,
+                        fontSize: 12,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedType
+                          .setRange(0, 5, [false, true, false, false, false]);
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: selectedType[1] ? kAccentColor : Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: kAccentColor, width: 1)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "블로그",
+                      style: TextStyle(
+                        color: selectedType[1] ? Colors.white : kAccentColor,
+                        fontSize: 12,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedType
+                          .setRange(0, 5, [false, false, true, false, false]);
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: selectedType[2] ? kAccentColor : Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: kAccentColor, width: 1)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "유튜브",
+                      style: TextStyle(
+                        color: selectedType[2] ? Colors.white : kAccentColor,
+                        fontSize: 12,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedType
+                          .setRange(0, 5, [false, false, false, true, false]);
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: selectedType[3] ? kAccentColor : Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: kAccentColor, width: 1)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "틱톡",
+                      style: TextStyle(
+                        color: selectedType[3] ? Colors.white : kAccentColor,
+                        fontSize: 12,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedType
+                          .setRange(0, 5, [false, false, false, false, true]);
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: selectedType[4] ? kAccentColor : Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: kAccentColor, width: 1)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "페이스북",
+                      style: TextStyle(
+                        color: selectedType[4] ? Colors.white : kAccentColor,
+                        fontSize: 12,
+                        fontFamily: 'NanumSquareB',
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        Container(
+          width: 120,
+          height: 30,
+          decoration: BoxDecoration(
+            color: const Color(0xFF3B4E84),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: FlatButton(
+            child: const Text(
+              '승인 하기',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              String index = "";
+              String type = "";
+              switch (_rank) {
+                case Rank.silver:
+                  index = "silver";
+                  break;
+                case Rank.gold:
+                  index = "gold";
+                  break;
+                case Rank.platinum:
+                  index = "platinum";
+                  break;
+                case Rank.vip:
+                  index = "vip";
+                  break;
+                default:
+                  index = "";
+              }
+              if (selectedType[0]) {
+                type = "IS";
+              } else if (selectedType[1]) {
+                type = "BG";
+              } else if (selectedType[2]) {
+                type = "YT";
+              } else if (selectedType[3]) {
+                type = "TT";
+              } else {
+                type = "FB";
+              }
+              mainPageController
+                  .updateAuth(widget.auth.id, widget.auth.userId, "심사완료", index,
+                      type, snsIdController.text)
+                  .then((value) {
+                if (value) {
+                  Navigator.of(context).pop(true);
+                } else {
+                  Get.snackbar("실패", "업데이트 실패");
+                }
+              });
+            },
+          ),
+        ),
+        Container(
+          width: 120,
+          height: 30,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: FlatButton(
+            child: const Text(
               '취소 하기',
               style: TextStyle(
                 color: Colors.white,

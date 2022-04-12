@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/main_page_controller.dart';
+import 'sns_dialog.dart';
 import 'user_row.dart';
 
 class SmallMain extends StatefulWidget {
@@ -67,12 +68,43 @@ class _SmallMainState extends State<SmallMain> {
                     top: MediaQuery.of(context).size.width / 70,
                     bottom: MediaQuery.of(context).size.width / 70,
                   ),
-                  child: const Text(
-                    '인플루언서 관리',
-                    style: TextStyle(
-                      fontFamily: 'NanumSquareEB',
-                      fontSize: 18,
-                    ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        '인플루언서 관리',
+                        style: TextStyle(
+                          fontFamily: 'NanumSquareEB',
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SnsDialog();
+                            },
+                          );
+                        },
+                        child: Container(
+                          width: 70,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF3B4E84),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: const Center(
+                            child: Text(
+                              'SNS인증',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 

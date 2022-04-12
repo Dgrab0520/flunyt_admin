@@ -112,6 +112,39 @@ class MainPageController extends GetxController {
     }
   }
 
+  //Update Auth
+  Future<bool> updateAuth(int authId, String userId, String result,
+      String index, String type, String snsId) async {
+    try {
+      var url = Uri.parse("$kBaseUrl/web_data/flunyt_admin_user.php");
+      var request = http.MultipartRequest('POST', url);
+      request.fields['action'] = "UPDATE_AUTH";
+      request.fields['id'] = authId.toString();
+      request.fields['result'] = result;
+      request.fields['index'] = index;
+      request.fields['type'] = type;
+      request.fields['userId'] = userId;
+      request.fields['snsId'] = snsId;
+
+      print(request.fields);
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      print("Update Auth Response : ${response.body}");
+      if (response.statusCode == 200) {
+        if (response.body == "success") {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("exception : $e");
+      return false;
+    }
+  }
+
   //모든 거래 목록 불러오기
   static List<User> parseResponse(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
